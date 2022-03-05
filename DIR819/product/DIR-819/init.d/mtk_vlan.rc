@@ -1,0 +1,49 @@
+#!/bin/sh
+
+#for mt7620a
+#top interface eth
+ifconfig eth up
+
+if [ "$1" = "1" ]; then
+
+##########################################
+#LAN interface slipt configuration:
+
+#wan interface
+vconfig add eth 1
+
+#lan interface
+vconfig add eth 2
+vconfig add eth 3
+vconfig add eth 4
+vconfig add eth 5
+
+#ifconfig eth1 up
+#ifconfig eth2 up
+#ifconfig eth3 up
+#ifconfig eth4 up
+#ifconfig eth5 up
+
+#config switch port
+#port0 is wan
+/usr/sbin/config-vlan.sh 3 12345
+#port4 is wan
+#/usr/sbin/config-vlan.sh 3 54321
+
+else
+
+##########################################
+#LAN interface together configuration£º
+
+#wan interface
+vconfig add eth 1
+#lan interface
+vconfig add eth 2
+
+#ifconfig eth1 up
+#ifconfig eth2 up
+
+#config switch port
+/usr/sbin/config-vlan.sh 3 LLLLW
+
+fi

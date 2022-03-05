@@ -1,0 +1,51 @@
+#######################################################################
+##
+## Embedded Target Makefile (ISD2)
+##
+#######################################################################
+BUILD_TARGET_KERNEL=y
+
+CONFIG_MAKE = ../../configs/config.make
+ifeq ($(wildcard $(CONFIG_MAKE)),$(CONFIG_MAKE))
+include $(CONFIG_MAKE)
+endif
+
+CONFIG_MAKE_DIR=$(shell pwd)/$(CONFIG_MAKE)
+PWD=$(shell pwd)
+
+BUILD_OPTS = \
+			 KERNEL_FULL_DIR=$(KERNEL_FULL_DIR) \
+			 TOP_DIR=$(TOP_DIR) \
+			 CONFIG_MAKE_DIR=$(CONFIG_MAKE_DIR) \
+			 PWD=$(PWD) \
+			 KERNEL_VERSION=$(KERNEL_VERSION) \
+			 ARCH=$(ARCH)
+
+ifneq ($(PLATFORM), UBICOM)
+BUILD_OPTS += KCFLAGS="$(KCFLAGS)"
+endif
+
+.PHONY:	all init clean build distclean install
+
+all:	build copy2tftpboot
+
+init:
+
+clean:
+	$(RM) *~ *.o *.ko .*.o.cmd .*.ko.cmd *.symvers *.mod.c *.order
+
+build:	init
+	$(MAKE) -f Makefile CROSS=$(CROSS) $(BUILD_OPTS) all
+
+distclean:
+
+install:
+	$(MAKE) -f Makefile install KERNEL_FULL_DIR=$(KERNEL_FULL_DIR) PREFIX=$(TARGET_DIR) KERNEL_VERSION=$(KERNEL_VERSION)
+
+
+copy2tftpboot:
+ifeq ($(KERNEL_VERSION),LINUX2.6)
+	cp utm_nat_nf_module.ko /tftpboot
+else
+	cp utm_nat_nf.o /tftpboot
+endif

@@ -1,0 +1,65 @@
+#!/bin/sh
+
+#Up the interfaces (eth0 & eth1) ie.
+#ifconfig eth0 up
+#ifconfig eth1 up
+
+#insmod raiX(5G) driver for MTK use
+if [ -f /lib/modules/2.6.36.x/kernel/drivers/net/wireless/MT7610/rlt_wifi_ap/MT7610_ap.ko ]; then
+       insmod  /lib/modules/2.6.36.x/kernel/drivers/net/wireless/MT7610/rlt_wifi_ap/MT7610_ap.ko
+fi
+
+# ipv6 config
+echo 1 > /proc/sys/net/ipv6/conf/default/disable_ipv6
+echo 0 > /proc/sys/net/ipv6/conf/default/accept_ra
+echo 1 > /proc/sys/net/ipv6/conf/eth/disable_ipv6 
+echo 0 > /proc/sys/net/ipv6/conf/eth/accept_ra
+echo 1 > /proc/sys/net/ipv6/conf/ra0/disable_ipv6 
+echo 1 > /proc/sys/net/ipv6/conf/rai0/disable_ipv6 
+
+#config switch port for MTK use
+if [ -x /etc/init.d/mtk_vlan.rc ]; then
+	/etc/init.d/mtk_vlan.rc 0
+fi
+
+#insmod hwnat driver for MTK use
+#insmod /lib/modules/2.6.36.x/kernel/net/nat/hw_nat/hw_nat.ko
+
+
+# modify dst-cache setting
+echo 8192 > /proc/sys/net/ipv4/route/max_size
+echo 4096 > /proc/sys/net/ipv4/route/gc_thresh
+echo "20" > /proc/sys/net/ipv4/route/gc_elasticity
+echo 35 > /proc/sys/net/ipv4/route/gc_interval
+echo  60 > /proc/sys/net/ipv4/route/secret_interval
+echo 10 > /proc/sys/net/ipv4/route/gc_timeout
+ 
+echo "600" > /proc/sys/net/ipv4/netfilter/ip_conntrack_tcp_timeout_established
+echo "60" > /proc/sys/net/ipv4/netfilter/ip_conntrack_udp_timeout
+echo "20" > /proc/sys/net/ipv4/netfilter/ip_conntrack_tcp_timeout_time_wait
+echo "20" > /proc/sys/net/ipv4/netfilter/ip_conntrack_tcp_timeout_close
+echo "90" > /proc/sys/net/ipv4/netfilter/ip_conntrack_udp_timeout_stream
+echo "90" > /proc/sys/net/ipv4/netfilter/ip_conntrack_generic_timeout
+echo 1 > /proc/sys/net/ipv4/ip_forward
+echo "1048576" > /proc/sys/net/ipv4/rt_cache_rebuild_count
+#echo 2048 > /proc/sys/net/core/hot_list_length
+echo "20480" > /proc/sys/net/netfilter/nf_conntrack_expect_max
+echo "20480" > /proc/sys/net/netfilter/nf_conntrack_max
+
+echo "48" > /proc/sys/net/ipv4/ipfrag_max_dist
+echo "10">/proc/sys/net/ipv4/ipfrag_time
+echo "300">/proc/sys/net/ipv4/ipfrag_secret_interval
+echo "98304">/proc/sys/net/ipv4/ipfrag_low_thresh
+echo "131072">/proc/sys/net/ipv4/ipfrag_high_thresh
+echo "20480" > /proc/sys/net/nf_conntrack_max
+echo "20480" > /proc/sys/net/ipv4/netfilter/ip_conntrack_max
+
+
+echo 2 > /proc/sys/vm/drop_caches
+echo 1024 > /proc/sys/vm/min_free_kbytes
+
+# keep lan ports down until dhcps up
+echo 1 0 > /proc/port_power
+echo 2 0 > /proc/port_power
+echo 3 0 > /proc/port_power
+echo 4 0 > /proc/port_power

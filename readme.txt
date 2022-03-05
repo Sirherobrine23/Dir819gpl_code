@@ -13,9 +13,9 @@ Step2:  Setup Build Environment ($means command)
           1 ) Please login with root user such as john, and copy the gpl file to folder,
               such as the folder /home/john
           2 ) # cd /home/john
-              # tar -zxvf DIR819_V1.05B01_GPLCode_20190731.tar.gz
+              # tar -zxvf DIR819_V1.06B02_GPLCode_20190801.tar.gz
                 You will get seven files :
-				 DIR819_v1.05  
+				 DIR819_v1.06  
                  GPL_License_List.pdf 
                  readme.txt 
                  LICENSE.txt          
@@ -29,11 +29,11 @@ Step2:  Setup Build Environment ($means command)
           7 ) # make install (install lzma to /usr/local/bin)
 Step 3. Building the image
          1 ) # cd /home/john/
-         2 ) # cd DIR819_v1.05/                    
+         2 ) # cd DIR819_v1.06/                    
          3 ) # make prepare          
          4 ) # make tools
          5 ) # make
-         6 ) After make successfully, you will find the image file DIR-819_A1_v1.05.bin in ./build/romfs/DIR-819_A1_v1.05.bin
+         6 ) After make successfully, you will find the image file DIR-819_A1_v1.06.bin in ./build/romfs/DIR-819_A1_v1.06.bin
 How to install?
         a) First of all, the software compiled by the GPL does not support encryption, but the software inside your device (Office Shipping Firmware) supports. So you need to update the middle version1 firstly. And then upgrade the gpl-compiled software. If you want to upgrade back to Office Shipping Firmware, upgrade the middle version2 firstly. And then upgrade Office Shipping Firmware (Please refer your user manual)
 
@@ -41,6 +41,6 @@ How to install?
 
            So, PLEASE MAKE SURE YOU REALLY KNOW WHAT YOU ARE DOING BEFORE YOU UPGRADE ANY UNOFFICIAL FIRMWARE.
 Note
-		A compressed document called var.tar is generated under /home/john/DIR819_v1.05/build.DIR-819/romfs/rootfs/etc when you've compiled it. You can unzip this compressed document to view its contents by following instructions:
-		# cd /home/john/DIR819_v1.05/build.DIR-819/romfs/rootfs/etc
+		A compressed document called var.tar is generated under /home/john/DIR819_v1.06/build.DIR-819/romfs/rootfs/etc when you've compiled it. You can unzip this compressed document to view its contents by following instructions:
+		# cd /home/john/DIR819_v1.06/build.DIR-819/romfs/rootfs/etc
 		# tar -xf var.tar

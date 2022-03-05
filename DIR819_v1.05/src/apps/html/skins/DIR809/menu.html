@@ -1,0 +1,217 @@
+<!--ZeroLevel，0等级，class为(ZeroLevel或无class)时始终显示
+	FirLevel,  1等级，class为(FirLevel  )时隐藏FirLevel
+	SecLevel,  2等级，class为(SecLevel  )时隐藏FirLevel，SecLevel
+	ThdLevel,  3等级，class为(ThdLevel  )时隐藏FirLevel，SecLevel，ThdLevel
+	ForthLevel:4等级，class为(ForthLevel)时隐藏FirLevel，SecLevel，ThdLevel，ForthLevel
+-->
+<script language="javascript">
+var G_Mode = "<?get :InternetGatewayDevice.X_TWSZ-COM_Radio.1.DeviceOperationMode?>";
+var repeater_24G = "<?get :InternetGatewayDevice.LANDevice.1.X_TWSZ-COM_ApCliConfiguration.1.Enable?>";
+var repeater_5G = "<?get :InternetGatewayDevice.LANDevice.1.X_TWSZ-COM_ApCliConfiguration.2.Enable?>";
+</script>
+<?if eq `$var:menu` `basic`
+	`<script language="javascript">	
+            if(G_Mode == "InfrastructureAccessPoint"){
+             		document.write('<li class="ZeroLevel" id="SUB01"><a class="<?if neq <?if eq `Bas_wansum` $var:page `up`?> <?if eq `Bas_wan` $var:page `label`?> 'label'?>" href="/cgi-bin/webproc?getpage=html/index.html&var:menu=basic&var:page=Bas_wansum" ><span id="SUBM008">INTERNET</span></a></li>');
+            }
+         </script>
+		<li class="ZeroLevel" id="SUB02"><a class="<?if neq <?if eq `Bas_wlansum` $var:page `up`?> <?if eq `Bas_wlan` $var:page `label`?> 'label'?>" href="/cgi-bin/webproc?getpage=html/index.html&var:menu=basic&var:page=Bas_wlansum" ><span id="SUBM009">WIRELESS SETTINGS</span></a></li>
+		<li class="ZeroLevel" id="SUB03"><a class="<?if eq `Bas_lan` $var:page `label`?>" href="/cgi-bin/webproc?getpage=html/index.html&var:menu=basic&var:page=Bas_lan"><span id="SUBM006">NETWORK SETTINGS</span></a></li>
+        <script language="javascript">	
+			if(G_Mode == "InfrastructureAccessPoint"){
+			document.write('<li class="ZeroLevel" id="SUB04"><a class="<?if neq <?if neq <?if eq `Bas_ipv6_setup` $var:page `up`?> <?if eq `Bas_ipv6_local_setting` $var:page `up`?> 'up'?> <?if eq `Bas_ipv6_man_setup` $var:page `label`?> 'label'?>" href="/cgi-bin/webproc?getpage=html/index.html&var:menu=basic&var:page=Bas_ipv6_setup" ><span id="SUBM007">IPV6</span></a></li>');
+			}
+		</script>
+        <li class="ZeroLevel" id="SUBDMODE"><a class="<?if eq `Bas_devicemode` $var:page `label`?>" href="/cgi-bin/webproc?getpage=html/index.html&var:menu=basic&var:page=Bas_devicemode" ><span id="SUBM_DMODE">DEVICE MODE</span></a></li>
+        <script language="javascript">	
+		if(repeater_24G == "1")
+		{			
+		 document.write('<li class="ZeroLevel" id = "24G_repeater"><a class="<?if neq <?if neq <?if eq `24G_repeater` $var:page `label`?> <?if eq `24G_repeater2` $var:page `label`?> `active`?> <?if eq `24G_repeater3` $var:page `label`?> `label`?>" href="/cgi-bin/webproc?getpage=html/index.html&var:menu=basic&var:page=24G_repeater" ><span id="SUBM2G">2.4G REPEATER</span></a></li>');
+		}
+		 if(repeater_5G == "1"){
+		 document.write('<li class="ZeroLevel" id = "5G_repeater"><a class="<?if neq <?if neq <?if eq `5G_repeater` $var:page `label`?> <?if eq `5G_repeater2` $var:page `label`?> `active`?> <?if eq `5G_repeater3` $var:page `label`?> `label`?>" href="/cgi-bin/webproc?getpage=html/index.html&var:menu=basic&var:page=5G_repeater" ><span id="SUBM5G">5G REPEATER</span></a></li>');
+		}
+		 document.write('</p>');
+	    </script>
+`?>
+<?if eq `$var:menu` `advanced`
+	` <script language="javascript">	
+       if(G_Mode == "InfrastructureAccessPoint"){
+        document.write('<li class="ZeroLevel" id="SUB05" ><a class="<?if eq `Adv_virtual` $var:page `label`?>" href="/cgi-bin/webproc?getpage=html/index.html&var:menu=advanced&var:page=Adv_virtual" ><span id="SUBM021">VIRTUAL SERVER</span></a></li>');
+		document.write('<li class="ZeroLevel" id="SUB06"><a class="<?if eq `Adv_pf` $var:page `label`?>" href="/cgi-bin/webproc?getpage=html/index.html&var:menu=advanced&var:page=Adv_pf" ><span id="SUBM022">PORT FORWARDING</span></a></li>');
+		document.write('<li class="ZeroLevel" id="SUB07"><a class="<?if eq `Adv_app` $var:page `label`?>" href="/cgi-bin/webproc?getpage=html/index.html&var:menu=advanced&var:page=Adv_app" ><span id="SUBM023">APPLICATION RULES</span></a></li>');	
+		document.write('<li class="ZeroLevel" id="SUB08"><a class="<?if eq `Adv_qos` $var:page `label`?>" href="/cgi-bin/webproc?getpage=html/index.html&var:menu=advanced&var:page=Adv_qos" ><span id="SUBM024">QOS ENGINE</span></a></li>');
+		document.write('<li class="ZeroLevel" id="SUB09"><a class="<?if eq `Adv_macfilter` $var:page `label`?>" href="/cgi-bin/webproc?getpage=html/index.html&var:menu=advanced&var:page=Adv_macfilter" ><span id="SUBM025">NETWORK FILTER</span></a></li>');
+		document.write('<li class="ZeroLevel" id="SUB10"><a class="<?if eq `Adv_inbound` $var:page `label`?>" href="/cgi-bin/webproc?getpage=html/index.html&var:menu=advanced&var:page=Adv_inbound" ><span id="SUBM026">INBOUND FILTER</span></a></li>');
+		document.write('<li class="ZeroLevel" id="SUB11"><a class="<?if eq `Adv_acl` $var:page `label`?>" href="/cgi-bin/webproc?getpage=html/index.html&var:menu=advanced&var:page=Adv_acl" ><span id="SUBM027">ACCESS CONTROL</span></a></li>');
+		document.write('<li class="ZeroLevel" id="SUB12"><a class="<?if eq `Adv_urlfilter` $var:page `label`?>" href="/cgi-bin/webproc?getpage=html/index.html&var:menu=advanced&var:page=Adv_urlfilter" ><span id="SUBM028">WEBSITE FILTER</span></a></li>');
+		document.write('<li class="ZeroLevel" id="SUB13"><a class="<?if eq `Adv_firewall` $var:page `label`?>" href="/cgi-bin/webproc?getpage=html/index.html&var:menu=advanced&var:page=Adv_firewall" ><span id="SUBM001">FIREWALL SETTINGS</span></a></li>');
+		document.write('<li class="ZeroLevel" id="SUB14"><a class="<?if eq `Adv_routing` $var:page `label`?>" href="/cgi-bin/webproc?getpage=html/index.html&var:menu=advanced&var:page=Adv_routing" ><span id="SUBM002">ROUTING</span></a></li>');
+        }
+        </script>
+		<li class="ZeroLevel" id="SUB15"><a class="<?if eq `Adv_wireless` $var:page `label`?>" href="/cgi-bin/webproc?getpage=html/index.html&var:menu=advanced&var:page=Adv_wireless" ><span id="SUBM003">ADVANCED WIRELESS</span></a></li>
+		<li class="ZeroLevel" id="SUB16"><a class="<?if eq `Adv_wps` $var:page `label`?>" href="/cgi-bin/webproc?getpage=html/index.html&var:menu=advanced&var:page=Adv_wps" ><span id="SUBM004">WI-FI PROTECTED SETUP</span></a></li>
+       <script language="javascript">	
+        if(G_Mode == "InfrastructureAccessPoint"){
+		 document.write('<li class="ZeroLevel" id="SUB17"><a class="<?if eq `Adv_network` $var:page `label`?>" href="/cgi-bin/webproc?getpage=html/index.html&var:menu=advanced&var:page=Adv_network" ><span id="SUBM005">ADVANCED NETWORK</span></a></li>');
+        }
+        </script> 
+		<li class="ZeroLevel" id="SUB18"><a class="<?if eq `Adv_gzone` $var:page `label`?>" href="/cgi-bin/webproc?getpage=html/index.html&var:menu=advanced&var:page=Adv_gzone" ><span id="SUBM010">GUEST ZONE</span></a></li>
+        <script language="javascript">	
+        if(G_Mode == "InfrastructureAccessPoint"){
+		 document.write('<li class="ZeroLevel" id="SUB19"><a class="<?if eq `Adv_firewallv6` $var:page `label`?>" href="/cgi-bin/webproc?getpage=html/index.html&var:menu=advanced&var:page=Adv_firewallv6" ><span id="SUBM011">IPV6 FIREWALL</span></a></li>');
+		 document.write('<li class="ZeroLevel" id="SUB20"><a class="<?if eq `Adv_routingv6` $var:page `label`?>" href="/cgi-bin/webproc?getpage=html/index.html&var:menu=advanced&var:page=Adv_routingv6" ><span id="SUBM012">IPV6 ROUTING</span></a></li>');
+		}
+        </script>     
+`?>
+<?if eq `$var:menu` `toolbox`
+	`	<li class="ZeroLevel" id="SUB21"><a class="<?if eq `Too_password` $var:page `label`?>" href="/cgi-bin/webproc?getpage=html/index.html&var:menu=toolbox&var:page=Too_password"><span id="SUBM029">ADMIN</span></a></li>
+		<li class="ZeroLevel" id="SUB22"><a class="<?if eq `Too_time` $var:page `label`?>" href="/cgi-bin/webproc?getpage=html/index.html&var:menu=toolbox&var:page=Too_time" ><span id="SUBM030">TIME</span></a></li>
+		<li class="ZeroLevel" id="SUB23"><a class="<?if eq `Too_log` $var:page `label`?>" href="/cgi-bin/webproc?getpage=html/index.html&var:menu=toolbox&var:page=Too_log" ><span id="SUBM031">SYSLOG</span></a></li>
+		<li class="ZeroLevel" id="SUB24"><a class="<?if eq `Too_system` $var:page `label`?>" href="/cgi-bin/webproc?getpage=html/index.html&var:menu=toolbox&var:page=Too_system" ><span id="SUBM033">SYSTEM</span></a></li>		
+		<li class="ZeroLevel" id="SUB25"><a class="<?if eq `Too_firmware` $var:page `label`?>" href="/cgi-bin/webproc?getpage=html/index.html&var:menu=toolbox&var:page=Too_firmware" ><span id="SUBM034">FIRMWARE</span></a></li>
+       <script language="javascript">	
+		if(G_Mode == "InfrastructureAccessPoint"){ 
+		  document.write('<li class="ZeroLevel" id="SUB26"><a class="<?if eq `Too_ddns` $var:page `label`?>" href="/cgi-bin/webproc?getpage=html/index.html&var:menu=toolbox&var:page=Too_ddns" ><span id="SUBM035">DYNAMIC DNS</span></a></li>');
+        }
+       </script>
+		<li class="ZeroLevel" id="SUB27"><a class="<?if eq `Too_ping` $var:page `label`?>" href="/cgi-bin/webproc?getpage=html/index.html&var:menu=toolbox&var:page=Too_ping" ><span id="SUBM036">SYSTEM CHECK</span></a></li>	
+       <script language="javascript">	
+		if(G_Mode == "InfrastructureAccessPoint"){ 	
+		  document.write('<li class="ZeroLevel" id="SUB28"><a class="<?if eq `Too_schedules` $var:page `label`?>" href="/cgi-bin/webproc?getpage=html/index.html&var:menu=toolbox&var:page=Too_schedules" ><span id="SUBM037">SCHEDULES</span></a></li>');
+		 }
+       </script>  
+`?>
+<?if eq `$var:menu` `home`
+	`	<li class="ZeroLevel" id="SUB29"><a class="<?if eq `Hom_status` $var:page `label`?>" href="/cgi-bin/webproc?getpage=html/index.html&var:menu=home&var:page=Hom_status"><span id="SUBM013">DEVICE INFO</span></a></li>
+		<li class="ZeroLevel" id="SUB30"><a class="<?if eq `Hom_logs` $var:page `label`?>" href="/cgi-bin/webproc?getpage=html/index.html&var:menu=home&var:page=Hom_logs" ><span id="SUBM014">LOGS</span></a></li>
+		<li class="ZeroLevel" id="SUB31"><a class="<?if eq `Hom_statistics` $var:page `label`?>" href="/cgi-bin/webproc?getpage=html/index.html&var:menu=home&var:page=Hom_statistics" ><span id="SUBM015">STATISTICS</span></a></li>
+        <script language="javascript">	
+		 if(G_Mode == "InfrastructureAccessPoint"){ 
+		    document.write('<li class="ZeroLevel" id="SUB32"><a class="<?if eq `Hom_sessions` $var:page `label`?>" href="/cgi-bin/webproc?getpage=html/index.html&var:menu=home&var:page=Hom_sessions" ><span id="SUBM016">INTERNET SESSIONS</span></a></li>');
+		 }
+        </script>
+		<li class="ZeroLevel" id="SUB33"><a class="<?if eq `Hom_wlan_status` $var:page `label`?>" href="/cgi-bin/webproc?getpage=html/index.html&var:menu=home&var:page=Hom_wlan_status"><span id="SUBM017">WIRELESS</span></a></li>
+        <script language="javascript">	
+		if(G_Mode == "InfrastructureAccessPoint"){ 
+		    document.write('<li class="ZeroLevel" id="SUB34"><a class="<?if eq `Hom_routing` $var:page `label`?>" href="/cgi-bin/webproc?getpage=html/index.html&var:menu=home&var:page=Hom_routing" ><span id="SUBM018">ROUTING</span></a></li>');
+        }
+        </script>
+		<li class="ZeroLevel" id="SUB35"><a class="<?if eq `Hom_ipv6_status` $var:page `label`?>" href="/cgi-bin/webproc?getpage=html/index.html&var:menu=home&var:page=Hom_ipv6_status" ><span id="SUBM019">IPV6</span></a></li>
+        <script language="javascript">	
+		if(G_Mode == "InfrastructureAccessPoint"){ 
+		    document.write('<li class="ZeroLevel" id="SUB36"><a class="<?if eq `Hom_ipv6_routing` $var:page `label`?>" href="/cgi-bin/webproc?getpage=html/index.html&var:menu=home&var:page=Hom_ipv6_routing" ><span id="SUBM020">IPV6 ROUTING</span></a></li>');
+		  }
+        </script>	   
+`?>
+<?if eq `$var:menu` `help`
+	`	<li class="ZeroLevel" id="SUB37"><a class="<?if eq `helpmenu` $var:page `label`?>" href="/cgi-bin/webproc?getpage=html/index.html&var:menu=help&var:page=helpmenu"><span id="SUBM038">MENU</span></a></li>
+		<li class="ZeroLevel" id="SUB38"><a class="<?if eq `helpsetup` $var:page `label`?>" href="/cgi-bin/webproc?getpage=html/index.html&var:menu=help&var:page=helpsetup"><span id="SUBM039">SETUP</span></a></li>
+		<!--li class="ZeroLevel"><a class="<?if eq `24G_helpwlan` $var:page `label`?>" href="/cgi-bin/webproc?getpage=html/index.html&var:menu=help&var:page=24G_helpwlan"><span id="SUBM038">Wireless(2.4G)</span></a></li>
+		<li class="ZeroLevel"><a class="<?if eq `5G_helpwlan` $var:page `label`?>" href="/cgi-bin/webproc?getpage=html/index.html&var:menu=help&var:page=5G_helpwlan"><span id="SUBM039">Wireless(5.8G)</span></a></li-->
+		<li class="ZeroLevel" id="SUB39"><a class="<?if eq `helpadv` $var:page `label`?>" href="/cgi-bin/webproc?getpage=html/index.html&var:menu=help&var:page=helpadv"><span id="SUBM040">ADVANCED</span></a></li>
+		<li class="ZeroLevel" id="SUB40"><a class="<?if eq `helptool` $var:page `label`?>" href="/cgi-bin/webproc?getpage=html/index.html&var:menu=help&var:page=helptool"><span id="SUBM041">TOOLS</span></a></li>
+		<li class="ZeroLevel" id="SUB41"><a class="<?if eq `helpstatus` $var:page `label`?>" href="/cgi-bin/webproc?getpage=html/index.html&var:menu=help&var:page=helpstatus"><span id="SUBM042">STATUS</span></a></li>
+`?>
+
+<script type="text/javascript">
+var G_FactoryRestoreEnable = "<?get :InternetGatewayDevice.DeviceInfo.X_TWSZ-COM_ServiceManage.WebFactoryRestoreAccessEnable?>";
+var G_FirmwareUpgradeEnable = "<?get :InternetGatewayDevice.DeviceInfo.X_TWSZ-COM_ServiceManage.X_TWSZ-COM_WebFirmwareUpgradeAccess.Enable?>";
+var G_FiltersSetupEnable = "<?get :InternetGatewayDevice.Layer2Bridging.X_TWSZ-COM_WebFiltersSetupAccessEnable?>";
+var G_QosSetupEnable = "<?get :InternetGatewayDevice.QueueManagement.X_TWSZ-COM_QosSetupAccessEnable?>";
+var G_LanInterfaceSetupEnable = "<?get :InternetGatewayDevice.LANDevice.1.X_TWSZ-COM_WebLanInterfaceSetupAccessEnable?>";
+var G_WaninterFaceSetupEnable = "<?get :InternetGatewayDevice.WANDevice.1.X_TWSZ-COM_WebWaninterFaceSetupAccessEnable?>";
+var G_WirelessInterfaceSetupEnable = "<?get :InternetGatewayDevice.LANDevice.1.X_TWSZ-COM_WebWirelessInterfaceSetupAccessEnable?>";
+var G_FireWallSetupEnable = "<?get :InternetGatewayDevice.X_TWSZ-COM_Firewall.X_TWSZ-COM_WebFireWallSetupAccessEnable?>";
+var G_PortForWardingSetupEnable = "<?get :InternetGatewayDevice.X_TWSZ-COM_PortForward.X_TWSZ-COM_WebPortForWardingSetupAccessEnable?>";
+function CtrSubMenuDisplay()
+{
+   //control basic submenu display or hidden
+   if(G_Menu=="basic")
+   {
+      if(G_WaninterFaceSetupEnable == '0' ) 
+      	{
+          if(document.getElementById('SUB01') != null) document.getElementById('SUB01').style.display='none';
+      	}
+      else
+         if(document.getElementById('SUB01') != null) document.getElementById('SUB01').style.display=''; 
+      if(G_WirelessInterfaceSetupEnable == '0')
+         document.getElementById('SUB02').style.display='none';
+      else 
+         document.getElementById('SUB02').style.display=''; 
+      if(G_LanInterfaceSetupEnable == '0')
+        document.getElementById('SUB03').style.display='none';
+      else
+        document.getElementById('SUB03').style.display='';
+   }
+   // control advanced submenu display or hidden
+   if(G_Menu=="advanced")
+   {
+      if(G_PortForWardingSetupEnable == '0') 
+      	{
+         if(document.getElementById('SUB06') != null) document.getElementById('SUB06').style.display='none';
+      	}
+      else
+         if(document.getElementById('SUB6') != null) document.getElementById('SUB06').style.display='';
+		 
+	  if(document.getElementById('SUB08')!= null){
+		  if(G_QosSetupEnable == '0') 
+			 document.getElementById('SUB08').style.display='none';
+		  else
+			 document.getElementById('SUB08').style.display='';
+	  }
+	  if(document.getElementById('SUB09')!= null){
+		if(G_FiltersSetupEnable == "0"){
+			document.getElementById('SUB09').style.display='none';
+			document.getElementById('SUB10').style.display='none';
+			document.getElementById('SUB11').style.display='none';
+			document.getElementById('SUB12').style.display='none';
+		}
+		else {
+			document.getElementById('SUB09').style.display='';
+			document.getElementById('SUB10').style.display='';
+			document.getElementById('SUB11').style.display='';
+			document.getElementById('SUB12').style.display='';
+		}
+	}
+	if(document.getElementById('SUB13')!= null){
+      if(G_FireWallSetupEnable == "0"){
+         document.getElementById('SUB13').style.display='none';
+         document.getElementById('SUB19').style.display='none';
+      }
+      else{
+         document.getElementById('SUB13').style.display='';
+         document.getElementById('SUB19').style.display='';
+      }
+	 }
+      
+   } 
+   // control toolbox submenu display or hidden
+   if(G_Menu=="toolbox")
+   {
+      if(G_FactoryRestoreEnable == '0') 
+         document.getElementById('SUB24').style.display='none';
+      else
+         document.getElementById('SUB24').style.display='';
+      if(G_FirmwareUpgradeEnable == '0')
+         document.getElementById('SUB25').style.display='none';
+      else 
+         document.getElementById('SUB25').style.display='';
+   } 
+}  
+function uiOnload()
+{
+   CtrSubMenuDisplay();
+  
+}
+function dealWithError(){
+    if (G_Error != 1){ 
+        return false;
+    }
+    var arrayHint = [];
+    dealErrorMsg(arrayHint, G_Error_Msg);
+}
+//监听加载与错误处理函数
+addListeners(uiOnload, dealWithError);
+
+</script>

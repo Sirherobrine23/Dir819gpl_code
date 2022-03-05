@@ -1,0 +1,53 @@
+﻿<div class="mainbody">
+    <div class="orangebox">
+        <h1 id="WPS2G001" >Wireless Repeater</h1>
+        <p id="WPS2G002" >This page is used to configure the parameters for wireless repeater. <br>Step 1: click 'Site Survey'. Sites surveyed will be displayed in the list below.Select one item, and click "Next". </p>
+	 </div>
+	<div id="STEP1" class="blackbox">
+     <div class="emptyline"></div>
+	 <div id="SEL_SSID">
+		<table  border="0" cellspacing="2">
+		 <tr >
+		    <td class="background" id="WPS2G004"> SSID of AP :</td>
+		    <td><input id="RepeaterSSID" size="25" maxlength="32" type="text"></td>
+		 </tr>
+		  <tr >
+		    <td class="background"></td>
+		    <td>
+				<input value="Site Survey" id="scanUplink2G" onclick="uiScan()" type="button">
+				<div id="scanUplink2G_tip" style="position:relative;margin-top:5px;display:none;">
+			    <span id="scanUplink2G_tip0">Surveying, please don't interrupt, remaining</span>&nbsp;<span id="scanUplink2G_time"></span>&nbsp;<span id="scanUplink2G_tip1">s</span>
+			    </div>
+			</td>
+		 </tr>
+	   </table>
+    </div>
+	<div id="SEL_SCAN" style="display:none;">
+	<table id="TB_NetworkList" style="table-layout:fixed;word-break:break-all;word-wrap:break-word;">
+			<tr>
+				<td width="7%"  id="lang_num" style="text-align:center;">#</td>
+				<td width="20%" id="lang_scanssid2" style="text-align:center;">SSID</td>
+				<td width="20%" id="lang_scanbssid2" style="text-align:center;">MAC Address</td>
+				<td width="9%" id="lang_channel2" style="text-align:center;">Channel</td>
+				<td width="9%" id="lang_scansingal2" style="text-align:center;">Signal</td>
+				<td width="20%" id="lang_security2" style="text-align:center;">Security</td>
+				<td width="10%"  id="lang_scanselect2" style="text-align:center;">Select</td>
+			</tr>
+		</table>
+		<p align="left">
+			<font id="NextSettingLabel2" color="red">Click 'Next' to Continue repeater settings </font>
+		</p>
+		<p align="center">
+		<input value="Next" name="scanUplinkApNext" id="scanUplinkApNext2G1" onclick="onClickScanUplinkApNext()" type="button">
+		</p>
+		</div>
+		<div >	
+		</div>
+	</div>
+</div>
+<div id="help_hint" class="tips">
+<!-- Start of Help Depedent Part. -->
+<strong id="WPS2G005">Helpful Hints...</strong>
+<br/><br/>
+<p id="WPS2G006">&nbsp;&#149;&nbsp;&nbsp;This page is used to configure the parameters for wireless repeater. <br>Step 1: click 'Site Survey'. Sites surveyed will be displayed in the list below.Select one item, and click "Next". </p>
+<!-- End of Help Dependent Part. -->

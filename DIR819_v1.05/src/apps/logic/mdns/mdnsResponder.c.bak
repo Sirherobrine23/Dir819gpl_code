@@ -1,0 +1,173 @@
+#include "mdnsResponder.h"
+
+#define MAX_BUF 100
+#define MDNS_CFG_FILE "/tmp/mdns.conf"
+
+ST_MSG_MAPPING stMdnsMsgMapping[] =
+{ 
+    { MSG_LAN_DEVICE_UP      , restartMdnsByLanMsg  , NULL },
+    { MSG_WLAN_ENABLE_UPDATE , restartMdnsByWlanMsg , NULL }
+};
+/*************************************************************************
+Function    :     static int writeMdnsCfg(void)
+Description :     obtain mdns configration info form CACHE or CFG
+Input       :     no
+Output      :     no
+Return      :     success: TBS_SUCCESS faliure:TBS_FAILED
+Others      :
+*************************************************************************/
+static int writeMdnsCfg(void)
+{
+    int iRet = TBS_SUCCESS;
+    char buf[MAX_BUF] = {'\0'};
+    FILE* fp = NULL;
+    
+    if( (fp = fopen( MDNS_CFG_FILE , "w" ) ) == NULL )
+    {
+    	printf( "The file open failure" );
+    	iRet = TBS_FAILED;
+    } 
+    else
+    {
+#if defined(CONFIG_APPS_HTML_WEB_STYLE_DLINK_AC750) || defined(CONFIG_APPS_HTML_WEB_STYLE_DLINK_AC750_PT)
+        fprintf( fp , "%s\n%s\n%s\n\n" , "D-Link DIR-819 Configuration Utility",
+                                         "_http._tcp. local."                  ,
+                                         "80"                                  );
+#elif defined(CONFIG_APPS_HTML_WEB_STYLE_DLINK_AC750_EU)
+        fprintf( fp , "%s\n%s\n%s\n\n" , "D-Link DIR-809 Configuration Utility",
+                                         "_http._tcp. local."                  ,
+                                         "80"                                  );
+#endif
+        fprintf( fp , "%s\n%s\n%s\n\n" , "D-Link SharePort Web Access"         ,
+                                         "_http._tcp. local."                  ,
+                                         "8181"                                );
+        fprintf( fp , "%s\n%    s\n%s\n"   , "D-Link HNAP Service"             ,
+                                         "_http._tcp. local."                  ,
+                                         "80"                                  );
+                                     
+        buf = COMM_GetNodeValue( MODE_NAME_PATH   , CACHE_CFG  );
+        fprintf( fp , "model_number=%s\n"         , buf        );
+        buf = COMM_GetNodeValue( LAN_MAC          , CACHE_CFG  );
+        fprintf( fp , "mac=%s\n"                  , buf        );
+        buf = COMM_GetNodeValue( 2.4G_SSID_PATH   , CACHE_CFG  );
+        fprintf( fp , "wlan0_ssid=%s\n"           , buf        );
+        buf = COMM_GetNodeValue( 5.8G_SSID_PATH   , CACHE_CFG  );
+        fprintf( fp , "wlan1_ssid=%s\n\n"         , buf        );
+    
+        fprintf( fp , "%s\n"           , "version=0201"              );
+        fprintf( fp , "%s\n"           , "dcs=24601"                 );
+        fprintf( fp , "%s\n"           , "mydlink=false"             );
+        fprintf( fp , "%s\n"           , "hnf=false"                 );
+    }
+    
+    fclose( fp );
+    
+    return iRet;
+}
+/*************************************************************************
+Function    :     static int startMdnsService(void)
+Description :     start MDN service
+Input       :     No
+Output      :     No 
+Return      :     No
+Others      :
+*************************************************************************/
+static int startMdnsService(void)
+{
+    char szCmd[LAN_MAX_CMD_LEN] = {0};
+    int iRet = TBS_SUCCESS;
+    
+    iRet = writeMdnsCfg();
+    
+    snprintf( cmd, sizeof(cmd), "mDNSResponder -b -i %s -f %s -e %s", br0
+                                                                    , MDNS_CFG_FILE
+                                                                    , "dli" );
+    tbsSystem( szCmd , TBS_PRINT_CMD );
+    
+    return iRet ; 
+}
+/*************************************************************************
+Function    :     int restartMdnsByLanMsg(ST_MSG * pstMsg)
+Description :     start mDNS after LAN interface UP
+Input       :     ST_MSG * pstMsg ( reception of message )
+Output      :     No 
+Return      :     success: TBS_SUCCESS faliure:TBS_FAILED
+Others      :
+*************************************************************************/
+int restartMdnsByLanMsg(ST_MSG * pstMsg)
+{
+    int iRet = TBS_SUCCESS;
+    
+    iRet = startMdnsService();
+    
+    if( iRet == TBS_FAILED )
+    {
+    	printf( "MDNS start failure" );
+    	iRet = TBS_FAILED;
+    }
+    
+    return iRet;
+}
+/*************************************************************************
+Function    :     int restartMdnsByWlanMsg(ST_MSG * pstMsg)
+Description :     start mDNS after LAN interface UP
+Input       :     ST_MSG * pstMsg ( reception of message )
+Output      :     No 
+Return      :     success: TBS_SUCCESS faliure:TBS_FAILED
+Others      :
+*************************************************************************/
+int restartMdnsByWlanMsg(ST_MSG * pstMsg)
+{
+    int iRet = TBS_SUCCESS;
+    
+    iRet = startMdnsService();
+    
+    if( iRet == TBS_FAILED )
+    {
+    	printf( "MDNS start failure" );
+    	iRet = TBS_FAILED;
+    }
+    
+    return iRet;
+}
+/*************************************************************************
+Function    :     int MDNS_init(void)
+Description :     MDNS module initial
+Input       :     No
+Output      :     No
+Return      :     success: TBS_SUCCESS faliure:TBS_FAILED
+Others      :
+*************************************************************************/
+int MDNS_init(void)
+{
+    int iRet = TBS_SUCCESS;
+    
+    /*注册处理函数*/
+    iRet = MSG_MSG_RegModule( MID_MDNS , stMdnsMsgMapping );
+    RET_GOTO( MID_MDNS,iRet,"Call MSG_MSG_RegModule fail\n" , ERROR );
+    iRet = MSG_RegModuleGroup(MID_MDNS,
+                              MID_GRP_LAN_DEVICE_UP,
+                              MID_GRP_WLAN_ENABLE_UPDATE, 0);
+    
+    /*Start MDNS Service*/
+    iRet = startMdnsService();
+    
+    COMM_SetModuleToApply(MID_MDNS);
+
+    return iRet;
+}
+/*************************************************************************
+Function:    int MDNS_ModuleDestroy()
+Description:  lan模块注销
+Input:         无
+Output:        无
+Return:       TBS_SUCCESS,      成功;
+                   其它,     失败
+Others:
+*************************************************************************/
+int MDNS_ModuleDestroy()
+{
+    MSG_MSG_UnregModule( MID_MDNS, stMdnsMsgMapping );
+
+    return TBS_SUCCESS;
+}

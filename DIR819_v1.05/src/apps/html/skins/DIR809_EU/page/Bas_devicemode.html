@@ -1,0 +1,42 @@
+<div class="mainbody" id="mainbody">
+<div class="orangebox">
+	<h1 id="BDMODE001" >Device Mode</h1>
+	<p id="BDMODE002" >This page is used to configure the device for D-Link router. </p>
+	<p><input type="button" id="BDMODE003" value="Save Settings" onClick="uiSubmit();" />
+	<input type="button" id="BDMODE004" value="Don't Save Settings" onClick="uiPageRefresh();" /></p>
+</div>
+<div class="blackbox">
+    <h2 id="BDMODE005">Wireless Mode</h2>
+    <div class="textinput">
+            <span class="name" id="BDMODE006" >Wireless Mode</span>
+            <span class="delimiter">:</span>
+            <span class="value">
+                <select id="device_mode" onchange="showModeItem();">
+                    <option value="InfrastructureAccessPoint">Wireless Router</option>
+                    <option value="WirelessRepeater" id="lang_Repeater">Repeater</option>
+                </select>
+            </span>
+    </div>
+    <div class="textinput" id="repeater_band">
+            <span class="name" id="BDMODE011" >Enable Band</span>
+            <span class="delimiter">:</span>
+            <span class="value">
+              <input type="radio" class="name" id="band_enable"  name="band_type" value="1" checked/> <label id="BDMODE012" >2.4G</label>
+	          <input type="radio" class="name" id="band_disable"  name="band_type" value="0" /> <label id="BDMODE013" >5G</label>
+            </span>
+    </div>
+    <div class="emptyline"></div>
+	<div class="emptyline"></div>
+	<div class="emptyline"></div>
+	<div class="emptyline"></div>
+	<div class="emptyline"></div>	
+</div>	
+<p><input type="button" id="BDMODE007" value="Save Settings" onClick="uiSubmit();" />
+<input type="button" id="BDMODE008" value="Don't Save Settings" onClick="uiPageRefresh();" /></p>
+</div>
+<div id="help_hint" class="tips">
+<!-- Start of Help Depedent Part. -->
+<strong id="BDMODE009">Helpful Hints...</strong>
+<br/><br/>
+<p id="BDMODE010">&nbsp;&#149;&nbsp;&nbsp;Use this section to configure the deivce mode for your D-Link router.Currently supports router and repeater modes. </p>
+<!-- End of Help Dependent Part. -->

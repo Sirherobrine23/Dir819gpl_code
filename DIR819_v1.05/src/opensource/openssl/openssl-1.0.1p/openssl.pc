@@ -1,0 +1,12 @@
+prefix=/home/xieshijing/DIR819-96920/DIR819_1.05/DIR819/build/tmpdist
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: OpenSSL
+Description: Secure Sockets Layer and cryptography libraries and tools
+Version: 1.0.1p
+Requires: 
+Libs: -L${libdir} -lssl -lcrypto
+Libs.private: -L/opt/buildroot-gcc342/mipsel-linux/lib -ldl
+Cflags: -I${includedir} 

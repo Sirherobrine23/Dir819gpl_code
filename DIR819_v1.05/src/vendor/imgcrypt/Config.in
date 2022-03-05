@@ -1,0 +1,6 @@
+config VENDOR_IMGCRYPT
+    bool 'IMGCRYPT'
+    depends VENDOR
+    default n 
+    help
+       For Dlink Firmware Encryption

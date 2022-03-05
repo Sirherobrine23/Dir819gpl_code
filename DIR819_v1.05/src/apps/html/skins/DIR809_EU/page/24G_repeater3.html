@@ -1,0 +1,47 @@
+﻿
+<div class="mainbody">
+    <div class="orangebox">
+        <h1 id="2WPS001" >Finish Configuration</h1>
+        <p id="2WPS002" >Step 3: click 'Finish' to save the configuration.<br><span style="color:red">strongly recommend that you modify IP address of the local gateway to avoid IP address conflicts with the center of the AP. (ex. if IP address of AP is 192.168.1.1, you can modify IP address of the local gateway to 192.168.1.2).</span></p>
+	 </div>
+    <div id="SEL_ip" class="blackbox"> 
+      <table   border="0" cellspacing="2">
+		 <tr >
+		    <td class="background" id="2WPS003">IP Address: </td>
+		    <td>
+				<input type="text" name="ip" id="ip" size="15" maxlength="15">
+			</td>
+		</tr>
+		<tr >
+			 <td class="background" id="2WPS004">Subnet Mask: </td>
+		    <td>
+				<input type="text" readonly="1"  name="mask" id="mask" size="15" maxlength="15">
+			</td>
+		</tr>
+        <tr >
+			 <td class="background" id="2WPS005">Gateway: </td>
+		    <td>
+				<input type="text"  name="mask" id="gateway" size="15" maxlength="15">
+			</td>
+		</tr>
+        <tr >
+			 <td class="background" id="2WPS006">DNS: </td>
+		    <td>
+				<input type="text"  name="mask" id="dns" size="15" maxlength="15">
+			</td>
+		</tr>
+	 </table>
+	 </div>
+	 
+	<div id="SEL_button">	
+		<p align="center">
+		<input value="Finish" id="wlrepeaterfinish" name="wlrepeaterfinish" onclick="saveWlanChanges()" type="button">
+		</p>
+	</div>
+</div>
+<div id="help_hint" class="tips">
+<!-- Start of Help Depedent Part. -->
+<strong id="2WPS007">Helpful Hints...</strong>
+<br/><br/>
+<p id="2WPS008">&nbsp;&#149;&nbsp;&nbsp;Step 3: click 'Finish' to save the configuration.<br><span>strongly recommend that you modify IP address of the local gateway to avoid IP address conflicts with the center of the AP.</p>
+<!-- End of Help Dependent Part. -->

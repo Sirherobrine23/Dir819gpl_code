@@ -1,0 +1,83 @@
+﻿<div class="mainbody">
+   <div class="orangebox">
+        <h1 id="WPS2G2001" >Wireless Security Settings</h1>
+        <p id="WPS2G2002" >Step2: Setup the wireless security. Turn on WEP or WPA by using Encryption Keys could prevent any unauthorized access to your wireless network.</p>
+	 </div>
+    <div class="blackbox">
+    <div id="SEL_enc"> 
+      <table   border="0" cellspacing="2">
+		 <tr >
+		    <td class="background" id="WPS2G2003">Encryption: </td>
+		    <td>
+				<select size="1" name="method" id="method" onChange="Securitytype(this.value)" disabled="disabled">
+					<option value="OFF">None</option>
+					<option value="WEP">WEP</option>
+					<option value="WPA-PSK[TKIP]">WPA-PSK(TKIP)</option>
+					<option value="WPA-PSK[AES]">WPA-PSK(AES)</option>
+					<option value="WPA2-PSK[AES]">WPA2-PSK(AES)</option>
+					<option value="WPA2-PSK[TKIP]">WPA2-PSK(TKIP)</option>
+				</select>
+			</td>
+		</tr>
+	 </table>
+	 </div>
+	 <div id="SEL_wep" style="display:none;">
+		<table  border="0" cellspacing="2">
+		 <tr >
+		    <td class="background" id="WPS2G2009">Authentication Type:</td>
+		    <td><select size="1" name="authType" id="authType">
+				<option id="authType2G1" value="AutoAuthentication">Auto</option>
+				<option id="authType2G2" value="SharedAuthentication">Shared Key</option>
+				</select></td>
+		 </tr>
+		  <tr >
+		    <td id="WPS2G2010" class="background">Encryption Strength:</td>
+		    <td><select size="1" name="length" id="length" onchange="setKeys()">
+				<option id="length2G1" value="1">64-bit</option>
+				<option id="length2G2" value="2">128-bit</option>
+				</select></td>
+		 </tr>
+		  <tr >
+		    <td  id="Key21" class="background">Key 1:</td>
+		    <td><input name="defaultTxKeyId" value="1" onclick="WepKeyChange();" type="radio">
+				<input id="show_key1" name="show_key1" type="text" size="34"></td>
+		  </tr>
+		  <tr >
+		    <td  id="Key22" class="background">Key 2:</td>
+		    <td><input name="defaultTxKeyId" value="2" onclick="WepKeyChange();" type="radio">
+				<input id="show_key2" name="show_key2" type="text" size="34"></td>
+		  </tr>
+		  <tr >
+		    <td  id="Key23" class="background">Key 3:</td>
+		    <td><input name="defaultTxKeyId" value="3" onclick="WepKeyChange();" type="radio">
+				<input id="show_key3" name="show_key3" type="text" size="34"></td>
+		  </tr>
+		  <tr >
+		    <td  id="Key24" class="background">Key 4:</td>
+		    <td><input name="defaultTxKeyId" value="4" onclick="WepKeyChange();" type="radio">
+				<input id="show_key4" name="show_key4" type="text" size="34"></td>
+		  </tr>
+	   </table>
+    </div>
+	<div id="SEL_wpa" style="display:none;">
+		<table  border="0" cellspacing="2">
+		 <tr >
+		    <td id="WPS2G2011" class="background">Pre-Shared Key:</td>
+		    <td><input name="show_pskValue" id="show_pskValue" size="32" maxlength="64" value="" type="text">
+				<p id="WPS2G2012">(8-63 ASCII or 64 hex number)</p></td>
+		 </tr>		  
+	   </table>
+    </div>
+	<div id="SEL_button">	
+		<p align="center">
+		<input value="Next" name="scanUplinkApNext" id="repeater2GNext2" onclick="onClickScanUplinkApNext()" type="button">
+		</p>
+	</div>
+    </div>
+</div>
+<div id="help_hint" class="tips">
+<!-- Start of Help Depedent Part. -->
+<strong id="WPS2G2005">Helpful Hints...</strong>
+<br/><br/>
+<p id="WPS2G2006">&nbsp;&#149;&nbsp;&nbsp;Step2: Setup the wireless security. Turn on WEP or WPA by using Encryption Keys could prevent any unauthorized access to your wireless network.</p>
+<!-- End of Help Dependent Part. -->

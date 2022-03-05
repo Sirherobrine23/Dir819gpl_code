@@ -245,7 +245,7 @@ function uiOnload(){
 			"pptp_dns1" 				: G_WANConn['X_TWSZ-COM_UsrDNSServers'].split(',')[0] || "",
 			"pptp_dns2" 				: G_WANConn['X_TWSZ-COM_UsrDNSServers'].split(',')[1] || "",
 			"ppp4_macaddr" 				: G_WAN['CloneMACAddress'],
-			"ppp4_mtu" 					: G_WANConn['MaxMTUSize'] || "1400"
+			"ppp4_mtu" 					: G_WANConn['MaxMTUSize'] || "1460"
 		});
 		break;
 		case "l2tp":
@@ -264,7 +264,7 @@ function uiOnload(){
 			"l2tp_dns1" 				: G_WANConn['X_TWSZ-COM_UsrDNSServers'].split(',')[0] || "",
 			"l2tp_dns2" 				: G_WANConn['X_TWSZ-COM_UsrDNSServers'].split(',')[1] || "",
 			"ppp4_macaddr" 				: G_WAN['CloneMACAddress'],
-			"ppp4_mtu" 					: G_WANConn['MaxMTUSize'] || "1400"
+			"ppp4_mtu" 					: G_WANConn['MaxMTUSize'] || "1460"
 		});
 		break;
 		case "dslite":
@@ -325,7 +325,7 @@ function findProtocol(){
 }
 function OnClickMacButton(name)
 {
-	$(name).value = G_CurrentMAC;;
+	$(name).value = G_CurrentMAC;
 	if($(name).value == "")
 	alert(SEcode["lang_not_find_mac"]);
 }
@@ -499,7 +499,7 @@ function OnChangeWanIpMode()
 		$("box_wan_pptp_body").style.display			= "block";
 		$("box_wan_ppp4_comm_body").style.display 	= "block";
 		if(findProtocol()!="pptp")		
-		   $("ppp4_mtu").value = "1400";
+		   $("ppp4_mtu").value = "1460";
 	    else
 			$("ppp4_mtu").value = G_WANConn['MaxMTUSize'];
 		OnClickPptpAddrType();
@@ -511,7 +511,7 @@ function OnChangeWanIpMode()
 		$("box_wan_l2tp_body").style.display			= "block";
 		$("box_wan_ppp4_comm_body").style.display		= "block";
 		if(findProtocol()!="l2tp")			
-			$("ppp4_mtu").value = "1400";
+			$("ppp4_mtu").value = "1460";
 		else
 			$("ppp4_mtu").value = G_WANConn['MaxMTUSize'];
 		OnClickL2tpAddrType();
@@ -920,7 +920,11 @@ function uiSubmit(){
 			*/
 				if(!checkMTU('ipv4_mtu',_protocol[0]))
 					return false;
-				
+    			if($("dhcp_host_name").value.match(/[\|&;\$@\+><\?\(\)]/))
+        		{			
+        			alert(SEcode['lang_invalid_input']);
+        			return false;	
+        		}
 				var _dnsservers = $('ipv4_dns1').value+','+$('ipv4_dns2').value;
 				$F(":" + ConnPath + 'X_TWSZ-COM_Hostname',  		$('dhcp_host_name').value);
 				//$F(':InternetGatewayDevice.LANDevice.1.LANHostConfigManagement.DomainName',  	$('dhcp_host_name').value);	
@@ -1017,6 +1021,23 @@ function uiSubmit(){
 
 			if(!checkPWD('pppoe'))
 				return false;
+			if($("pppoe_username").value.match(/[\|&;\$\+><\?\(\)]/))
+			{			
+				alert(SEcode['lang_PPPoE_invalid_input ']);
+				return false;	
+			}
+
+			if(!$("pppoe_password").value.match(/^[0-9a-zA-Z\\.@*_$-]{1,15}$/))
+			{
+				alert(SEcode["lang_invalid_passwd"]);
+				return false;			
+			}
+
+			if($("pppoe_service_name").value.match(/[\|&;\$\+><\?\(\)]/))
+			{			
+				alert(SEcode['lang_PPPoE_invalid_input ']);
+				return false;	
+			}
 
 			if(!checkMTU('ppp4_mtu',_protocol[0]))
 				return false;
@@ -1075,6 +1096,16 @@ function uiSubmit(){
 			break;
 		case "PPTP" :
 			var x = (Form.Radio("pptp_addr_type") == 'dynamic') ? '1' : '0';
+			if($("pptp_username").value.match(/[\|&;\$@\+><\?\(\)]/))
+			{			
+				alert(SEcode['lang_invalid_input']);
+				return false;	
+			}
+			if(!$("pptp_password").value.match(/^[0-9a-zA-Z\\.*@_$-]{1,15}$/))
+			{
+				alert(SEcode["lang_invalid_passwd"]);
+				return false;			
+			}
 			if(x == "1"){
 				$F(":" + ConnPath + 'X_TWSZ-COM_VPN_ADDR_MODE',  	"DHCP");  //address mode
 			} else {
@@ -1186,6 +1217,16 @@ function uiSubmit(){
 			
 			break;
 		case "L2TP" :
+			if($("l2tp_username").value.match(/[\|&;\$@\+><\?\(\)]/))
+			{			
+				alert(SEcode['lang_invalid_input']);
+				return false;	
+			}
+			if(!$("l2tp_password").value.match(/^[0-9a-zA-Z\\.*@_$-]{1,15}$/))
+			{
+				alert(SEcode["lang_invalid_passwd"]);
+				return false;			
+			}
 			var x = (Form.Radio("l2tp_addr_type") == 'dynamic') ? '1' : '0';
 			if(x == "1"){
 				$F(":" + ConnPath + 'X_TWSZ-COM_VPN_ADDR_MODE',  	"DHCP");  
@@ -1296,6 +1337,11 @@ function uiSubmit(){
 			break;
 		case "Bridge" :
 		case 'DSLITE' :
+			if (G_TunConn['Activated'] == "1" && G_TunConn['Mode'] != "4in6" ) //tunnel enable 
+			{
+				alert(SEcode['lang_set_dslite']);
+				return false;
+			}
 
 			$F(":" + ConnPath + "Enable", 						'0');
 

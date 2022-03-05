@@ -44,7 +44,7 @@ available_tags=" CXX F77"
 
 # ### BEGIN LIBTOOL CONFIG
 
-# Libtool was configured on host localhost.localdomain:
+# Libtool was configured on host linuxyyk:
 
 # Shell to use when invoking shell scripts.
 SHELL="/bin/sh"
@@ -65,9 +65,9 @@ allow_libtool_libs_with_static_runtimes=no
 fast_install=needless
 
 # The host system.
-host_alias=mipsel-linux
-host=mipsel-unknown-linux-gnu
-host_os=linux-gnu
+host_alias=mipseb-linux-uclibc
+host=mipseb-unknown-linux-uclibc
+host_os=linux-uclibc
 
 # The build system.
 build_alias=
@@ -78,17 +78,17 @@ build_os=linux-gnu
 echo="echo"
 
 # The archiver.
-AR="mipsel-linux-ar"
+AR="mipseb-linux-uclibc-ar"
 AR_FLAGS="cru"
 
 # A C compiler.
-LTCC="mipsel-linux-gcc"
+LTCC="mipseb-linux-uclibc-gcc"
 
 # LTCC compiler flags.
-LTCFLAGS="-Dlinux -D__linux__ -Dunix  -D_LINUX_2_6_ -I. -I/opt/buildroot-gcc342/mipsel-linux//include -I/home/guohongliang/work/819/DIR819/build/kernel/linux-2.6.36.x/include -I/opt/buildroot-gcc342/mipsel-linux//../lib/gcc-lib/mips-linux-uclibc/3.3.5/include"
+LTCFLAGS="-g -O2"
 
 # A language-specific compiler.
-CC="mipsel-linux-gcc"
+CC="mipseb-linux-uclibc-gcc"
 
 # Is the compiler the GNU C compiler?
 with_gcc=yes
@@ -97,16 +97,16 @@ with_gcc=yes
 EGREP="/bin/grep -E"
 
 # The linker used to build libraries.
-LD="mipsel-linux-ld"
+LD="mipseb-linux-uclibc-ld"
 
 # Whether we need hard or soft links.
 LN_S="ln -s"
 
 # A BSD-compatible nm program.
-NM="mipsel-linux-nm"
+NM="mipseb-linux-uclibc-nm"
 
 # A symbol stripping program
-STRIP="mipsel-linux-strip"
+STRIP="mipseb-linux-uclibc-strip"
 
 # Used to examine libraries when file_magic_cmd begins "file"
 MAGIC_CMD=file
@@ -115,10 +115,10 @@ MAGIC_CMD=file
 DLLTOOL="dlltool"
 
 # Used on cygwin: object dumper.
-OBJDUMP="mipsel-linux-objdump"
+OBJDUMP="mipseb-linux-uclibc-objdump"
 
 # Used on cygwin: assembler.
-AS="mipsel-linux-as"
+AS="mipseb-linux-uclibc-as"
 
 # The name of the directory that contains temporary libtool files.
 objdir=.libs
@@ -199,7 +199,7 @@ library_names_spec="\${libname}\${release}\${shared_ext}\$versuffix \${libname}\
 soname_spec="\${libname}\${release}\${shared_ext}\$major"
 
 # Commands used to build and install an old-style archive.
-RANLIB="mipsel-linux-ranlib"
+RANLIB="mipseb-linux-uclibc-ranlib"
 old_archive_cmds="\$AR \$AR_FLAGS \$oldlib\$oldobjs~\$RANLIB \$oldlib"
 old_postinstall_cmds="chmod 644 \$oldlib~\$RANLIB \$oldlib"
 old_postuninstall_cmds=""
@@ -224,8 +224,8 @@ module_cmds=""
 module_expsym_cmds=""
 
 # Commands to strip libraries.
-old_striplib="mipsel-linux-strip --strip-debug"
-striplib="mipsel-linux-strip --strip-unneeded"
+old_striplib="mipseb-linux-uclibc-strip --strip-debug"
+striplib="mipseb-linux-uclibc-strip --strip-unneeded"
 
 # Dependencies to place before the objects being linked to create a
 # shared library.
@@ -325,10 +325,10 @@ variables_saved_for_relink="PATH LD_LIBRARY_PATH LD_RUN_PATH GCC_EXEC_PREFIX COM
 link_all_deplibs=no
 
 # Compile-time system search path for libraries
-sys_lib_search_path_spec="/opt/buildroot-gcc342/lib/gcc/mipsel-linux-uclibc/3.4.2 /opt/buildroot-gcc342/lib/gcc /opt/buildroot-gcc342/mipsel-linux-uclibc/lib"
+sys_lib_search_path_spec="/yeyingke/TBS/flush/crossc/mips.eb/lib/gcc/mipseb-linux-uclibc/3.4.6 /yeyingke/TBS/flush/crossc/mips.eb/lib/gcc /yeyingke/TBS/flush/crossc/mips.eb/mipseb-linux-uclibc/lib /yeyingke/TBS/flush/crossc/mips.eb/mipseb-linux-uclibc/sys-root/lib /yeyingke/TBS/flush/crossc/mips.eb/mipseb-linux-uclibc/sys-root/usr/lib"
 
 # Run-time system search path for libraries
-sys_lib_dlsearch_path_spec="/lib /usr/lib /usr/lib/qt-3.3/lib "
+sys_lib_dlsearch_path_spec="/lib /usr/lib /usr/lib/mysql /usr/lib/mysql /usr/lib/qt-3.3/lib /usr/X11R6/lib "
 
 # Fix the shell variable $srcfile for the compiler.
 fix_srcfile_path=""
@@ -7290,7 +7290,7 @@ disable_libs=static
 # End:
 # ### BEGIN LIBTOOL TAG CONFIG: CXX
 
-# Libtool was configured on host localhost.localdomain:
+# Libtool was configured on host linuxyyk:
 
 # Shell to use when invoking shell scripts.
 SHELL="/bin/sh"
@@ -7311,9 +7311,9 @@ allow_libtool_libs_with_static_runtimes=no
 fast_install=needless
 
 # The host system.
-host_alias=mipsel-linux
-host=mipsel-unknown-linux-gnu
-host_os=linux-gnu
+host_alias=mipseb-linux-uclibc
+host=mipseb-unknown-linux-uclibc
+host_os=linux-uclibc
 
 # The build system.
 build_alias=
@@ -7324,17 +7324,17 @@ build_os=linux-gnu
 echo="echo"
 
 # The archiver.
-AR="mipsel-linux-ar"
+AR="mipseb-linux-uclibc-ar"
 AR_FLAGS="cru"
 
 # A C compiler.
-LTCC="mipsel-linux-gcc"
+LTCC="mipseb-linux-uclibc-gcc"
 
 # LTCC compiler flags.
-LTCFLAGS="-Dlinux -D__linux__ -Dunix  -D_LINUX_2_6_ -I. -I/opt/buildroot-gcc342/mipsel-linux//include -I/home/guohongliang/work/819/DIR819/build/kernel/linux-2.6.36.x/include -I/opt/buildroot-gcc342/mipsel-linux//../lib/gcc-lib/mips-linux-uclibc/3.3.5/include"
+LTCFLAGS="-g -O2"
 
 # A language-specific compiler.
-CC="mipsel-linux-g++"
+CC="mipseb-linux-uclibc-g++"
 
 # Is the compiler the GNU C compiler?
 with_gcc=yes
@@ -7343,16 +7343,16 @@ with_gcc=yes
 EGREP="/bin/grep -E"
 
 # The linker used to build libraries.
-LD="mipsel-linux-ld"
+LD="mipseb-linux-uclibc-ld"
 
 # Whether we need hard or soft links.
 LN_S="ln -s"
 
 # A BSD-compatible nm program.
-NM="mipsel-linux-nm"
+NM="mipseb-linux-uclibc-nm"
 
 # A symbol stripping program
-STRIP="mipsel-linux-strip"
+STRIP="mipseb-linux-uclibc-strip"
 
 # Used to examine libraries when file_magic_cmd begins "file"
 MAGIC_CMD=file
@@ -7361,10 +7361,10 @@ MAGIC_CMD=file
 DLLTOOL="dlltool"
 
 # Used on cygwin: object dumper.
-OBJDUMP="mipsel-linux-objdump"
+OBJDUMP="mipseb-linux-uclibc-objdump"
 
 # Used on cygwin: assembler.
-AS="mipsel-linux-as"
+AS="mipseb-linux-uclibc-as"
 
 # The name of the directory that contains temporary libtool files.
 objdir=.libs
@@ -7445,7 +7445,7 @@ library_names_spec="\${libname}\${release}\${shared_ext}\$versuffix \${libname}\
 soname_spec="\${libname}\${release}\${shared_ext}\$major"
 
 # Commands used to build and install an old-style archive.
-RANLIB="mipsel-linux-ranlib"
+RANLIB="mipseb-linux-uclibc-ranlib"
 old_archive_cmds="\$AR \$AR_FLAGS \$oldlib\$oldobjs~\$RANLIB \$oldlib"
 old_postinstall_cmds="chmod 644 \$oldlib~\$RANLIB \$oldlib"
 old_postuninstall_cmds=""
@@ -7467,16 +7467,16 @@ module_cmds=""
 module_expsym_cmds=""
 
 # Commands to strip libraries.
-old_striplib="mipsel-linux-strip --strip-debug"
-striplib="mipsel-linux-strip --strip-unneeded"
+old_striplib="mipseb-linux-uclibc-strip --strip-debug"
+striplib="mipseb-linux-uclibc-strip --strip-unneeded"
 
 # Dependencies to place before the objects being linked to create a
 # shared library.
-predep_objects="/opt/buildroot-gcc342/bin/../lib/gcc/mipsel-linux-uclibc/3.4.2/../../../../mipsel-linux-uclibc/lib/crti.o /opt/buildroot-gcc342/bin/../lib/gcc/mipsel-linux-uclibc/3.4.2/crtbeginS.o"
+predep_objects="/yeyingke/TBS/flush/crossc/mips.eb/bin/../mipseb-linux-uclibc/sys-root/usr/lib/crti.o /yeyingke/TBS/flush/crossc/mips.eb/bin/../lib/gcc/mipseb-linux-uclibc/3.4.6/crtbeginS.o"
 
 # Dependencies to place after the objects being linked to create a
 # shared library.
-postdep_objects="/opt/buildroot-gcc342/bin/../lib/gcc/mipsel-linux-uclibc/3.4.2/crtendS.o /opt/buildroot-gcc342/bin/../lib/gcc/mipsel-linux-uclibc/3.4.2/../../../../mipsel-linux-uclibc/lib/crtn.o"
+postdep_objects="/yeyingke/TBS/flush/crossc/mips.eb/bin/../lib/gcc/mipseb-linux-uclibc/3.4.6/crtendS.o /yeyingke/TBS/flush/crossc/mips.eb/bin/../mipseb-linux-uclibc/sys-root/usr/lib/crtn.o"
 
 # Dependencies to place before the objects being linked to create a
 # shared library.
@@ -7484,11 +7484,11 @@ predeps=""
 
 # Dependencies to place after the objects being linked to create a
 # shared library.
-postdeps="-lstdc++ -lm -lgcc -lc -lgcc"
+postdeps="-lstdc++ -lm -lgcc_s -lc -lgcc_s"
 
 # The library search path used internally by the compiler when linking
 # a shared library.
-compiler_lib_search_path="-L/opt/buildroot-gcc342/bin/../lib/gcc/mipsel-linux-uclibc/3.4.2 -L/opt/buildroot-gcc342/bin/../lib/gcc -L/opt/buildroot-gcc342/bin/../lib/gcc/mipsel-linux-uclibc/3.4.2/../../../../mipsel-linux-uclibc/lib"
+compiler_lib_search_path="-L/yeyingke/TBS/flush/crossc/mips.eb/bin/../lib/gcc/mipseb-linux-uclibc/3.4.6 -L/yeyingke/TBS/flush/crossc/mips.eb/bin/../lib/gcc -L/yeyingke/TBS/flush/crossc/mips.eb/bin/../lib/gcc/mipseb-linux-uclibc/3.4.6/../../../../mipseb-linux-uclibc/lib -L/yeyingke/TBS/flush/crossc/mips.eb/bin/../mipseb-linux-uclibc/sys-root/lib -L/yeyingke/TBS/flush/crossc/mips.eb/bin/../mipseb-linux-uclibc/sys-root/usr/lib"
 
 # Method to check whether dependent libraries are shared objects.
 deplibs_check_method="pass_all"
@@ -7568,10 +7568,10 @@ variables_saved_for_relink="PATH LD_LIBRARY_PATH LD_RUN_PATH GCC_EXEC_PREFIX COM
 link_all_deplibs=no
 
 # Compile-time system search path for libraries
-sys_lib_search_path_spec="/opt/buildroot-gcc342/lib/gcc/mipsel-linux-uclibc/3.4.2 /opt/buildroot-gcc342/lib/gcc /opt/buildroot-gcc342/mipsel-linux-uclibc/lib"
+sys_lib_search_path_spec="/yeyingke/TBS/flush/crossc/mips.eb/lib/gcc/mipseb-linux-uclibc/3.4.6 /yeyingke/TBS/flush/crossc/mips.eb/lib/gcc /yeyingke/TBS/flush/crossc/mips.eb/mipseb-linux-uclibc/lib /yeyingke/TBS/flush/crossc/mips.eb/mipseb-linux-uclibc/sys-root/lib /yeyingke/TBS/flush/crossc/mips.eb/mipseb-linux-uclibc/sys-root/usr/lib"
 
 # Run-time system search path for libraries
-sys_lib_dlsearch_path_spec="/lib /usr/lib /usr/lib/qt-3.3/lib "
+sys_lib_dlsearch_path_spec="/lib /usr/lib /usr/lib/mysql /usr/lib/mysql /usr/lib/qt-3.3/lib /usr/X11R6/lib "
 
 # Fix the shell variable $srcfile for the compiler.
 fix_srcfile_path=""
@@ -7595,7 +7595,7 @@ include_expsyms=""
 
 # ### BEGIN LIBTOOL TAG CONFIG: F77
 
-# Libtool was configured on host localhost.localdomain:
+# Libtool was configured on host linuxyyk:
 
 # Shell to use when invoking shell scripts.
 SHELL="/bin/sh"
@@ -7616,9 +7616,9 @@ allow_libtool_libs_with_static_runtimes=no
 fast_install=needless
 
 # The host system.
-host_alias=mipsel-linux
-host=mipsel-unknown-linux-gnu
-host_os=linux-gnu
+host_alias=mipseb-linux-uclibc
+host=mipseb-unknown-linux-uclibc
+host_os=linux-uclibc
 
 # The build system.
 build_alias=
@@ -7629,17 +7629,17 @@ build_os=linux-gnu
 echo="echo"
 
 # The archiver.
-AR="mipsel-linux-ar"
+AR="mipseb-linux-uclibc-ar"
 AR_FLAGS="cru"
 
 # A C compiler.
-LTCC="mipsel-linux-gcc"
+LTCC="mipseb-linux-uclibc-gcc"
 
 # LTCC compiler flags.
-LTCFLAGS="-Dlinux -D__linux__ -Dunix  -D_LINUX_2_6_ -I. -I/opt/buildroot-gcc342/mipsel-linux//include -I/home/guohongliang/work/819/DIR819/build/kernel/linux-2.6.36.x/include -I/opt/buildroot-gcc342/mipsel-linux//../lib/gcc-lib/mips-linux-uclibc/3.3.5/include"
+LTCFLAGS="-g -O2"
 
 # A language-specific compiler.
-CC="gfortran"
+CC="g77"
 
 # Is the compiler the GNU C compiler?
 with_gcc=yes
@@ -7648,16 +7648,16 @@ with_gcc=yes
 EGREP="/bin/grep -E"
 
 # The linker used to build libraries.
-LD="mipsel-linux-ld"
+LD="mipseb-linux-uclibc-ld"
 
 # Whether we need hard or soft links.
 LN_S="ln -s"
 
 # A BSD-compatible nm program.
-NM="mipsel-linux-nm"
+NM="mipseb-linux-uclibc-nm"
 
 # A symbol stripping program
-STRIP="mipsel-linux-strip"
+STRIP="mipseb-linux-uclibc-strip"
 
 # Used to examine libraries when file_magic_cmd begins "file"
 MAGIC_CMD=file
@@ -7666,10 +7666,10 @@ MAGIC_CMD=file
 DLLTOOL="dlltool"
 
 # Used on cygwin: object dumper.
-OBJDUMP="mipsel-linux-objdump"
+OBJDUMP="mipseb-linux-uclibc-objdump"
 
 # Used on cygwin: assembler.
-AS="mipsel-linux-as"
+AS="mipseb-linux-uclibc-as"
 
 # The name of the directory that contains temporary libtool files.
 objdir=.libs
@@ -7750,7 +7750,7 @@ library_names_spec="\${libname}\${release}\${shared_ext}\$versuffix \${libname}\
 soname_spec="\${libname}\${release}\${shared_ext}\$major"
 
 # Commands used to build and install an old-style archive.
-RANLIB="mipsel-linux-ranlib"
+RANLIB="mipseb-linux-uclibc-ranlib"
 old_archive_cmds="\$AR \$AR_FLAGS \$oldlib\$oldobjs~\$RANLIB \$oldlib"
 old_postinstall_cmds="chmod 644 \$oldlib~\$RANLIB \$oldlib"
 old_postuninstall_cmds=""
@@ -7775,8 +7775,8 @@ module_cmds=""
 module_expsym_cmds=""
 
 # Commands to strip libraries.
-old_striplib="mipsel-linux-strip --strip-debug"
-striplib="mipsel-linux-strip --strip-unneeded"
+old_striplib="mipseb-linux-uclibc-strip --strip-debug"
+striplib="mipseb-linux-uclibc-strip --strip-unneeded"
 
 # Dependencies to place before the objects being linked to create a
 # shared library.
@@ -7876,10 +7876,10 @@ variables_saved_for_relink="PATH LD_LIBRARY_PATH LD_RUN_PATH GCC_EXEC_PREFIX COM
 link_all_deplibs=no
 
 # Compile-time system search path for libraries
-sys_lib_search_path_spec="/opt/buildroot-gcc342/lib/gcc/mipsel-linux-uclibc/3.4.2 /opt/buildroot-gcc342/lib/gcc /opt/buildroot-gcc342/mipsel-linux-uclibc/lib"
+sys_lib_search_path_spec="/yeyingke/TBS/flush/crossc/mips.eb/lib/gcc/mipseb-linux-uclibc/3.4.6 /yeyingke/TBS/flush/crossc/mips.eb/lib/gcc /yeyingke/TBS/flush/crossc/mips.eb/mipseb-linux-uclibc/lib /yeyingke/TBS/flush/crossc/mips.eb/mipseb-linux-uclibc/sys-root/lib /yeyingke/TBS/flush/crossc/mips.eb/mipseb-linux-uclibc/sys-root/usr/lib"
 
 # Run-time system search path for libraries
-sys_lib_dlsearch_path_spec="/lib /usr/lib /usr/lib/qt-3.3/lib "
+sys_lib_dlsearch_path_spec="/lib /usr/lib /usr/lib/mysql /usr/lib/mysql /usr/lib/qt-3.3/lib /usr/X11R6/lib "
 
 # Fix the shell variable $srcfile for the compiler.
 fix_srcfile_path=""

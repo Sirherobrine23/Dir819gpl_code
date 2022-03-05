@@ -448,7 +448,12 @@ function check_reserv(index)
 function AddDHCPReserv()
 {
 	var i=0;
-	
+	if($("reserv_host").value.match(/[\|&;\$@\+><\?\(\)]/)||
+		$("reserv_ipaddr").value.match(/[\|&;\$@\+><\?\(\)]/))
+	{			
+		alert(SEcode['lang_invalid_input']);
+		return false;	
+	}
 	if(!CheckValidity.IPMaskVaild($("reserv_ipaddr").value)) return false;
 	
 	if(g_edit!=0)//Edit
@@ -702,6 +707,12 @@ function Ajax_handler(_text)
 }
 //提交配置
 function uiSubmit(){
+    if($("device").value.match(/[\|&;\$@\+><\?\(\)]/))
+	{			
+		alert(SEcode['lang_invalid_input']);
+		return false;	
+	}
+
 	if(true == $("dhcpsvr").checked)
 		if(!isValidIpAddressRange()){
 			alert(SEcode['lang_start_less_end']); 

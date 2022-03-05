@@ -2882,10 +2882,10 @@ $LASFDE28:
 	.align	2
 $LEFDE28:
 	.align	0
-	.file 2 "/home/guohongliang/work/819/DIR819/build.DIR-819/boot/tbsboot/include/net.h"
-	.file 3 "/home/guohongliang/work/819/DIR819/build.DIR-819/boot/build/include2/asm/global_data.h"
+	.file 2 "/home/zhangtianchuan/Gpl819/DIR819/build.DIR-819/boot/tbsboot/include/net.h"
+	.file 3 "/home/zhangtianchuan/Gpl819/DIR819/build.DIR-819/boot/build/include2/asm/global_data.h"
 	.file 4 "skbuff.h"
-	.file 5 "/home/guohongliang/work/819/DIR819/build.DIR-819/boot/tbsboot/include/common.h"
+	.file 5 "/home/zhangtianchuan/Gpl819/DIR819/build.DIR-819/boot/tbsboot/include/common.h"
 	.text
 $Letext0:
 	.section	.debug_info
@@ -5561,6 +5561,9 @@ $LASF67:
 	.ascii	"LS0_bit\000"
 $LASF130:
 	.ascii	"sk_buf_pool\000"
+$LASF133:
+	.ascii	"/home/zhangtianchuan/Gpl819/DIR819/build.DIR-819/boot/tb"
+	.ascii	"sboot/cpu/mt7620a\000"
 $LASF88:
 	.ascii	"rw_rf_reg\000"
 $LASF81:
@@ -5735,9 +5738,6 @@ $LASF0:
 	.ascii	"unsigned char\000"
 $LASF20:
 	.ascii	"bd_t\000"
-$LASF133:
-	.ascii	"/home/guohongliang/work/819/DIR819/build.DIR-819/boot/tb"
-	.ascii	"sboot/cpu/mt7620a\000"
 $LASF49:
 	.ascii	"FOE_Entry\000"
 $LASF50:

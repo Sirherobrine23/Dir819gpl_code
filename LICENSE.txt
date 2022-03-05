@@ -11,13 +11,13 @@ The GPL/ LGPL Code and any used in this product is distributed WITHOUT ANY WARRA
 
 For details, see the terms of the GPL, LGPL and other FOSS License as follows:
 
--   GNU General Public License Version 2 (GPLv2.0)
--   GNU Lesser General Public License Version 2.1 (LGPLv2.1)
--   BSD 2-clause license
--   BSD 3-clause license
--   Apache License 2.0
--   zlib/libpng License
--   MIT License v2.0
+-   GPLv2
+-   GPLv2 or later
+-   LGPL
+-   BSD license
+-   LGPL 2.1
+-   Public domain dedication
+
 
 ____________________________________________________________________________________________________________________________
 

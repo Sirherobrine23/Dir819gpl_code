@@ -23,7 +23,7 @@ typedef signed long long s64;
 typedef unsigned long long u64;
 
 
-
+#include <sys/resource.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -36,7 +36,6 @@ typedef unsigned long long u64;
 #include <sys/ioctl.h>
 #include <sys/socket.h>
 #include <sys/types.h>
-#include <sys/resource.h>
 #include <sys/stat.h>
 #include <sys/wait.h>
 #include <linux/sockios.h>

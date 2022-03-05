@@ -198,8 +198,8 @@ $LASFDE2:
 	.align	2
 $LEFDE2:
 	.align	0
-	.file 2 "/home/guohongliang/work/819/DIR819/build/include/gpio.h"
-	.file 3 "/home/guohongliang/work/819/DIR819/build/include/btn.h"
+	.file 2 "/home/zhangtianchuan/Gpl819/DIR819/build/include/gpio.h"
+	.file 3 "/home/zhangtianchuan/Gpl819/DIR819/build/include/btn.h"
 	.text
 $Letext0:
 	.section	.debug_info
@@ -799,9 +799,6 @@ $LASF10:
 	.ascii	"btn_wps\000"
 $LASF24:
 	.ascii	"gpio\000"
-$LASF41:
-	.ascii	"/home/guohongliang/work/819/DIR819/build.DIR-819/boot/tb"
-	.ascii	"sboot/cpu/mt7620a\000"
 $LASF33:
 	.ascii	"gpio_level\000"
 $LASF15:
@@ -838,6 +835,9 @@ $LASF3:
 	.ascii	"signed char\000"
 $LASF2:
 	.ascii	"short unsigned int\000"
+$LASF41:
+	.ascii	"/home/zhangtianchuan/Gpl819/DIR819/build.DIR-819/boot/tb"
+	.ascii	"sboot/cpu/mt7620a\000"
 $LASF26:
 	.ascii	"iogroup\000"
 	.ident	"GCC: (GNU) 3.4.2"

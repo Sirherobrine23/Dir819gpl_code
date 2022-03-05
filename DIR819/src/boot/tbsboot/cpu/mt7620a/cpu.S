@@ -436,9 +436,9 @@ $LASFDE12:
 	.align	2
 $LEFDE12:
 	.align	0
-	.file 2 "/home/guohongliang/work/819/DIR819/build.DIR-819/boot/tbsboot/include/command.h"
-	.file 3 "/home/guohongliang/work/819/DIR819/build.DIR-819/boot/tbsboot/include/types.h"
-	.file 4 "/home/guohongliang/work/819/DIR819/build.DIR-819/boot/build/include2/asm/types.h"
+	.file 2 "/home/zhangtianchuan/Gpl819/DIR819/build.DIR-819/boot/tbsboot/include/command.h"
+	.file 3 "/home/zhangtianchuan/Gpl819/DIR819/build.DIR-819/boot/tbsboot/include/types.h"
+	.file 4 "/home/zhangtianchuan/Gpl819/DIR819/build.DIR-819/boot/build/include2/asm/types.h"
 	.text
 $Letext0:
 	.section	.debug_info
@@ -1283,9 +1283,6 @@ $LASF20:
 	.ascii	"flush_icache_range\000"
 $LASF35:
 	.ascii	"pagemask\000"
-$LASF40:
-	.ascii	"/home/guohongliang/work/819/DIR819/build.DIR-819/boot/tb"
-	.ascii	"sboot/cpu/mt7620a\000"
 $LASF12:
 	.ascii	"repeatable\000"
 $LASF6:
@@ -1342,6 +1339,9 @@ $LASF3:
 	.ascii	"signed char\000"
 $LASF2:
 	.ascii	"short unsigned int\000"
+$LASF40:
+	.ascii	"/home/zhangtianchuan/Gpl819/DIR819/build.DIR-819/boot/tb"
+	.ascii	"sboot/cpu/mt7620a\000"
 $LASF30:
 	.ascii	"__res\000"
 $LASF17:

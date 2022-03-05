@@ -5,7 +5,7 @@ var data_language = {
 		DIV_HardwareVersion : 'Versión del hardware：',
 		login_title : 'Error de inicio de sesión',
 		login_msg : 'Nombre de usuario o la contraseña no es correcta.',
-		DIV_Copyright : 'Copyright &copy; 2016 D-Link Corporation. All rights reserved.',
+		DIV_Copyright : 'Copyright &copy; 2017 D-Link Corporation. All rights reserved.',
 		DIV_LogIn : 'Inicio de sesión',
 		DIV_LogInfo : 'Iniciar sesión en el router:',
 		DIV_UserName : 'Nombre de usuario',

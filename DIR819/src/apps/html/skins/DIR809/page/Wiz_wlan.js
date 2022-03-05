@@ -197,6 +197,16 @@ function OnClickNext()
 	switch (currentStage)
 	{
 	case 0:
+		if($("wiz_ssid").value.match(/[\|&;\$@\+><\?\(\)]/))
+		{			
+			alert(SEcode['lang_invalid_input']);
+			return false;	
+		}
+		if($("wiz_ssid_Aband").value.match(/[\|&;\$@\+><\?\(\)]/))
+		{			
+			alert(SEcode['lang_invalid_input']);
+			return false;	
+		}
 		if($("wiz_ssid").value.charAt(0)==" "|| $("wiz_ssid").value.charAt($("wiz_ssid").value.length-1)==" ")
 		{
 			alert(SEcode["lang_prefix_blank"]);
@@ -239,6 +249,11 @@ function OnClickNext()
 			alert(SEcode["lang_psk_printable"]);
 			return;
 		}
+		if(!$("wiz_key").value.match(/^[0-9a-zA-Z\\.@_$-]{1,15}$/))
+		{
+			alert(SEcode["lang_invalid_passwd"]);
+			return false;			
+		}	
 		if ( ($("wiz_key").value.length == 64 && $("wiz_key").value.match(/[^0-9a-fA-F]/)) || ($("wiz_key_Aband").value.length == 64 && $("wiz_key_Aband").value.match(/[^0-9a-fA-F]/)) )
 		{
 			alert(SEcode["lang_psk_64hex"]);

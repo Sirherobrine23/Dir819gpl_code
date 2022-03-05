@@ -18,7 +18,7 @@ var top_menu = {
 		TOPM016 : '硬體版本:',
 		TOPM017 : '韌體版本:',
 		TOPM018 : '無線網路(5.8G)',
-		TOPM019 : 'Copyright &copy; 2016 D-Link Corporation. All rights reserved.',
+		TOPM019 : 'Copyright &copy; 2017 D-Link Corporation. All rights reserved.',
 		lang_saving     :       '儲存中',
 		lang_take_effect     :       '設定已儲存並生效。',
 		lang_waiting     :       '請稍候 ...',
@@ -545,7 +545,7 @@ var data_languages = {
 		DIV_ProductPage : '產品頁面:',
 		DIV_FirmwareVersion : '韌體版本:',
 		DIV_HardwareVersion : '硬體版本:',
-		DIV_Copyright : 'Copyright &copy; 2016 D-Link Corporation. All rights reserved.',
+		DIV_Copyright : 'Copyright &copy; 2017 D-Link Corporation. All rights reserved.',
 		lang_saving     :       '儲存中',
 		lang_take_effect     :       '設定已儲存並生效。',
 		lang_waiting     :       '請稍候 ...',		
@@ -3816,7 +3816,7 @@ var data_languages = {
 		result : '路由器的IP位址將被重設為192.168.0.1。如果您改變這邊的IP 位址，您可能需要改變您電腦的IP 位址設定為相同網段後，再使用新的IP位址重新連結一次。',
 		upgrading006 : '等候時間:',
 		upgrading007 : '秒',
-		upgrading008 : 'Copyright &copy; 2016 D-Link Corporation. All rights reserved.'
+		upgrading008 : 'Copyright &copy; 2017 D-Link Corporation. All rights reserved.'
 	}              
   },
   'upconfig' :
@@ -3829,7 +3829,7 @@ var data_languages = {
 		result : '路由器的IP位址將被重設為192.168.0.1。如果您改變這邊的IP 位址，您可能需要改變您電腦的IP 位址設定為相同網段後，再使用新的IP位址重新連結一次。',
 		upconfig006 : '等候時間:',
 		upconfig007 : '秒',
-		upconfig008 : 'Copyright &copy; 2016 D-Link Corporation. All rights reserved.'
+		upconfig008 : 'Copyright &copy; 2017 D-Link Corporation. All rights reserved.'
 	}               
   },
   'Wait_lan' :
@@ -3842,7 +3842,7 @@ var data_languages = {
 		result : 'LAN IP位址或Netmask改變可能會造成無法存取路由器，您可能需要改變您電腦的IP 位址設定為相同網段後，再使用新的IP位址重新連結一次。',
 		wait_lan006 : '等候時間:',
 		wait_lan007 : '秒',
-		wait_lan008 : 'Copyright &copy; 2016 D-Link Corporation. All rights reserved.'
+		wait_lan008 : 'Copyright &copy; 2017 D-Link Corporation. All rights reserved.'
 	}       
   },
   'restarting' :
@@ -3855,7 +3855,7 @@ var data_languages = {
 		result : '若您變更路由器的IP位址，則您需要變更您的瀏覽軟體中的IP位址才能再次連線至組態網站。',
 		restarting006 : '等候時間:',
 		restarting007 : '秒',
-		restarting008 : 'Copyright &copy; 2016 D-Link Corporation. All rights reserved.'
+		restarting008 : 'Copyright &copy; 2017 D-Link Corporation. All rights reserved.'
 	}                
   },
   'language_pack' :
@@ -3870,7 +3870,7 @@ var data_languages = {
 		lang_update005 : '產品頁面:',
 		lang_update006 : '韌體版本:',
 		lang_update007 : '硬體版本:',
-		lang_update008 : 'Copyright &copy; 2016 D-Link Corporation. All rights reserved.',
+		lang_update008 : 'Copyright &copy; 2017 D-Link Corporation. All rights reserved.',
 		back : '請點選此處來返回至前一頁。'
 	}         
   },
@@ -3884,7 +3884,7 @@ var data_languages = {
 		result : '路由器的IP位址將被重設為192.168.0.1。如果您改變這邊的IP 位址，您可能需要改變您電腦的IP 位址設定為相同網段後，再使用新的IP位址重新連結一次。',
 		restore006 : '等候時間:',
 		restore007 : '秒',
-		restore008 : 'Copyright &copy; 2016 D-Link Corporation. All rights reserved.'
+		restore008 : 'Copyright &copy; 2017 D-Link Corporation. All rights reserved.'
 	}             
   }   
 };                           

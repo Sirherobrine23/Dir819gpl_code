@@ -145,7 +145,11 @@ var currentStage = 0;	// 0 ~ stages.length
 var currentWanType = 0;	// 0 ~ wanTypes.length
 var internetCheck = 0;
 var dual_band = "<?get :InternetGatewayDevice.X_TWSZ-COM_Radio.2.Enable ?>";
+/*add lifeifei */
+var G_WaninterFaceSetupEnable = "<?get :InternetGatewayDevice.WANDevice.1.X_TWSZ-COM_WebWaninterFaceSetupAccessEnable?>";
+var G_WirelessInterfaceSetupEnable = "<?get :InternetGatewayDevice.LANDevice.1.X_TWSZ-COM_WebWirelessInterfaceSetupAccessEnable?>";
 
+/*add lifeifei*/
 var enGraph_Auth = false;//图形认证
 
 <? if lt 0 `<?get :InternetGatewayDevice.LANDevice.1.LANHostConfigManagement.IPInterfaceNumberOfEntries?>`
@@ -422,35 +426,44 @@ function checkDNSValue(_value)
    
 	return true;
 }
+function alertErrorCode(error)
+{
+	if($("tlang").value == "Français")
+		alert(errorCode_fr[error]);
+	else
+		alert(errorCode_en[error]);
+}
+
 function checkDNS(DNS){
 	var tmpPriorityDNS=$(DNS+'1').value;
 	var tmpSecondaryDNS=$(DNS+'2').value;
 	
 	if((tmpPriorityDNS==''))
 	{
-		alert(SEcode['lang_pri_dns_invalid']);
+		alertErrorCode('lang_pri_dns_invalid');
 		return false;
 	}
 
 	if ((tmpPriorityDNS!='') && !checkDNSValue(tmpPriorityDNS)) 
 	{
-		alert(SEcode['lang_pri_dns_invalid']);
+		alertErrorCode('lang_pri_dns_invalid');
 		return false;
 	}
 	
 	if ((tmpSecondaryDNS!='') && !checkDNSValue(tmpSecondaryDNS))
 	{
-		alert(SEcode['lang_sec_dns_invalid']);
+		alertErrorCode('lang_sec_dns_invalid');
 		return false;
 	}
 	
 	if(tmpPriorityDNS&&tmpPriorityDNS==tmpSecondaryDNS)
 	{
-		alert(SEcode['lang_sec_dns_invalid']);
+		alertErrorCode('lang_sec_dns_invalid');
 		return false;
 	}
     return true;
 }
+var error_string;
 function CheckWANData(type)
 {
 	switch (type)
@@ -460,12 +473,12 @@ function CheckWANData(type)
 		case "PPPoE":
 			if ($("wiz_pppoe_usr").value == "")
 			{
-				alert(SEcode["lang_user_empty"]);
+				alertErrorCode("lang_user_empty");
 				return false;
 			}
 			if ($("wiz_pppoe_passwd").value == "")
 			{
-				alert(SEcode["lang_passwd_empty"]);
+				alertErrorCode("lang_passwd_empty");
 				return false;
 			}
 			break; 
@@ -473,32 +486,33 @@ function CheckWANData(type)
 			if ($("wiz_"+type.toLowerCase()+"_passwd").value!=
 				$("wiz_"+type.toLowerCase()+"_passwd2").value)
 			{
-				alert(SEcode["lang_passwd_not_match"]);
+				alertErrorCode("lang_passwd_not_match");
 				return false;
 			}
 			
 			if ($("wiz_pptp_usr").value == "") 
 			{
-				alert(SEcode["lang_user_empty"]);
+				alertErrorCode("lang_user_empty");
 				return false;
 			}
 			if ($("wiz_pptp_passwd").value == "") 
 			{
-				alert(SEcode["lang_passwd_empty"]);
+				alertErrorCode("lang_passwd_empty");
 				return false;
 			}
 			if($("wiz_pptp_svr").value == G_LanIPAddress)
 			{
-				alert(SEcode["lang_lan_pptp_server_conflict"]);//
+				alertErrorCode("lang_lan_pptp_server_conflict");
 				$("wiz_pptp_svr").focus();
 				return false;
 			}
 			if ($("wiz_pptp_svr").value == "" || $("wiz_pptp_svr").value=="0.0.0.0") 
 			{
-				alert(SEcode["lang_invalid_pptp_server"]);
+				alertErrorCode("lang_invalid_pptp_server");
 				return false;
 			}
-			if (!CheckValidity.IP("wiz_pptp_svr",SEcode["lang_invalid_pptp_server"]))
+			error_string=$("tlang").value == "Français"?errorCode_fr["lang_invalid_pptp_server"]:errorCode_en["lang_invalid_pptp_server"];
+			if (!CheckValidity.IP("wiz_pptp_svr",errorString))
 				return false;
 			if($("dns1").value !="" || $("dns2").value !="")
 				if(!checkDNS('dns'))
@@ -508,32 +522,35 @@ function CheckWANData(type)
 
 				if ($("wiz_pptp_ipaddr").value == "" || $("wiz_pptp_ipaddr").value=="0.0.0.0") 
 				{
-					alert(SEcode["lang_invalid_ip"]);	
+					alertErrorCode("lang_invalid_ip");	
 					return false;
 				}
-				if (!CheckValidity.IP("wiz_pptp_ipaddr",SEcode["lang_invalid_ip"]))
+				error_string=$("tlang").value == "Français"?errorCode_fr["lang_invalid_ip"]:errorCode_en["lang_invalid_ip"];
+				if (!CheckValidity.IP("wiz_pptp_ipaddr",error_string))
 					return false;
 				
 				if ($("wiz_pptp_mask").value == "" || $("wiz_pptp_mask").value=="0.0.0.0") 
 				{
-					alert(SEcode["lang_invalid_mask"]);	
+					alertErrorCode("lang_invalid_mask");	
 					return false;
 				}
-				if (!CheckValidity.Mask("wiz_pptp_mask",SEcode["lang_invalid_mask"]))
+				error_string=$("tlang").value == "Français"?errorCode_fr["lang_invalid_mask"]:errorCode_en["lang_invalid_mask"];
+				if (!CheckValidity.Mask("wiz_pptp_mask",error_string))
 					return false;
 				
 				if ($("wiz_pptp_gw").value == "" || $("wiz_pptp_gw").value=="0.0.0.0") 
 				{
-					alert(SEcode["lang_gate_invalid"]);	
+					alertErrorCode("lang_gate_invalid");	
 					return false;
 				}
-				if (!CheckValidity.IP("wiz_pptp_gw",SEcode["lang_gate_invalid"]))
+				error_string=$("tlang").value == "Français"?errorCode_fr["lang_gate_invalid"]:errorCode_en["lang_gate_invalid"];
+				if (!CheckValidity.IP("wiz_pptp_gw",error_string))
 					return false;
 				
 
 				if(!isSameSubNet($("wiz_pptp_gw").value,$('wiz_pptp_mask').value,$('wiz_pptp_ipaddr').value,$('wiz_pptp_mask').value))
 				{
-					alert(SEcode["lang_gate_same_ip"]);
+					alertErrorCode("lang_gate_same_ip");
 					$("wiz_pptp_gw").focus();
 					return false;
 				}
@@ -542,13 +559,13 @@ function CheckWANData(type)
 					return false;
 				if(isSameSubNet($("wiz_pptp_ipaddr").value,$('wiz_pptp_mask').value,G_LanIPAddress,G_LanSubAddress))
 				{
-					alert(SEcode["lang_lan_wan_conflict"]);	
+					alertErrorCode("lang_lan_wan_conflict");	
 					$("wiz_pptp_ipaddr").focus();
 					return false;
 				}
 				if($('wiz_pptp_svr').value == $('wiz_pptp_ipaddr').value)
 				{
-					alert(SEcode['lang_pptp_server_same_ip']);
+					alertErrorCode('lang_pptp_server_same_ip');
 					return false;
 				}
 			}
@@ -557,33 +574,34 @@ function CheckWANData(type)
 		if ($("wiz_"+type.toLowerCase()+"_passwd").value!=
 			$("wiz_"+type.toLowerCase()+"_passwd2").value)
 		{
-			alert(SEcode["lang_passwd_not_match"]);
+			alertErrorCode("lang_passwd_not_match");
 			return false;
 		}
 
 
 		if ($("wiz_l2tp_usr").value == "") 
 		{
-			alert(SEcode["lang_user_empty"]);
+			alertErrorCode("lang_user_empty");
 			return false;
 		}
 		if ($("wiz_l2tp_passwd").value == "") 
 		{
-			alert(SEcode["lang_passwd_empty"]);
+			alertErrorCode("lang_passwd_empty");
 			return false;
 		}
 		if($("wiz_l2tp_svr").value == G_LanIPAddress)
 		{
-			alert(SEcode["lang_lan_l2tp_server_conflict"]);//
+			alertErrorCode("lang_lan_l2tp_server_conflict");
 			$("wiz_l2tp_svr").focus();
 			return false;
 		}
 		if ($("wiz_l2tp_svr").value == "" || $("wiz_l2tp_svr").value=="0.0.0.0") 
 		{
-			alert(SEcode["lang_invalid_l2tp_server"]);
+			alertErrorCode("lang_invalid_l2tp_server");
 			return false;
 		}
-		if (!CheckValidity.IP("wiz_l2tp_svr",SEcode["lang_invalid_l2tp_server"]))
+		error_string=$("tlang").value == "Français"?errorCode_fr["lang_invalid_l2tp_server"]:errorCode_en["lang_invalid_l2tp_server"];
+		if (!CheckValidity.IP("wiz_l2tp_svr",error_string))
 			return false;
 		if($("dns1").value !="" || $("dns2").value !="")
 			if(!checkDNS('dns'))
@@ -593,31 +611,34 @@ function CheckWANData(type)
 
 			if ($("wiz_l2tp_ipaddr").value == "" || $("wiz_l2tp_ipaddr").value=="0.0.0.0") 
 			{
-				alert(SEcode["lang_invalid_ip"]);	
+				alertErrorCode("lang_invalid_ip");	
 				return false;
 			}
-			if (!CheckValidity.IP("wiz_l2tp_ipaddr",SEcode["lang_invalid_ip"]))
+			error_string=$("tlang").value == "Français"?errorCode_fr["lang_invalid_ip"]:errorCode_en["lang_invalid_ip"];
+			if (!CheckValidity.IP("wiz_l2tp_ipaddr",error_string))
 				return false;
 			
 			if ($("wiz_l2tp_mask").value == "" || $("wiz_l2tp_mask").value=="0.0.0.0") 
 			{
-				alert(SEcode["lang_invalid_mask"]);	
+				alertErrorCode("lang_invalid_mask");	
 				return false;
 			}
-			if (!CheckValidity.Mask("wiz_l2tp_mask",SEcode["lang_invalid_mask"]))
+			error_string=$("tlang").value == "Français"?errorCode_fr["lang_invalid_mask"]:errorCode_en["lang_invalid_mask"];
+			if (!CheckValidity.Mask("wiz_l2tp_mask",error_string))
 				return false;
 			
 			if ($("wiz_l2tp_gw").value == "" || $("wiz_l2tp_gw").value=="0.0.0.0") 
 			{
-				alert(SEcode["lang_invalid_def_gate"]);	
+				alertErrorCode("lang_invalid_def_gate");	
 				return false;
 			}
-			if (!CheckValidity.IP("wiz_l2tp_gw",SEcode["lang_invalid_def_gate"]))
+			error_string=$("tlang").value == "Français"?errorCode_fr["lang_invalid_def_gate"]:errorCode_en["lang_invalid_def_gate"];
+			if (!CheckValidity.IP("wiz_l2tp_gw",error_string))
 				return false;
 			
 			if(!isSameSubNet($("wiz_l2tp_gw").value,$('wiz_l2tp_mask').value,$('wiz_l2tp_ipaddr').value,$('wiz_l2tp_mask').value))
 			{
-				alert(SEcode["lang_gate_same_ip"]);
+				alertErrorCode("lang_gate_same_ip");
 				$("wiz_l2tp_gw").focus();
 				return false;
 			}
@@ -625,21 +646,23 @@ function CheckWANData(type)
 				return false;
 			if(isSameSubNet($("wiz_l2tp_ipaddr").value,$('wiz_l2tp_mask').value,G_LanIPAddress,G_LanSubAddress))
 			{
-				alert(SEcode["lang_lan_wan_conflict"]);	
+				alertErrorCode("lang_lan_wan_conflict");	
 				$("wiz_l2tp_ipaddr").focus();
 				return false;
 			}
 			if($('wiz_l2tp_svr').value == $('wiz_l2tp_ipaddr').value)
 			{
-				alert(SEcode['lang_l2tp_server_same_ip']);
+				alertErrorCode('lang_l2tp_server_same_ip');
 				return false;
 			}
 		}
 			break;
 		case "STATIC":
-			if (!CheckValidity.IP("wiz_"+type.toLowerCase()+"_ipaddr","Invalid IP format!"))
+			error_string=$("tlang").value == "Français"?errorCode_fr["lang_invalid_ip"]:errorCode_en["lang_invalid_ip"];
+			if (!CheckValidity.IP("wiz_"+type.toLowerCase()+"_ipaddr",error_string))
 				return false;
-			if (!CheckValidity.Mask("wiz_"+type.toLowerCase()+"_mask","Invalid Mask format!"))
+			error_string=$("tlang").value == "Français"?errorCode_fr["lang_invalid_mask"]:errorCode_en["lang_invalid_mask"];
+			if (!CheckValidity.Mask("wiz_"+type.toLowerCase()+"_mask",error_string))
 				return false;
 			if (!CheckValidity.isNetIP( $("wiz_"+type.toLowerCase()+"_ipaddr").value, $("wiz_"+type.toLowerCase()+"_mask").value ) )
 				return false;
@@ -648,13 +671,13 @@ function CheckWANData(type)
 			return false;
 			if(isSameSubNet($("wiz_static_ipaddr").value,$('wiz_static_mask').value,G_LanIPAddress,G_LanSubAddress))
 			{
-				alert(SEcode["lang_lan_wan_conflict"]);	
+				alertErrorCode("lang_lan_wan_conflict");	
 				$("wiz_static_ipaddr").focus();
 				return false;
 			}
 			break;
 		default:
-			alert(SEcode["lang_select_mode"]);
+			alertErrorCode("lang_select_mode");
 			return false;
 	}
 	
@@ -679,6 +702,20 @@ function SetStage(offset)
 	var length = stages.length;
 	switch (offset)
 	{
+	/*add lifeifei*/
+	case 5:
+		if (currentStage < length-1)
+			currentStage += 5;
+		break;
+	case 4:
+		if (currentStage < length-1)
+			currentStage += 4;
+		break;
+	case 3:
+	if (currentStage < length-1)
+		currentStage += 3;
+	break;	
+	/*add lifeifei*/
 	case 2:
 		if (currentStage < length-1)
 			currentStage += 2;
@@ -694,24 +731,81 @@ function SetStage(offset)
 	case -2:
 		if (currentStage > 1)
 			currentStage -= 2;
-		break;			
+		break;
+	case -3:
+		if (currentStage > 2)
+			currentStage -= 3;
+		break;
+	case -4:
+		if (currentStage > 3)
+			currentStage -= 4;
+		break;
+	case -5:
+		if (currentStage > 4)
+			currentStage -= 5;
+		break;	
 	}
 }
 function OnClickPre()
 {
 	var stage = stages[currentStage];
 	var type = wanTypes[currentWanType];
-	if(stage=="stage_wlan_set" && (type=="DHCP" || type=="DHCPPLUS")) 
+	if((stage=="stage_wlan_set") && (type=="DHCP" || type=="DHCPPLUS") && (G_WaninterFaceSetupEnable == 1)) 
+    {   
 		SetStage(-2);
+    }
 	else if(stage == "stage_wan_detect")
 	{
-		if(wanDetectCheckTimer) 
+		if(wanDetectCheckTimer)
+         { 
 			clearTimeout(wanDetectCheckTimer);
-		SetStage(-1);
+         }
+		 SetStage(-1);
 	}
-	else 
-		SetStage(-1);	
-	stage = stages[currentStage];	
+	else if(stage == "stage_wlan_set")
+	{
+	    console.log("stage11="+stage);
+	    console.log("G_WaninterFaceSetupEnable="+G_WaninterFaceSetupEnable);
+       if(G_WaninterFaceSetupEnable == 0)
+        {
+           SetStage(-4);
+        }
+       else
+        SetStage(-1);
+	}
+	else if(stage == "stage_passwd")
+	{
+	    console.log("stage22="+stage);
+	    console.log("G_WirelessInterfaceSetupEnable="+G_WirelessInterfaceSetupEnable);
+       if(G_WirelessInterfaceSetupEnable == 0)
+	   	{
+	        if(G_WaninterFaceSetupEnable == 1)
+	       	{
+    	          if((type == "DHCP") || (type == "DHCPPLUS"))
+    	          {
+                       SetStage(-3);
+    			  }
+    			  else
+    			  {
+                     SetStage(-2);
+    			  }
+			  	
+	       	}
+		    else
+		    {
+               SetStage(-5); 
+			}
+	   	}
+       else
+        SetStage(-1);
+	}
+   else 
+	{
+	      console.log("791 runing SetStage(-1);");
+		  SetStage(-1);
+   	}
+	stage = stages[currentStage];
+   
 	if(stage=="stage_wan_detect") WanDetectAgain();
 	ShowCurrentStage();
 }
@@ -723,28 +817,28 @@ function OnClickNext()
 	{
 		if ($("wiz_passwd").value=="")
 		{
-			alert(SEcode["lang_admin_passwd_empty"]);
+			alertErrorCode("lang_admin_passwd_empty");
 			return false;			
 		}
 		if(!$("wiz_passwd").value.match(/^[0-9a-zA-Z\\.@_$-]{1,15}$/))
 		{
-			alert(SEcode["lang_invalid_passwd"]);
+			alertErrorCode("lang_invalid_passwd");
 			return false;			
 		}		
 		for(var i=0;i < $("wiz_passwd").value.length;i++)
 		{
 			if ($("wiz_passwd").value.charCodeAt(i) > 256) //avoid holomorphic word
 			{ 
-				alert(SEcode["lang_invalid_passwd"]);
+				alertErrorCode("lang_invalid_passwd");
 				return false;
 			}
 		}			
 		if ($("wiz_passwd").value!=$("wiz_passwd2").value)
 		{
-			alert(SEcode["lang_passwd_not_match"]);
+			alertErrorCode("lang_passwd_not_match");
 			return false;
 		}
-		//PrePasswd();//图形验证码
+		//PrePasswd();
 		CheckAccount();			
 	}	
 	else if (stage == "stage_ether")
@@ -754,10 +848,13 @@ function OnClickNext()
 			type = "DHCP";
 		if (type=="DHCP")
 		{
-			SetStage(2);	
+		    if(G_WirelessInterfaceSetupEnable == 0)
+			   SetStage(3);	
+			else
+			   SetStage(2);	
 		}
-		else 
-			SetStage(1);
+		else
+          SetStage(1);
 		ShowCurrentStage();
 	}			
 	else if (stage == "stage_ether_cfg")
@@ -774,64 +871,75 @@ function OnClickNext()
 			
 		if(CheckWANData(type) == true)
 		{
-			SetStage(1);
-			ShowCurrentStage();
+		    /**********/
+            if(G_WirelessInterfaceSetupEnable == 1)
+			{
+			     SetStage(1);
+			     ShowCurrentStage();
+            }
+			else
+            {
+               SetStage(2);
+			   ShowCurrentStage();
+			}
+		   /**********/
 		}
 	}
 	else if (stage == "stage_wlan_set")
 	{
 		if($("wiz_ssid").value.charAt(0)===" "|| $("wiz_ssid").value.charAt($("wiz_ssid").value.length-1)===" ")
 		{
-			alert(SEcode["lang_prefix_blank"]);
+			alertErrorCode("lang_prefix_blank");
 			$("wiz_ssid").focus();
 			return ;
 		}
 		if(dual_band && ($("wiz_ssid_Aband").value.charAt(0)===" "|| $("wiz_ssid_Aband").value.charAt($("wiz_ssid_Aband").value.length-1)===" "))
 		{
-			alert(SEcode["lang_prefix_blank"]);
+			alertErrorCode("lang_prefix_blank");
 			$("wiz_ssid_Aband").focus();
 			return ;
 		}			
 		if ($("wiz_ssid").value=="")
 		{
-			alert(SEcode["lang_ssid_empty"]);
+			alertErrorCode("lang_ssid_empty");
 			$("wiz_ssid").focus();
 			return;
 		}
 		if (dual_band && $("wiz_ssid_Aband").value=="")
 		{
-			alert(SEcode["lang_ssid_empty"]);
+			alertErrorCode("lang_ssid_empty");
 			$("wiz_ssid_Aband").focus();
 			return;
 		}		
 		
 		if ($("wiz_key").value.length < 8)
 		{
-			alert(SEcode["lang_passwd_8_63"]);
+			alertErrorCode("lang_passwd_8_63");
 			$("wiz_key").focus();
 			return;
 		}
 		if(dual_band && $("wiz_key_Aband").value.length < 8)
 		{
-			alert(SEcode["lang_passwd_8_63"]);
+			alertErrorCode("lang_passwd_8_63");
 			$("wiz_key_Aband").focus();
 			return;
 		}	
 		if($("wiz_key").value.charAt(0)==" "|| $("wiz_key").value.charAt($("wiz_key").value.length-1)==" ")
 		{
-			alert(SEcode["lang_passwd_blank"]);
+			alertErrorCode("lang_passwd_blank");
 			$("wiz_key").focus();
 			return;
 		}
 		if(dual_band && ($("wiz_key_Aband").value.charAt(0)==" "|| $("wiz_key_Aband").value.charAt($("wiz_key_Aband").value.length-1)==" "))
 		{
-			alert(SEcode["lang_passwd_blank"]);
+			alertErrorCode("lang_passwd_blank");
 			$("wiz_key_Aband").focus();
 			return;
-		}	
-				
+		}
+
 		SetStage(1);
 		ShowCurrentStage();
+		
 	}	
 	else if(stage == "stage_wan_detect")
 	{
@@ -840,10 +948,48 @@ function OnClickNext()
 		SetStage(1);
 		ShowCurrentStage();
 	}
+	/*add lifeifei*/
+	else if(stage == "stage_tz")
+	{
+	   if(G_WirelessInterfaceSetupEnable == 1)
+	   	{
+		   SetStage(1);
+		   ShowCurrentStage(); 
+	   	}
+	   else
+	   	{
+           SetStage(2);
+		   ShowCurrentStage(); 
+	   }
+	}
 	else
 	{	
-		SetStage(1);
-		ShowCurrentStage();
+	    /*add lifeifei*/
+	   if(G_WaninterFaceSetupEnable == 1)
+	   {
+          
+			  SetStage(1);
+			  ShowCurrentStage(); 
+	   }
+	   else
+	   {
+	   
+            if(G_WirelessInterfaceSetupEnable == 1)
+         	{
+                SetStage(4);
+		        ShowCurrentStage();
+         	} 
+			else 
+			{
+			     SetStage(5);
+		         ShowCurrentStage();
+			}
+			
+			
+	   }
+	    /*add lifeifei*/
+		//SetStage(1);
+		//ShowCurrentStage();
 	}	
 }	
 function findProtocol( ){
@@ -993,27 +1139,579 @@ function onChangelang(langtype){
 		}
 	}
 }
+function stage_desc_chang()
+{
+    if((G_WirelessInterfaceSetupEnable == 1) && (G_WaninterFaceSetupEnable == 1))
+    {
+       $(SUB1).style.display="";
+	   $(SUB2).style.display="none";
+	   $(SUB3).style.display="none";
+	   $(SUB4).style.display="none";
+	}
+	if((G_WirelessInterfaceSetupEnable == 1) && (G_WaninterFaceSetupEnable == 0))
+    {
+       $(SUB1).style.display="none";
+	   $(SUB2).style.display="";
+	   $(SUB3).style.display="none";
+	   $(SUB4).style.display="none";
+	   $(WIZLOGIN079).innerHTML="Step 1: Configure your Wi-Fi Security";
+	   $(WIZLOGIN087).innerHTML="Step 2: Set your Password";
+	   $(WIZLOGIN092).innerHTML="Step 3: Select your Time Zone";
+	   $(WIZLOGIN172).innerHTML="Step 4: Confirm WI-FI settings";
+	}
+	if((G_WirelessInterfaceSetupEnable == 0) && (G_WaninterFaceSetupEnable == 1))
+    {
+       $(SUB1).style.display="none";
+	   $(SUB2).style.display="none";
+	   $(SUB3).style.display="";
+	   $(SUB4).style.display="none";
+	   $(WIZLOGIN087).innerHTML="Step 2: Set your Password";
+	   $(WIZLOGIN092).innerHTML="Step 3: Select your Time Zone";
+	}
+	if((G_WirelessInterfaceSetupEnable == 0) && (G_WaninterFaceSetupEnable == 0))
+    {
+       $(SUB1).style.display="none";
+	   $(SUB2).style.display="none";
+	   $(SUB3).style.display="none";
+	   $(SUB4).style.display="";
+	   $(WIZLOGIN087).innerHTML="Step 1: Set your Password";
+	   $(WIZLOGIN092).innerHTML="Step 2: Select your Time Zone";
+     }
+}
 function uiOnload()
 {
-	chg_language(data_languages["Wiz_login"]);
+	//chg_language(data_languages["Wiz_login"]);
 	$("tlang").value = "English";
 	ShowCurrentStage();
+	stage_desc_chang();
 	InitValue();	
 	dealWithError();
 }
 var arrLang = [];
 arrLang['en_us'] = {
-   
+		'WIZLOGIN001'    :       'Welcome to the D-Link Setup Wizard',
+		'WIZLOGIN002'    :       'This wizard will guide you through a step-by-step process to configure your new D-Link router and connect to the Internet. ',
+		'WIZLOGIN003'    :       'Step 1: Configure your Internet Connection',
+		'WIZLOGIN004'    :       'Step 2: Configure your Wi-Fi Security',
+		'WIZLOGIN005'    :       'Step 3: Set your Password',
+		'WIZLOGIN006'    :       'Step 4: Select your Time Zone',
+		'WIZLOGIN007'    :       'Step 5: Confirm Wi-Fi Settings',
+		'WIZLOGIN008'    :       'Step 1: Configure your Internet Connection',
+		'WIZLOGIN009'    :       'The router is detecting your Internet connection type, please wait...',
+		'WIZLOGIN010'    :       'Step 1: Configure your Internet Connection',
+		'WIZLOGIN011'    :       'Please plug one end of the included Ethernet cable that came with your router into the port labeled INTERNET on the back of the router. Plug the other end of this cable into the Ethernet port on your modem and power cycle the modem.',
+		'WIZLOGIN012'    :       'Step 1: Configure your Internet Connection',
+		'WIZLOGIN013'    :       'Router is unable to detect your Internet connection type.',
+		'WIZLOGIN014'    :       'Step 1: Configure your Internet Connection',
+		'WIZLOGIN015'    :       'If your Internet Service Provider was not listed or you don\'t know who it is, please select the Internet connection type below:',
+		'WIZLOGIN016'    :       'DHCP Connection (Dynamic IP Address)',
+		'WIZLOGIN017'    :       'Choose this if your Internet connection automatically provides you with an IP Address. Most Cable Modems use this type of connection.',
+		'WIZLOGIN018'    :       'DHCP Plus Connection (Dynamic IP Address)',
+		'WIZLOGIN019'    :       'Choose this if your Internet connection automatically provides you with an IP Address. Most Cable Modems use this type of connection.',
+		'WIZLOGIN020'    :       'Username / Password Connection (PPPoE)',
+		'WIZLOGIN021'    :       'Choose this option if your Internet connection requires a username and password to get online. Most DSL modems use this type of connection.',
+		'WIZLOGIN022'    :       'Username / Password Connection (PPTP)',
+		'WIZLOGIN023'    :       'PPTP client.',
+		'WIZLOGIN024'    :       'Username / Password Connection (L2TP)',
+		'WIZLOGIN025'    :       'L2TP client.',
+		'WIZLOGIN026'    :       'Static IP Address Connection',
+		'WIZLOGIN027'    :       'Choose this option if your Internet Setup Provider provided you with IP Address information that has to be manually configured.',
+		'WIZLOGIN028'    :       'DHCP Connection (Dynamic IP Address)',
+		'WIZLOGIN029'    :       'To set up this connection, please make sure that you are connected to the D-Link Router with the PC that was originally connected to your broadband connection. If you are, then click the Clone MAC button to copy your computer\'s MAC Address to the D-Link Router.',
+		'WIZLOGIN030'    :       'MAC Address',
+		'WIZLOGIN031'    :       '(optional)',
+		'WIZLOGIN032'    :       'Host Name',
+		'WIZLOGIN033'    :       'Set Username and Password Connection (PPPoE)',
+		'WIZLOGIN034'    :       'To set up this connection you will need to have a Username and Password from your Internet Service Provider. If you do not have this information, please contact your ISP.',
+		'WIZLOGIN035'    :       'Address Mode',
+		'WIZLOGIN036'    :       'Dynamic IP',
+		'WIZLOGIN037'    :       'Static IP',
+		'WIZLOGIN038'    :       'IP Address ',
+		'WIZLOGIN039'    :       'User Name',
+		'WIZLOGIN040'    :       'Password',
+		'WIZLOGIN041'    :       'Verify Password',
+		'WIZLOGIN042'    :       'Service Name',
+		'WIZLOGIN043'    :       'Note: You may also need to provide a Service Name.If you do not have or know this information, please contact your ISP.',
+		'WIZLOGIN044'    :       'Set Username and Password Connection (PPTP)',
+		'WIZLOGIN045'    :       'To set up this connection you will need to have a Username and Password from your Internet Service Provider. You also need PPTP IP address. If you do not have this information, please contact your ISP.',
+		'WIZLOGIN046'    :       'Address Mode ',
+		'WIZLOGIN047'    :       'Dynamic IP',
+		'WIZLOGIN048'    :       'Static IP',
+		'WIZLOGIN049'    :       'PPTP IP Address',
+		'WIZLOGIN050'    :       'PPTP Subnet Mask ',
+		'WIZLOGIN051'    :       'PPTP Gateway IP Address ',
+		'WIZLOGIN052'    :       'PPTP Server IP Address(may be same as gateway)',
+		'WIZLOGIN053'    :       'User Name ',
+		'WIZLOGIN054'    :       'Password ',
+		'WIZLOGIN055'    :       'Verify Password',
+		'WIZLOGIN056'    :       'Set Username and Password Connection (L2TP)',
+		'WIZLOGIN057'    :       'To set up this connection you will need to have a Username and Password from your Internet Service Provider. You also need L2TP IP address. If you do not have this information, please contact your ISP.',
+		'WIZLOGIN058'    :       'Address Mode ',
+		'WIZLOGIN059'    :       'Dynamic IP',
+		'WIZLOGIN060'    :       'Static IP',
+		'WIZLOGIN061'    :       'L2TP IP Address',
+		'WIZLOGIN062'    :       'L2TP Subnet Mask',
+		'WIZLOGIN063'    :       'L2TP Gateway IP Address ',
+		'WIZLOGIN064'    :       'L2TP Server IP Address (may be same as gateway)',
+		'WIZLOGIN065'    :       'User Name',
+		'WIZLOGIN066'    :       'Password',
+		'WIZLOGIN067'    :       'Verify Password',
+		'WIZLOGIN068'    :       'Set Static IP Address Connection',
+		'WIZLOGIN069'    :       'To set up this connection you will need to have a complete list of IP information provided by your Internet Service Provider. If you have a Static IP connection and do not have this information, please contact your ISP.',
+		'WIZLOGIN070'    :       'IP Address',
+		'WIZLOGIN071'    :       'Subnet Mask',
+		'WIZLOGIN072'    :       'Gateway Address',
+		'WIZLOGIN073'    :       'DNS Settings',
+		'WIZLOGIN074'    :       'Primary DNS Address',
+		'WIZLOGIN075'    :       'Secondary DNS Address',
+		'WIZLOGIN076'    :       'DNS settings',
+		'WIZLOGIN077'    :       'Primary DNS Address',
+		'WIZLOGIN078'    :       'Secondary DNS Address',
+		'WIZLOGIN079'    :       'Step 2: Configure your Wi-Fi Security',
+		'wifi24_name_pwd_show'    :'Give your Wi-Fi network a name and a password. (2.4GHz Band)',
+		'fld_ssid_24'    :       'Wi-Fi Network Name (SSID)',
+		'WIZLOGIN080'    :       '(Using up to 32 characters)',
+		'wifi24_pwd_show'    :       'Give your Wi-Fi network a password.',
+		'WIZLOGIN081'    :       'Wi-Fi Password ',
+		'WIZLOGIN082'    :       '(Between 8 and 63 characters)',
+		'WIZLOGIN083'    :       'Give your Wi-Fi network a name and a password. (5GHz Band)',
+		'fld_ssid_5'    :       'Wi-Fi Network Name (SSID)',
+		'WIZLOGIN084'    :       '(Using up to 32 characters)',
+		'WIZLOGIN085'    :       'Wi-Fi Password ',
+		'WIZLOGIN086'    :       '(Between 8 and 63 characters)',
+		'WIZLOGIN087'    :       'Step 3: Set your Password',
+		'WIZLOGIN088'    :       'By default, your new D-Link Router does not have a password configured for administrator access to the Web-based configuration pages. To secure your new networking device, please set and verify a password below.',
+		'WIZLOGIN089'    :       'Password ',
+		'WIZLOGIN090'    :       'Verify Password',
+		'WIZLOGIN091'    :       'Enable Graphical Authentication',
+		'WIZLOGIN092'    :       'Step 4: Select your Time Zone',
+		'WIZLOGIN093'    :       'Select the appropriate time zone for your location. This information is required to configure the time-based options for the router.',
+		'WIZLOGIN094'      :       '(GMT-12:00) International Date Line West',
+		'WIZLOGIN095'      :       '(GMT-11:00) Midway Island',			
+		'WIZLOGIN096'      :       '(GMT-10:00) Hawaii',
+		'WIZLOGIN097'      :       '(GMT-09:00) Alaska',
+		'WIZLOGIN098'      :       '(GMT-08:00) Pacific Time (US & Canada), Tijuana',
+		'WIZLOGIN099'      :       '(GMT-07:00) Arizona',
+		'WIZLOGIN100'      :       '(GMT-07:00) Chihuahua, La Paz, Mazatlan',
+		'WIZLOGIN101'      :       '(GMT-07:00) Mountain Time (US & Canada)', 
+		'WIZLOGIN102'      :       '(GMT-06:00) Central America',
+		'WIZLOGIN103'      :       '(GMT-06:00) Central Time (US & Canada)', 
+		'WIZLOGIN104'      :       '(GMT-06:00) Guadalajara, Mexico City, Monterrey',
+		'WIZLOGIN105'      :       '(GMT-06:00) Saskatchewan', 
+		'WIZLOGIN106'      :       '(GMT-05:00) Bogota, Lima, Quito,Indiana (East)',
+		'WIZLOGIN107'      :       '(GMT-05:00) Eastern Time (US & Canada)',
+		'WIZLOGIN108'      :       '(GMT-04:30) Caracas',
+		'WIZLOGIN109'      :       '(GMT-04:00) Georgetown, La Paz',
+		'WIZLOGIN110'      :       '(GMT-04:00) Atlantic Time (Canada)',
+		'WIZLOGIN111'      :       '(GMT-04:00) Santiago',
+		'WIZLOGIN112'      :       '(GMT-03:30) Newfoundland',
+		'WIZLOGIN113'      :       '(GMT-03:00) Brasilia',
+		'WIZLOGIN114'      :       '(GMT-03:00) Buenos Aires',
+		'WIZLOGIN115'      :       '(GMT-03:00) Greenland',
+		'WIZLOGIN116'      :       '(GMT-02:00) Mid-Atlantic',
+		'WIZLOGIN117'      :       '(GMT-01:00) Azores',
+		'WIZLOGIN118'      :       '(GMT-01:00) Cape Verde Is.',
+		'WIZLOGIN119'      :       '(GMT) Casablanca, Monrovia',
+		'WIZLOGIN120'      :       '(GMT) Greenwich Mean Time : Dublin, Edinburgh, Lisbon, London',
+		'WIZLOGIN121'      :       '(GMT+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna',
+		'WIZLOGIN122'      :       '(GMT+01:00) Belgrade, Bratislava, Budapest, Ljubljana, Prague',
+		'WIZLOGIN123'      :       '(GMT+01:00) Brussels, Copenhagen, Madrid, Paris',
+		'WIZLOGIN124'      :       '(GMT+01:00) Sarajevo, Skopje, Warsaw, Zagreb',
+		'WIZLOGIN125'      :       '(GMT+01:00) West Central Africa',			
+		'WIZLOGIN126'      :       '(GMT+02:00) Athens, Istanbul, Minsk',
+		'WIZLOGIN127'      :       '(GMT+02:00) Bucharest',
+		'WIZLOGIN128'      :       '(GMT+02:00) Cairo',
+		'WIZLOGIN129'      :       '(GMT+02:00) Harare, Pretoria',
+		'WIZLOGIN130'      :       '(GMT+02:00) Helsinki, Kyiv, Riga, Sofia, Tallinn, Vilnius',
+		'WIZLOGIN131'      :       '(GMT+02:00) Jerusalem', 
+		'WIZLOGIN132'      :       '(GMT+03:00) Baghdad',
+		'WIZLOGIN133'      :       '(GMT+03:00) Kuwait, Riyadh', 
+		'WIZLOGIN134'      :       '(GMT+03:00) Nairobi',
+		'WIZLOGIN135'      :       '(GMT+03:30) Tehran',
+		'WIZLOGIN136'      :       '(GMT+04:00) Abu Dhabi, Muscat',
+		'WIZLOGIN137'      :       '(GMT+04:00) Baku, Tbilisi, Yerevan',
+		'WIZLOGIN138'      :       '(GMT+04:00) Moscow, St. Petersburg, Volgograd',
+		'WIZLOGIN139'      :       '(GMT+04:30) Kabul',
+		'WIZLOGIN140'      :       '(GMT+05:00) Islamabad, Karachi, Tashkent',
+		'WIZLOGIN141'      :       '(GMT+05:30) Chennai, Kolkata, Mumbai, New Delhi',
+		'WIZLOGIN142'      :       '(GMT+05:30) Sri Jayawardenepura',
+		'WIZLOGIN143'      :       '(GMT+05:45) Kathmandu',
+		'WIZLOGIN144'      :       '(GMT+06:00) Astana, Dhaka',
+		'WIZLOGIN145'      :       '(GMT+06:00) Ekaterinburg',
+		'WIZLOGIN146'      :       '(GMT+06:30) Rangoon',
+		'WIZLOGIN147'      :       '(GMT+07:00) Almaty, Novosibirsk',
+		'WIZLOGIN148'      :       '(GMT+07:00) Bangkok, Hanoi, Jakarta',
+		'WIZLOGIN149'      :       '(GMT+08:00) Krasnoyarsk',
+		'WIZLOGIN150'      :       '(GMT+08:00) Beijing, Chongqing, Hong Kong, Urumqi',
+		'WIZLOGIN151'      :       '(GMT+08:00) Kuala Lumpur, Singapore',
+		'WIZLOGIN152'      :       '(GMT+08:00) Perth',
+		'WIZLOGIN153'      :       '(GMT+08:00) Taipei',
+		'WIZLOGIN154'      :       '(GMT+08:00) Ulaan Bataar',
+		'WIZLOGIN155'      :       '(GMT+09:00) Irkutsk',			
+		'WIZLOGIN156'      :       '(GMT+09:00) Osaka, Sapporo, Tokyo',
+		'WIZLOGIN157'      :       '(GMT+09:00) Seoul',
+		'WIZLOGIN158'      :       '(GMT+09:30) Adelaide',
+		'WIZLOGIN159'      :       '(GMT+09:30) Darwin',
+		'WIZLOGIN160'      :       '(GMT+10:00) Brisbane',
+		'WIZLOGIN161'      :       '(GMT+10:00) Canberra, Melbourne, Sydney', 
+		'WIZLOGIN162'      :       '(GMT+10:00) Guam, Port Moresby',
+		'WIZLOGIN163'      :       '(GMT+10:00) Hobart', 
+		'WIZLOGIN164'      :       '(GMT+10:00) Yakutsk',
+		'WIZLOGIN165'      :       '(GMT+11:00) Solomon Is., New Caledonia',
+		'WIZLOGIN166'      :       '(GMT+11:00) Vladivostok',
+		'WIZLOGIN167'      :       '(GMT+12:00) Magadan',
+		'WIZLOGIN168'      :       '(GMT+12:00) Auckland, Wellington',
+		'WIZLOGIN169'      :       '(GMT+12:00) Fiji, Kamchatka, Marshall Is.',
+		'WIZLOGIN170'      :       '(GMT+13:00) Nuku\'alofa',
+		'WIZLOGIN171'      :       '(GMT+13:00) Samoa',
+		'WIZLOGIN172'      :       'Step 5: Confirm WI-FI settings',
+		'WIZLOGIN173'      :       'Below is a detailed summary of your Wi-Fi security settings. Please print this page out, or write the information on a piece of paper, so you can configure the correct settings on your Wi-Fi devices.',
+		'fld_ssid_24_result'      :       'Wi-Fi Network Name (SSID) 2.4GHz',
+		'WIZLOGIN174'      :       'Wi-Fi Password ',
+		'fld_ssid_5G'      :       'Wi-Fi Network Name (SSID) 5GHz',
+		'WIZLOGIN175'      :       'Wi-Fi Password ',
+		'DIV_ProductPage'    :       'Product Page :',
+		'DIV_FirmwareVersion'    :       'Firmware Version :',
+		'DIV_HardwareVersion'    :       'Hardware Version :',
+		'lang_saving'     :       'Saving',
+		'lang_take_effect'     :       'The settings are being saved and are taking effect.',
+		'lang_waiting'     :       'Please wait ...',			
+		'DIV_Copyright'    :       'Copyright &copy; 2017 D-Link Corporation. All rights reserved.',	
+		'WIZLOGIN217'    :       'Please for your Wi-Fi network setup a name.',	
+		'WIZLOGIN218'    :       'Wi-Fi Network Name (SSID)'
 };
 arrLang['fr'] = {
-	
+		WIZLOGIN001 : 'Bienvenue dans l\'assistant de configuration de D-Link',
+		WIZLOGIN002 : 'Cet assistant vous guidera étape par étape pour configurer votre nouveau routeur D-Link et vous connecter à Internet.',
+		WIZLOGIN003 : 'étape 1 : Configurez votre connexion Internet',
+		WIZLOGIN004 : 'étape 2 : Configurez votre sécurité Wi-Fi',
+		WIZLOGIN005 : 'étape 3 : Définissez votre mot de passe',
+		WIZLOGIN006 : 'étape 4 : Sélectionnez votre fuseau horaire',
+		WIZLOGIN007 : 'étape 5 : Confirmez les paramètres WI-FI',
+		WIZLOGIN008 : 'étape 1 : Configurez votre connexion Internet',
+		WIZLOGIN009 : 'Le routeur est en train de détecter votre type de connexion Internet, veuillez patienter..',
+		WIZLOGIN010 : 'étape 1 : Configurez votre connexion Internet',
+		WIZLOGIN011 : 'Branchez une extrémité du câble Ethernet joint au routeur dans le port étiqueté INTERNET à l\'arrière du routeur. Branchez l\'autre extrémité de ce câble dans le port Ethernet de votre modem, puis éteignez et rallumez le modem',
+		WIZLOGIN012 : 'étape 1 : Configurez votre connexion Internet',
+		WIZLOGIN013 : 'Router est incapable de détecter votre type de connexion Internet.',
+		WIZLOGIN014 : 'étape 1 : Configurez votre connexion Internet',
+		WIZLOGIN015 : 'Si votre fournisseur d\'accès Internet n\'est pas dans la liste ou que vous ne savez pas qui c\'est, veuillez choisir le type de connexion Internet ci-dessous :',
+		WIZLOGIN016 : 'Connexion DHCP (adresse IP dynamique)',
+		WIZLOGIN017 : 'Choisissez cette option si votre connexion Internet vous fournit automatiquement une adresse IP. La plupart des modems câbles utilisent ce type de connexion.',
+		WIZLOGIN018 : 'Connexion DHCP Plus (adresse IP dynamique)',
+		WIZLOGIN019 : 'Choisissez cette option si votre connexion Internet vous fournit automatiquement une adresse IP. La plupart des modems câbles utilisent ce type de connexion.',
+		WIZLOGIN020 : 'Nom d\'utilisateur/mot de passe de connexion (PPPoE)',
+		WIZLOGIN021 : 'Choisissez cette option si votre connexion Internet requiert un nom d\'utilisateur et un mot de passe. La plupart des modems DSL utilisent ce type de connexion.',
+		WIZLOGIN022 : 'Nom d\'utilisateur/mot de passe de connexion (PPTP)',
+		WIZLOGIN023 : 'Client PPTP.',
+		WIZLOGIN024 : 'Nom d\'utilisateur/mot de passe de connexion (L2TP)',
+		WIZLOGIN025 : 'Client L2TP.',
+		WIZLOGIN026 : 'Adresse IP statique de connexion',
+		WIZLOGIN027 : 'Choisissez cette option si votre fournisseur d\'accès Internet vous a fourni des informations relatives à l\'adresse IP à configurer manuellement.',
+		WIZLOGIN028 : 'Connexion DHCP (adresse IP dynamique)',
+		WIZLOGIN029 : 'Pour configurer cette connexion, s\'il vous plaît assurez-vous que vous êtes connecté au routeur D-Link avec l\'ordinateur qui a été initialement connecté à votre connexion haut débit. Si vous êtes, cliquez sur le bouton clone MAC pour copier l\'adresse MAC de votre ordinateur au routeur D-Link.',
+		WIZLOGIN030 : 'Adresse MAC',
+		WIZLOGIN031 : '(facultatif)',
+		WIZLOGIN032 : 'Nom d\'hôte',
+		WIZLOGIN033 : 'Définir un nom d\'utilisateur et un mot de passe de connexion (PPPoE)',
+		WIZLOGIN034 : 'Pour configurer cette connexion, vous avez besoin d\'un nom d\'utilisateur et d\'un mot de passe fourni par votre fournisseur d\'accès Internet. Si vous ne disposez pas de cette information, s\'il vous plaît contactez votre FAI.',
+		WIZLOGIN035 : 'Mode adresse',
+		WIZLOGIN036 : 'Adresse IP dynamique',
+		WIZLOGIN037 : 'IP statique',
+		WIZLOGIN038 : 'Adresse IP',
+		WIZLOGIN039 : 'Nom d’utilisateur',
+		WIZLOGIN040 : 'Mot de passe',
+		WIZLOGIN041 : 'Confirmer le mot de passe',
+		WIZLOGIN042 : 'Nom du service',
+		WIZLOGIN043 : 'Remarque: Vous pouvez aussi avoir besoin de fournir un nom de service. Si vous n\'avez pas cette information, s\'il vous plaît contactez votre FAI.',
+		WIZLOGIN044 : 'Définir un nom d\'utilisateur et un mot de passe de connexion (PPTP)',
+		WIZLOGIN045 : 'Pour configurer cette connexion, vous avez besoin d\'un nom d\'utilisateur et d\'un mot de passe fourni par votre fournisseur d\'accès Internet. Vous avez également besoin d\'une adresse IP PPTP. Si vous ne disposez pas de ces informations, contactez votre FAI.',
+		WIZLOGIN046 : 'Mode adresse',
+		WIZLOGIN047 : 'Adresse IP dynamique',
+		WIZLOGIN048 : 'IP statique',
+		WIZLOGIN049 : 'Adresse IP de PPTP',
+		WIZLOGIN050 : 'Masque de sous-réseau PPTP',
+		WIZLOGIN051 : 'Adresse IP d\'une passerelle PPTP',
+		WIZLOGIN052 : 'Adresse IP du serveur PPTP (peut être identique à celle de la passerelle)',
+		WIZLOGIN053 : 'Nom d’utilisateur',
+		WIZLOGIN054 : 'Mot de passe',
+		WIZLOGIN055 : 'Confirmer le mot de passe',
+		WIZLOGIN056 : 'Définir un nom d\'utilisateur et un mot de passe de connexion (L2TP)',
+		WIZLOGIN057 : 'Pour configurer cette connexion, vous avez besoin d\'un nom d\'utilisateur et d\'un mot de passe fourni par votre fournisseur d\'accès Internet. Vous avez également besoin d\'une adresse IP L2TP. Si vous ne disposez pas de ces informations, contactez votre FAI.',
+		WIZLOGIN058 : 'Mode adresse',
+		WIZLOGIN059 : 'Adresse IP dynamique',
+		WIZLOGIN060 : 'IP statique',
+		WIZLOGIN061 : 'Adresse IP L2TP',
+		WIZLOGIN062 : 'Masque du sous-réseau L2TP',
+		WIZLOGIN063 : 'Adresse IP de la passerelle L2TP',
+		WIZLOGIN064 : 'Adresse IP du serveur L2TP (peut être identique à celle de la passerelle)',
+		WIZLOGIN065 : 'Nom d’utilisateur',
+		WIZLOGIN066 : 'Mot de passe',
+		WIZLOGIN067 : 'Confirmer le mot de passe',
+		WIZLOGIN068 : 'Définir une connexion par adresse IP statique',
+		WIZLOGIN069 : 'Pour configurer cette connexion, vous devez posséder une liste complète des informations IP fournies par votre fournisseur d\'accès Internet. Si vous possédez une connexion par adresse IP statique, mais que vous n\'avez pas cette information, contactez votre FAI.',
+		WIZLOGIN070 : 'Adresse IP',
+		WIZLOGIN071 : 'Masque de sous-réseau',
+		WIZLOGIN072 : 'Adresse de passerelle',
+		WIZLOGIN073 : 'Paramètres DNS',
+		WIZLOGIN074 : 'Adresse DNS principale',
+		WIZLOGIN075 : 'Adresse DNS secondaire',
+		WIZLOGIN076 : 'Paramètres DNS',
+		WIZLOGIN077 : 'Adresse DNS principale',
+		WIZLOGIN078 : 'Adresse DNS secondaire',
+		WIZLOGIN079 : 'étape 2 : Configurez votre sécurité Wi-Fi',
+		wifi24_name_pwd_show : 'Attribuez un nom et un mot de passe au réseau Wi-Fi. (2.4GHz Band)',
+		fld_ssid_24 : 'Nom réseau Wi-Fi (SSID)',
+		WIZLOGIN080 : '(Jusqu\'à 32 caractères autorisés)',		
+		wifi24_pwd_show : 'Donnez votre réseau Wi-Fi un mot de passe.',
+		WIZLOGIN081 : 'Mot de passe Wi-Fi',
+		WIZLOGIN082 : '(Entre 8 et 63 caractères)',
+		WIZLOGIN083 : 'Attribuez un nom et un mot de passe au réseau Wi-Fi. (5GHz Band)',		
+		fld_ssid_5 : 'Nom réseau Wi-Fi (SSID)',
+		WIZLOGIN084 : '(Jusqu\'à 32 caractères autorisés)',
+		WIZLOGIN085 : 'Mot de passe Wi-Fi',
+		WIZLOGIN086 : '(Entre 8 et 63 caractères)',
+		WIZLOGIN087 : 'étape 3 : Définissez votre mot de passe',
+		WIZLOGIN088 : 'Par défaut, votre routeur D-Link ne possède aucun mot de passe configuré pour l\'accès administrateur aux pages de configuration Web.',
+		WIZLOGIN089 : 'Mot de passe',
+		WIZLOGIN090 : 'Confirmer le mot de passe',
+		WIZLOGIN091 : 'Activer l\'authentification graphique',
+		WIZLOGIN092 : 'étape 4 : Sélectionnez votre fuseau horaire',
+		WIZLOGIN093 : 'Sélectionnez le fuseau horaire correspondant à votre zone. Vous aurez besoin de ces informations pour configurer les options du routeur basées sur le temps.',
+		WIZLOGIN094 : '(GMT-12:00) International Date Line West',
+		WIZLOGIN095 : '(GMT-11:00) Midway Island',
+		WIZLOGIN096 : '(GMT-10:00) Hawaii',
+		WIZLOGIN097 : '(GMT-09:00) Alaska',
+		WIZLOGIN098 : '(GMT-08:00) Pacific Time (US & Canada), Tijuana',
+		WIZLOGIN099 : '(GMT-07:00) Arizona',
+		WIZLOGIN100 : '(GMT-07:00) Chihuahua, La Paz, Mazatlan',
+		WIZLOGIN101 : '(GMT-07:00) Mountain Time (US & Canada)',
+		WIZLOGIN102 : '(GMT-06:00) Central America',
+		WIZLOGIN103 : '(GMT-06:00) Central Time (US & Canada)',
+		WIZLOGIN104 : '(GMT-06:00) Guadalajara, Mexico City, Monterrey',
+		WIZLOGIN105 : '(GMT-06:00) Saskatchewan',
+		WIZLOGIN106 : '(GMT-05:00) Bogota, Lima, Quito,Indiana (East)',
+		WIZLOGIN107 : '(GMT-05:00) Eastern Time (US & Canada)',
+		WIZLOGIN108 : '(GMT-04:30) Caracas',
+		WIZLOGIN109 : '(GMT-04:00) Georgetown, La Paz',
+		WIZLOGIN110 : '(GMT-04:00) Atlantic Time (Canada)',
+		WIZLOGIN111 : '(GMT-04:00) Santiago',
+		WIZLOGIN112 : '(GMT-03:30) Newfoundland',
+		WIZLOGIN113 : '(GMT-03:00) Brasilia',
+		WIZLOGIN114 : '(GMT-03:00) Buenos Aires',
+		WIZLOGIN115 : '(GMT-03:00) Greenland',
+		WIZLOGIN116 : '(GMT-02:00) Mid-Atlantic',
+		WIZLOGIN117 : '(GMT-01:00) Azores',
+		WIZLOGIN118 : '(GMT-01:00) Cape Verde Is.',
+		WIZLOGIN119 : '(GMT) Casablanca, Monrovia',
+		WIZLOGIN120 : '(GMT) Greenwich Mean Time : Dublin, Edinburgh, Lisbon, London',
+		WIZLOGIN121 : '(GMT+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna',
+		WIZLOGIN122 : '(GMT+01:00) Belgrade, Bratislava, Budapest, Ljubljana, Prague',
+		WIZLOGIN123 : '(GMT+01:00) Brussels, Copenhagen, Madrid, Paris',
+		WIZLOGIN124 : '(GMT+01:00) Sarajevo, Skopje, Warsaw, Zagreb',
+		WIZLOGIN125 : '(GMT+01:00) West Central Africa',
+		WIZLOGIN126 : '(GMT+02:00) Athens, Istanbul, Minsk',
+		WIZLOGIN127 : '(GMT+02:00) Bucharest',
+		WIZLOGIN128 : '(GMT+02:00) Cairo',
+		WIZLOGIN129 : '(GMT+02:00) Harare, Pretoria',
+		WIZLOGIN130 : '(GMT+02:00) Helsinki, Kyiv, Riga, Sofia, Tallinn, Vilnius',
+		WIZLOGIN131 : '(GMT+02:00) Jerusalem',
+		WIZLOGIN132 : '(GMT+03:00) Baghdad',
+		WIZLOGIN133 : '(GMT+03:00) Kuwait, Riyadh',
+		WIZLOGIN134 : '(GMT+03:00) Nairobi',
+		WIZLOGIN135 : '(GMT+03:30) Tehran',
+		WIZLOGIN136 : '(GMT+04:00) Abu Dhabi, Muscat',
+		WIZLOGIN137 : '(GMT+04:00) Baku, Tbilisi, Yerevan',
+		WIZLOGIN138 : '(GMT+04:00) Moscow, St. Petersburg, Volgograd',
+		WIZLOGIN139 : '(GMT+04:30) Kabul',
+		WIZLOGIN140 : '(GMT+05:00) Islamabad, Karachi, Tashkent',
+		WIZLOGIN141 : '(GMT+05:30) Chennai, Kolkata, Mumbai, New Delhi',
+		WIZLOGIN142 : '(GMT+05:30) Sri Jayawardenepura',
+		WIZLOGIN143 : '(GMT+05:45) Kathmandu',
+		WIZLOGIN144 : '(GMT+06:00) Astana, Dhaka',
+		WIZLOGIN145 : '(GMT+06:00) Ekaterinburg',
+		WIZLOGIN146 : '(GMT+06:30) Rangoon',
+		WIZLOGIN147 : '(GMT+07:00) Almaty, Novosibirsk',
+		WIZLOGIN148 : '(GMT+07:00) Bangkok, Hanoi, Jakarta',
+		WIZLOGIN149 : '(GMT+08:00) Krasnoyarsk',
+		WIZLOGIN150 : '(GMT+08:00) Beijing, Chongqing, Hong Kong, Urumqi',
+		WIZLOGIN151 : '(GMT+08:00) Kuala Lumpur, Singapore',
+		WIZLOGIN152 : '(GMT+08:00) Perth',
+		WIZLOGIN153 : '(GMT+08:00) Taipei',
+		WIZLOGIN154 : '(GMT+08:00) Ulaan Bataar',
+		WIZLOGIN155 : '(GMT+09:00) Irkutsk',
+		WIZLOGIN156 : '(GMT+09:00) Osaka, Sapporo, Tokyo',
+		WIZLOGIN157 : '(GMT+09:00) Seoul',
+		WIZLOGIN158 : '(GMT+09:30) Adelaide',
+		WIZLOGIN159 : '(GMT+09:30) Darwin',
+		WIZLOGIN160 : '(GMT+10:00) Brisbane',
+		WIZLOGIN161 : '(GMT+10:00) Canberra, Melbourne, Sydney',
+		WIZLOGIN162 : '(GMT+10:00) Guam, Port Moresby',
+		WIZLOGIN163 : '(GMT+10:00) Hobart',
+		WIZLOGIN164 : '(GMT+10:00) Yakutsk',
+		WIZLOGIN165 : '(GMT+11:00) Solomon Is., New Caledonia',
+		WIZLOGIN166 : '(GMT+11:00) Vladivostok',
+		WIZLOGIN167 : '(GMT+12:00) Magadan',
+		WIZLOGIN168 : '(GMT+12:00) Auckland, Wellington',
+		WIZLOGIN169 : '(GMT+12:00) Fiji, Kamchatka, Marshall Is.',
+		WIZLOGIN170 : '(GMT+13:00) Nuku\'alofa',
+		WIZLOGIN171 : '(GMT+13:00) Samoa',
+		WIZLOGIN172 : 'étape 5 : Confirmez les paramètres WI-FI',
+		WIZLOGIN173 : 'Voici un résumé détaillé des paramètres de sécurité de votre réseau Wi-Fi. Veuillez imprimer cette page ou inscrire les informations sur papier pour pouvoir configurer les paramètres qui conviennent sur vos périphériques Wi-Fi.',		
+		fld_ssid_24_result : 'Nom réseau Wi-Fi (SSID) 2.4GHz',
+		WIZLOGIN174 : 'Mot de passe Wi-Fi',		
+		fld_ssid_5G : 'Nom réseau Wi-Fi (SSID) 5GHz',
+		WIZLOGIN175 : 'Mot de passe Wi-Fi',
+		DIV_ProductPage : 'Page Produit :',
+		DIV_FirmwareVersion : 'Version du microprogramme :',
+		DIV_HardwareVersion : 'Version matérielle : ',
+		lang_saving     :       'Enregistrement',
+		lang_take_effect     :       'Les paramètres sont en cours d\'enregistrement et d\'application.',
+		lang_waiting     :       'Veuillez patienter...',
+		DIV_Copyright : 'Copyright &copy; 2017 D-Link Corporation. All rights reserved.',		
+		WIZLOGIN217 : 'S\'il vous plaît créer un nom pour votre Wi-Fi',
+		WIZLOGIN218 : 'Nom réseau Wi-Fi (SSID)'
 };
 var arrbtLang = [];
 arrbtLang['en_us'] = {
-   
+		'WIZLOGIN176'    :       'Cancel',
+        'WIZLOGIN177'    :       'Next',
+        'WIZLOGIN178'    :       'Cancel',
+        'WIZLOGIN179'    :       'Prev',
+        'WIZLOGIN180'    :       'Next',
+        'WIZLOGIN181'    :       'Cancel',
+        'WIZLOGIN182'    :       'Prev',
+        'WIZLOGIN183'    :       'Connect',
+        'WIZLOGIN184'    :       'Cancel',
+        'WIZLOGIN185'    :       'Retry',
+        'WIZLOGIN186'    :       'Through the Internet connection setup wizard',
+        'WIZLOGIN187'    :       'Cancel',
+        'WIZLOGIN188'    :       'Prev',
+        'WIZLOGIN189'    :       'Next',
+        'WIZLOGIN190'    :       'Cancel',
+        'WIZLOGIN191'    :       'Prev',
+        'WIZLOGIN192'    :       'Next',
+		'WIZLOGIN193'    :       'Cancel',
+        'WIZLOGIN194'    :       'Prev',
+        'WIZLOGIN195'    :       'Next',
+		'WIZLOGIN196'    :       'Cancel',
+        'WIZLOGIN197'    :       'Prev',
+        'WIZLOGIN198'    :       'Next',
+		'WIZLOGIN199'    :       'Cancel',
+        'WIZLOGIN200'    :       'Prev',
+        'WIZLOGIN201'    :       'Next',
+		'WIZLOGIN202'    :       'Cancel',
+        'WIZLOGIN203'    :       'Prev',
+        'WIZLOGIN204'    :       'Next',
+		'WIZLOGIN205'    :       'Cancel',
+        'WIZLOGIN206'    :       'Prev',
+        'WIZLOGIN207'    :       'Next',
+		'WIZLOGIN208'    :       'Cancel',
+        'WIZLOGIN209'    :       'Prev',
+        'WIZLOGIN210'    :       'Next',
+		'WIZLOGIN211'    :       'Cancel',
+        'WIZLOGIN212'    :       'Prev',
+        'WIZLOGIN213'    :       'Next',
+		'WIZLOGIN214'    :       'Cancel',
+        'WIZLOGIN215'    :       'Prev',
+        'WIZLOGIN216'    :       'Next'
 };
 arrbtLang['fr'] = {
-	
+		WIZLOGIN176 : 'Annuler',
+		WIZLOGIN177 : 'Suivant',
+		WIZLOGIN178 : 'Annuler',
+		WIZLOGIN179 : 'Préc.',
+		WIZLOGIN180 : 'Suivant',
+		WIZLOGIN181 : 'Annuler',
+		WIZLOGIN182 : 'Préc.',
+		WIZLOGIN183 : 'Connexion',
+		WIZLOGIN184 : 'Annuler',
+		WIZLOGIN185 : 'Recommencez',
+		WIZLOGIN186 : 'A travers l\'assistant de configuration de connexion Internet',
+		WIZLOGIN187 : 'Annuler',
+		WIZLOGIN188 : 'Préc.',
+		WIZLOGIN189 : 'Suivant',
+		WIZLOGIN190 : 'Annuler',
+		WIZLOGIN191 : 'Préc.',
+		WIZLOGIN192 : 'Suivant',
+		WIZLOGIN193 : 'Annuler',
+		WIZLOGIN194 : 'Préc.',
+		WIZLOGIN195 : 'Suivant',
+		WIZLOGIN196 : 'Annuler',
+		WIZLOGIN197 : 'Préc.',
+		WIZLOGIN198 : 'Suivant',
+		WIZLOGIN199 : 'Annuler',
+		WIZLOGIN200 : 'Préc.',
+		WIZLOGIN201 : 'Suivant',
+		WIZLOGIN202 : 'Annuler',
+		WIZLOGIN203 : 'Préc.',
+		WIZLOGIN204 : 'Suivant',
+		WIZLOGIN205 : 'Annuler',
+		WIZLOGIN206 : 'Préc.',
+		WIZLOGIN207 : 'Suivant',
+		WIZLOGIN208 : 'Annuler',
+		WIZLOGIN209 : 'Préc.',
+		WIZLOGIN210 : 'Suivant',
+		WIZLOGIN211 : 'Annuler',
+		WIZLOGIN212 : 'Préc.',
+		WIZLOGIN213 : 'Suivant',
+		WIZLOGIN214 : 'Annuler',
+		WIZLOGIN215 : 'Préc.',
+		WIZLOGIN216 : 'Suivant'		
+};
+var errorCode_en={
+  lang_pri_dns_invalid                    : 'Invalid Primary DNS address',
+  lang_sec_dns_invalid                    : 'Invalid Secondary DNS address',
+  lang_user_empty                    : 'The user name cannot be blank.',
+  lang_passwd_empty                   : 'The password cannot be blank.',
+  lang_passwd_not_match                    : 'The passwords do not match.',
+  lang_lan_pptp_server_conflict	: 'The LAN IP address and PPTP Server IP address cannot be the same',
+  lang_invalid_pptp_server                    : 'Invalid PPTP Server IP Address',
+  lang_invalid_ip                    : ' Invalid IP Address',
+  lang_invalid_mask                    : 'Invalid Subnet Mask value',
+  lang_gate_invalid                    : 'Invalid Default Gateway address',
+  lang_gate_same_ip                    : 'The Gateway IP Address and LAN IP address must be in the same network.',
+  lang_lan_wan_conflict	: 'The LAN IP address and WAN IP address cannot be in the same subnet.',
+  lang_pptp_server_same_ip                    : 'The PPTP Server IP Address and PPTP IP Address cannot be the same.',  
+  lang_lan_l2tp_server_conflict		: 'The LAN IP Address and L2TP Server IP Address cannot be the same',
+  lang_invalid_l2tp_server                 : 'Invalid L2TP Server IP Address',
+  lang_invalid_def_gate                    : 'Invalid Default Gateway address',
+  lang_l2tp_server_same_ip                    : 'The L2TP Server IP Address and L2TP IP Address cannot be the same.',
+  lang_select_mode			:  'please select a mode!',
+  lang_admin_passwd_empty                    : 'The administrator password cannot be empty.',
+  lang_invalid_passwd                   : 'Invalid Password.',
+  lang_prefix_blank                    : 'The prefix or postfix of the \'Wireless Network Name\' cannot be blank.',
+  lang_ssid_empty                   : 'The SSID cannot be blank.',
+  lang_passwd_8_63			:  'Incorrect key length, should be 8 to 63 characters long.',
+  lang_passwd_blank			:  'Password cannot be blank.',
+  lang_psk_printable                    : 'The PSK should be 8~63 printable characters.'
+};
+var errorCode_fr={
+  lang_pri_dns_invalid                    : 'Adresse DNS primaire invalide',
+  lang_sec_dns_invalid                    : 'Adresse DNS secondaire invalide',
+  lang_user_empty                    : 'Le nom d\'utilisateur ne peut pas être vide.',
+  lang_passwd_empty                   : 'Le mot de passe ne peut pas être vide.',
+  lang_passwd_not_match                    : 'Le mot de passe ne concorde pas.',
+  lang_lan_pptp_server_conflict	: 'l\'adresse IP du réseau local et l\'adresse IP du serveur PPTP ne peuvent pas être les mêmes',
+  lang_invalid_pptp_server                    : 'Adresse IP de Serveur PPTP Invalide',
+  lang_invalid_ip                    : 'Adresse IP invalide',
+  lang_invalid_mask                    : 'Valeur du masque de sous-réseau invalide',
+  lang_gate_invalid                    : 'Adresse de la passerelle par défaut invalide.',
+  lang_gate_same_ip                    : 'L\'adresse IP de la passerelle et l\'adresse IP doivent être dans le même réseau',
+  lang_lan_wan_conflict	: 'L\'adresse IP du réseau local et l\'adresse IP WAN ne peuvent pas être dans le même segment de réseau.',
+  lang_pptp_server_same_ip                    : 'L\'adresse IP du serveur PPTP ne peut pas être la même que l\'adresse IP PPTP.',  
+  lang_lan_l2tp_server_conflict		: 'L\'adresse IP du réseau local et l\'adresse IP du serveur L2TP ne peuvent pas être les mêmes',
+  lang_invalid_l2tp_server                 : 'Adresse IP du serveur L2TP est invalide',
+  lang_invalid_def_gate                    : 'Adresse de la passerelle par défaut est invalide',
+  lang_l2tp_server_same_ip                    : 'L\'adresse IP du serveur L2TP ne peut pas être la même que l\'adresse IP L2TP.',
+  lang_select_mode			:  's\'il vous plaît sélectionner un mode',
+  lang_admin_passwd_empty                    : 'Le mot de passe administrateur ne peut pas être vide.',
+  lang_invalid_passwd                   : 'Mot de passe incorrect.',
+  lang_prefix_blank                    : 'Le préfixe ou suffixe du \'Nom du réseau sans fil\' ne peut pas être vide.',
+  lang_ssid_empty                   : 'Le SSID ne doit pas être vide.',
+  lang_passwd_8_63			:  'Longueur de clé incorrecte, elle doit comporter 8 à 63 caractères.',
+  lang_passwd_blank			:  'Mot de passe ne peut pas être vide.',
+  lang_psk_printable                    : 'La PSK doit se composer 8~63 caractères imprimables.'
 };
 function CheckInternet()
 {
@@ -1071,6 +1769,8 @@ function ShowCurrentStage()
 	}
 	for (i=0; i<stages.length; i++)
 	{
+	    console.log("stages.length="+stages.length);
+	    console.log("currentStage="+currentStage);
 		if (i==currentStage)
 		{
 			$(stages[i]).style.display = "block";
@@ -1370,7 +2070,7 @@ function Ajax_Submit_2(_text)
 		$F(':InternetGatewayDevice.X_TWSZ-COM_Authentication.UserList.1.Password', Basepsw);
 	
 		var _url = "/cgi-bin/webproc?getpage=html/page/portforwdrestore.ajax.js&var:page=*";
-		G_ajax = Ajax.getInstance(_url, "", 0, Ajax_Submit_3, null_errorfunc);
+		G_ajax = Ajax.getInstance(_url, "", 0, Ajax_Submit, null_errorfunc);
 		G_ajax.post($('uiPostForm'));
 	}
 }
@@ -1443,7 +2143,7 @@ function Ajax_Submit(_text)
 			$F(_path + '.PreSharedKey.1.PreSharedKey', Base64.Encode($('wiz_key').value) );
 			$F(_path + '.X_TWSZ-COM_PSKExpression', 'PreSharedKey');
 		}else{
-			alert(SEcode["lang_psk_printable"]);
+			alertErrorCode("lang_psk_printable");
 		}
 		if(dual_band == 1)
 		{
@@ -1459,12 +2159,12 @@ function Ajax_Submit(_text)
 				$F(path_5G + '.PreSharedKey.1.PreSharedKey', Base64.Encode($('wiz_key_Aband').value) );
 				$F(path_5G + '.X_TWSZ-COM_PSKExpression', 'PreSharedKey');
 			}else{
-				alert(SEcode["lang_psk_printable"]);
+				alertErrorCode("lang_psk_printable");
 			}
 		}
 		
 		var _url = "/cgi-bin/webproc?getpage=html/page/portforwdrestore.ajax.js&var:page=*";
-		G_ajax = Ajax.getInstance(_url, "", 0, Ajax_Submit_2, null_errorfunc);
+		G_ajax = Ajax.getInstance(_url, "", 0, Ajax_Submit_3, null_errorfunc);
 		G_ajax.post($('uiPostForm'));
 	}
 }
@@ -1628,7 +2328,7 @@ function OnSubmit()
 	
 	
 	var _url = "/cgi-bin/webproc?getpage=html/page/portforwdrestore.ajax.js&var:page=*";
-	G_ajax = Ajax.getInstance(_url, "", 0, Ajax_Submit, null_errorfunc);
+	G_ajax = Ajax.getInstance(_url, "", 0, Ajax_Submit_2, null_errorfunc);
 	G_ajax.post($('uiPostForm'));	
 	$("wizard").style.display="none";
 	$("mbox").style.display="";	
@@ -1669,13 +2369,13 @@ addListeners(uiOnload,dealWithError);
 			<span class="bannertail"><img src="/html/skin/head_03.gif"></span>
 		</div>                          <!--end of bannercontainer -->
 	<div id="wizard" class="simplecontainer">
-		<div style="position:relative;display:none;">
+		<div style="position:relative;">
 			<div style="position:absolute;left:600px;bottom:30px;">
 				<table cellspacing="0" cellpadding="0" border="0">
 					<tbody>
 						<tr>
 							<td><strong>Language&nbsp;:&nbsp;</strong></td>
-							<td><input type="text" readonly="" style="cursor:default" value="" maxlength="15" size="20" id="tlang" onclick="$('language_menu').style.display=='none'?$('language_menu').style.display='block':$('language_menu').style.display='none';"></td>
+							<td><input type="text" readonly="" style="cursor:default" value="" maxlength="15" size="15" id="tlang" onclick="$('language_menu').style.display=='none'?$('language_menu').style.display='block':$('language_menu').style.display='none';"></td>
 							<td><img width="18" height="20" src="/html/skin/wiz_lang_button1.png" onclick="$('language_menu').style.display=='none'?$('language_menu').style.display='block':$('language_menu').style.display='none';"></td>
 						</tr>
 					</tbody>
@@ -1701,12 +2401,28 @@ addListeners(uiOnload,dealWithError);
 				This wizard will guide you through a step-by-step process to configure your new D-Link router and connect to the Internet. 
 			</p></div>
 			<div>
-				<ul>
+				<ul id="SUB1">
 					<li id="WIZLOGIN003">Step 1: Configure your Internet Connection</li>
 					<li id="WIZLOGIN004">Step 2: Configure your Wi-Fi Security</li>
 					<li id="WIZLOGIN005">Step 3: Set your Password</li>
 					<li id="WIZLOGIN006">Step 4: Select your Time Zone</li>
 					<li id="WIZLOGIN007">Step 5: Confirm Wi-Fi Settings</li>			
+				</ul>
+				<ul id="SUB2">
+					<li id="WIZLOGIN004">Step 1: Configure your Wi-Fi Security</li>
+					<li id="WIZLOGIN005">Step 2: Set your Password</li>
+					<li id="WIZLOGIN006">Step 3: Select your Time Zone</li>
+					<li id="WIZLOGIN007">Step 4: Confirm Wi-Fi Settings</li>			
+				</ul>
+				<ul id="SUB3">
+					<li id="WIZLOGIN003">Step 1: Configure your Internet Connection</li>
+					<li id="WIZLOGIN005">Step 2: Set your Password</li>
+					<li id="WIZLOGIN006">Step 3: Select your Time Zone</li>
+								
+				</ul>
+				<ul id="SUB4">
+					<li id="WIZLOGIN005">Step 1: Set your Password</li>
+					<li id="WIZLOGIN006">Step 2: Select your Time Zone</li>		
 				</ul>
 			</div>
 			<div class="emptyline"></div>
@@ -2409,7 +3125,7 @@ addListeners(uiOnload,dealWithError);
 						<option value="41" id="WIZLOGIN134">(GMT+03:00) Nairobi</option>
 						<option value="42" id="WIZLOGIN135">(GMT+03:30) Tehran</option>
 						<option value="43" id="WIZLOGIN136">(GMT+04:00) Abu Dhabi, Muscat</option>
-						<option value="44" id="WIZLOGIN137">(GMT+04:00) Baku, Tbilisi, Yerevan</option
+						<option value="44" id="WIZLOGIN137">(GMT+04:00) Baku, Tbilisi, Yerevan</option>
 						<option value="45" id="WIZLOGIN138">(GMT+04:00) Moscow, St. Petersburg, Volgograd</option>
 						<option value="46" id="WIZLOGIN139">(GMT+04:30) Kabul</option>
 						<option value="47" id="WIZLOGIN140">(GMT+05:00) Islamabad, Karachi, Tashkent</option>
@@ -2428,7 +3144,7 @@ addListeners(uiOnload,dealWithError);
 						<option value="60" id="WIZLOGIN153">(GMT+08:00) Taipei</option>
 						<option value="61" id="WIZLOGIN154">(GMT+08:00) Ulaan Bataar</option>
 						<option value="62" id="WIZLOGIN155">(GMT+09:00) Irkutsk</option>
-						<option value="63" id="WIZLOGIN156">(GMT+09:00) Osaka, Sapporo, Tokyo</option
+						<option value="63" id="WIZLOGIN156">(GMT+09:00) Osaka, Sapporo, Tokyo</option>
 						<option value="64" id="WIZLOGIN157">(GMT+09:00) Seoul</option>
 						<option value="65" id="WIZLOGIN158">(GMT+09:30) Adelaide</option>
 						<option value="66" id="WIZLOGIN159">(GMT+09:30) Darwin</option>
@@ -2539,7 +3255,7 @@ addListeners(uiOnload,dealWithError);
 		</div>
 	</div>                              <!--end of maincontainer -->
 
-<div class="copyright" id="DIV_Copyright">Copyright &copy; 2016 D-Link Corporation. All rights reserved.</div>
+<div class="copyright" id="DIV_Copyright">Copyright &copy; 2017 D-Link Corporation. All rights reserved.</div>
 
 <form name="uiPostForm" id="uiPostForm" method="post" action="webproc"></form>
 

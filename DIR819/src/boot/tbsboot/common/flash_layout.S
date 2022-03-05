@@ -3339,10 +3339,10 @@ $LASFDE18:
 	.align	2
 $LEFDE18:
 	.align	0
-	.file 2 "/home/guohongliang/work/819/DIR819/build/include/flash_layout.h"
-	.file 3 "/home/guohongliang/work/819/DIR819/build.DIR-819/boot/tbsboot/include/common.h"
-	.file 4 "/home/guohongliang/work/819/DIR819/build.DIR-819/boot/tbsboot/include/types.h"
-	.file 5 "/home/guohongliang/work/819/DIR819/build.DIR-819/boot/tbsboot/include/flash.h"
+	.file 2 "/home/zhangtianchuan/Gpl819/DIR819/build/include/flash_layout.h"
+	.file 3 "/home/zhangtianchuan/Gpl819/DIR819/build.DIR-819/boot/tbsboot/include/common.h"
+	.file 4 "/home/zhangtianchuan/Gpl819/DIR819/build.DIR-819/boot/tbsboot/include/types.h"
+	.file 5 "/home/zhangtianchuan/Gpl819/DIR819/build.DIR-819/boot/tbsboot/include/flash.h"
 	.text
 $Letext0:
 	.section	.debug_info
@@ -5174,9 +5174,6 @@ $LASF31:
 	.ascii	"region\000"
 $LASF55:
 	.ascii	"checksum\000"
-$LASF90:
-	.ascii	"/home/guohongliang/work/819/DIR819/build.DIR-819/boot/tb"
-	.ascii	"sboot/common\000"
 $LASF27:
 	.ascii	"board_id\000"
 $LASF7:
@@ -5271,6 +5268,9 @@ $LASF14:
 	.ascii	"start\000"
 $LASF5:
 	.ascii	"unsigned int\000"
+$LASF90:
+	.ascii	"/home/zhangtianchuan/Gpl819/DIR819/build.DIR-819/boot/tb"
+	.ascii	"sboot/common\000"
 $LASF81:
 	.ascii	"clearcfg\000"
 $LASF59:

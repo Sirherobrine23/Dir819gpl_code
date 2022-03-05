@@ -2,7 +2,8 @@ menuconfig OPENSOURCE
         bool "Open Source"
         default y
 
-#source opensource/xmlpaser/Config.in
+#source opensource/xmlpaser/Config.in 
+source opensource/mDNSResponder/Config.in
 source opensource/busybox/Config.in
 source opensource/brctl/Config.in
 source opensource/openssl/Config.in

@@ -1,4 +1,4 @@
-var G_Wanipv6Conn = [];
+﻿var G_Wanipv6Conn = [];
 <? objget :InternetGatewayDevice.WANDevice.1.WANConnectionDevice. "WANIPConnectionNumberOfEntries WANPPPConnectionNumberOfEntries"
 `   <? if eq $10 2
 `	<? if gt $21 0	
@@ -414,7 +414,7 @@ function InitWAN6RDValue()
 		
 		$("6rd_dhcp_option").checked = false;
 		$("6rd_manual").checked = true;
-		COMM_SetSelectValue("6rd_dhcp_option_rad", "6rd_manual");
+		//COMM_SetSelectValue("6rd_dhcp_option_rad", "6rd_manual");
 	}
 	else
 	{
@@ -425,7 +425,7 @@ function InitWAN6RDValue()
 		$("w_6rd_relay").disabled = true;
 		$("6rd_manual").checked = false;
 		$("6rd_dhcp_option").checked = true;
-		COMM_SetSelectValue("6rd_dhcp_option_rad", "6rd_dhcp_option");
+		//COMM_SetSelectValue("6rd_dhcp_option_rad", "6rd_dhcp_option");
 	}
 			
 	var w_6rd_prefix_3 = G_StaticPrefix;
@@ -1069,7 +1069,7 @@ function OnChangewan_ipv6_mode()    //更换WAN类型
 			// if(XG(wan1.inetp+"/ppp6/mtu")=="") $("ppp6_mtu").value = "1492";
 			// else if(XG(wanllact.inetp+"/addrtype")=="ppp6")
 			// if(XG(wanllact.inetp+"/ppp6/mtu")=="") $("ppp6_mtu").value = "1492";
-			$("ppp6_mtu").value = "1492";
+			$("ppp6_mtu").value = G_Wanipv6Conn['MaxMTUSize'] || "1492";
 			//$("w_dhcp_dns_auto").checked	= true;
 			$("w_dhcp_pdns").disabled = $("w_dhcp_sdns").disabled = $("w_dhcp_dns_auto").checked ? true: false;
 			$("ra_lifetime").value = "";
@@ -1089,7 +1089,7 @@ function OnChangewan_ipv6_mode()    //更换WAN类型
 			$("box_lan").style.display = "";
 			$("span_dsc1").style.display = "";
 			//$("span_dsc2").style.display = "";
-			$("box_lan_pd_body").style.display = "";
+			//$("box_lan_pd_body").style.display = ""; 
 			$("box_lan_body").style.display = "";
 			$("box_lan_ll_body").style.display = "";
 			$("box_lan_auto").style.display = "";
@@ -1104,6 +1104,13 @@ function OnChangewan_ipv6_mode()    //更换WAN类型
 			//$("w_dhcp_dns_auto").checked	= true;
 			$("w_dhcp_pdns").disabled = $("w_dhcp_sdns").disabled = $("w_dhcp_dns_auto").checked ? true: false;
 			$("l_span").style.display = "";
+
+			$("l_ipaddr").disabled = false;
+			$("box_lan_auto_pd_body").style.display = "none";
+			$("box_lan_auto").style.display = "";
+			$("box_lan_auto_pd").style.display = "none";
+			$("en_lan_pd").checked = false;
+			
 			break;
 
 		case "6RD":
@@ -1343,10 +1350,15 @@ function OnSubmit()
 			ConnType = 'PPP';
 			break;
 		case "6IN4" :	
-			break;
 		case "6TO4" :		
-			break;
 		case "6RD" :
+			if (G_TunConn['Activated'] == "1" && G_TunConn['Mode'] == "4in6" ) //tunnel enable 
+			{
+				alert(SEcode['lang_set_tunnel']);
+				return false;
+
+			}
+
 			break;	
 		case "LL" :
 			break;	
@@ -1402,6 +1414,8 @@ function OnSubmit()
 			if (Form.Checkbox("usell") == 1){ //uselinklocal
 				$F(":" + ConnPath + "X_TWSZ-COM_IPv6Config.IPv6AddressList.1.AddressStatus", 		"Invalid");			
 				$F(":" + ConnPath + "X_TWSZ-COM_IPv6Config.IPv6AddressList.1.AddressingType", 		"Static");			
+			    $F(":" + ConnPath + "X_TWSZ-COM_IPv6Config.IPv6AddressList.1.IPv6Address", 		"");	
+
 			}
 			else
 			{
@@ -1463,6 +1477,16 @@ function OnSubmit()
 			break;
 		case "PPPOE" :  //share session
 			//$F(":" + ConnPath + "Enable", 			"0"); //disable			
+			if($("pppoe_username").value.match(/[\|&;\$\+><\?\(\)]/))
+          	{			
+          		alert(SEcode['lang_PPPoE_invalid_input ']);
+          		return false;	
+          	}
+             if($("pppoe_service_name").value.match(/[\|&;\$\+><\?\(\)]/))
+          	{			
+          		alert(SEcode['lang_PPPoE_invalid_input ']);
+          		return false;	
+          	}
 			if( $('pppoe_sess_share').checked == true)	//pppoe share
 			{
 
@@ -1632,7 +1656,8 @@ function OnSubmit()
 				$F(_tunnelpath + 'IPv6DNSEnabled', 	"1"); 							
 			}			
 			
-			$F(_tunnelpath + 'IPv6PrefixDelegationEnabled', 		Form.Checkbox('en_dhcp_pd') ? "1" : "0");
+			$F(_tunnelpath + 'IPv6PrefixDelegationEnabled', 		"0");
+			//$F(_tunnelpath + 'IPv6PrefixDelegationEnabled', 		Form.Checkbox('en_dhcp_pd') ? "1" : "0");
 			
 			
 			break;
@@ -1805,7 +1830,10 @@ function OnLanSubmit(_text)
 			if($('l_ipaddr').value == "")   //lan IP 地址，需要根据lan ip生成前缀
 			{
 				alert(SEcode['lang_lanv6_empty']);
-				return false;
+				$("menu").style.display="";
+				$("content").style.display="";
+				$("mbox").style.display="none";				
+				return false;				
 			}
 			
 			if($('l_ipaddr').value != "")
@@ -1845,7 +1873,10 @@ function OnLanSubmit(_text)
 			{
 					if($('l_ipaddr').value == "")   //lan IP 地址，需要根据lan ip生成前缀
 					{
-						alert(SEcode['lang_lanv6_null']);
+						alert(SEcode['lang_lanv6_null']);						
+						$("menu").style.display="";
+						$("content").style.display="";
+						$("mbox").style.display="none";
 						return false;
 					}
 					
@@ -1893,7 +1924,10 @@ function OnLanSubmit(_text)
 
 					if($('l_ipaddr').value == "")   
 					{
-						alert(SEcode['lang_lanv6_null']);
+						alert(SEcode['lang_lanv6_null']);						
+						$("menu").style.display="";
+						$("content").style.display="";
+						$("mbox").style.display="none";
 						return false;
 					}
 					
@@ -1922,7 +1956,7 @@ function OnLanSubmit(_text)
 					
 			break;	
 		case "6IN4" :
-			if($('en_dhcp_pd').checked == true)		
+			if (0) //if($('en_dhcp_pd').checked == true)		
 			{
 					$F( _path_host6 + 'IPv6SitePrefixConfigType.StaticDelegated' 				,  "0"); //1- static   0-from wan 
 					$F( _path_host + 'IPInterface.1.X_TWSZ-COM_IPv6InterfaceAddressingType.StaticDelegated'			, "0"); //  address
@@ -1931,7 +1965,10 @@ function OnLanSubmit(_text)
 			{
 					if($('l_ipaddr').value == "")   //lan IP 地址，需要根据lan ip生成前缀
 					{
-						alert(SEcode['lang_lanv6_null']);
+						alert(SEcode['lang_lanv6_null']);						
+						$("menu").style.display="";
+						$("content").style.display="";
+						$("mbox").style.display="none";
 						return false;
 					}
 					

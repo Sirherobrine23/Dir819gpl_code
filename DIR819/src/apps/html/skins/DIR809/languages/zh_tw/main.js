@@ -5,7 +5,7 @@ var data_language = {
 		DIV_HardwareVersion : '硬體版本:',
 		login_title : '登入失敗',
 		login_msg : '使用者名稱或密碼不正確。',
-		DIV_Copyright : 'Copyright &copy; 2016 D-Link Corporation. All rights reserved.',
+		DIV_Copyright : 'Copyright &copy; 2017 D-Link Corporation. All rights reserved.',
 		DIV_LogIn : '登入',
 		DIV_LogInfo : '登入到路由器:',
 		DIV_UserName : '使用者名稱',

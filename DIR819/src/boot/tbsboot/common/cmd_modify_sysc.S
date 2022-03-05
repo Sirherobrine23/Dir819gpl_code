@@ -870,11 +870,11 @@ $LASFDE4:
 	.align	2
 $LEFDE4:
 	.align	0
-	.file 2 "/home/guohongliang/work/819/DIR819/build.DIR-819/boot/tbsboot/include/command.h"
-	.file 3 "/home/guohongliang/work/819/DIR819/build.DIR-819/boot/tbsboot/include/common.h"
-	.file 4 "/home/guohongliang/work/819/DIR819/build.DIR-819/boot/tbsboot/include/flash.h"
-	.file 5 "/home/guohongliang/work/819/DIR819/build.DIR-819/boot/tbsboot/include/types.h"
-	.file 6 "/home/guohongliang/work/819/DIR819/build/include/flash_layout.h"
+	.file 2 "/home/zhangtianchuan/Gpl819/DIR819/build.DIR-819/boot/tbsboot/include/command.h"
+	.file 3 "/home/zhangtianchuan/Gpl819/DIR819/build.DIR-819/boot/tbsboot/include/common.h"
+	.file 4 "/home/zhangtianchuan/Gpl819/DIR819/build.DIR-819/boot/tbsboot/include/flash.h"
+	.file 5 "/home/zhangtianchuan/Gpl819/DIR819/build.DIR-819/boot/tbsboot/include/types.h"
+	.file 6 "/home/zhangtianchuan/Gpl819/DIR819/build/include/flash_layout.h"
 	.text
 $Letext0:
 	.section	.debug_info
@@ -1984,6 +1984,9 @@ $LASF3:
 	.ascii	"signed char\000"
 $LASF1:
 	.ascii	"long unsigned int\000"
+$LASF60:
+	.ascii	"/home/zhangtianchuan/Gpl819/DIR819/build.DIR-819/boot/tb"
+	.ascii	"sboot/common\000"
 $LASF7:
 	.ascii	"long long unsigned int\000"
 $LASF49:
@@ -2064,9 +2067,6 @@ $LASF17:
 	.ascii	"char\000"
 $LASF40:
 	.ascii	"argv\000"
-$LASF60:
-	.ascii	"/home/guohongliang/work/819/DIR819/build.DIR-819/boot/tb"
-	.ascii	"sboot/common\000"
 $LASF5:
 	.ascii	"unsigned int\000"
 $LASF2:

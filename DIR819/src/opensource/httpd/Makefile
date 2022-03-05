@@ -41,3 +41,4 @@ endif
 	cp -f $(SRCDIR)/mini_httpd $(FSROOT)/usr/sbin
 	cp -f ${SRCDIR}/.htdgst $(FSROOT)/usr/www
 	cp -f ${SRCDIR}/.htpasswd $(FSROOT)/usr/www
+	cp -f ${SRCDIR}/mini_httpd.cnf $(FSROOT)/etc

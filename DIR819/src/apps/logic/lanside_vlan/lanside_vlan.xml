@@ -13,6 +13,7 @@
 		<FilterNumberOfEntries type="unsignedInt" Writable="0"></FilterNumberOfEntries>
 		<MarkingNumberOfEntries type="unsignedInt" Writable="0"></MarkingNumberOfEntries>
 		<MaxVLANEntries type="unsignedInt" Writable="0"></MaxVLANEntries>
+		<X_TWSZ-COM_WebFiltersSetupAccessEnable type="string" Wirtable="1">0</X_TWSZ-COM_WebFiltersSetupAccessEnable>
 		<AvailableInterfaceNumberOfEntries type="unsignedInt" Writable="0"></AvailableInterfaceNumberOfEntries>
 		<Bridge type="object" MaxNode="MaxBridgeEntries" CurNode="BridgeNumberOfEntries">
 			<i type="object">

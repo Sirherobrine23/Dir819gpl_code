@@ -405,6 +405,11 @@ function uiSubmit(){
 	var i = 0;
 	for (var i=1; i<=24; i+=1)
 	{
+		if($("dsc_"+i).value.match(/[\|&;\$@\+><\?\(\)]/))
+		{			
+			alert(SEcode['lang_invalid_input']);
+			return false;	
+		}	
 		if($("port_tcp_"+i).value == "" && $("port_udp_"+i).value == "" && $("ip_"+i).value == "" && $("dsc_"+i).value == "")
 		{
 			$("en_"+i).checked = false;

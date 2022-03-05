@@ -32,4 +32,4 @@ dlopen=''
 dlpreopen=''
 
 # Directory that this library needs to be installed in:
-libdir='/home/guohongliang/work/819/DIR819/build/tmpdist/lib'
+libdir='/home/zhangtianchuan/Gpl819/DIR819/build/tmpdist/lib'

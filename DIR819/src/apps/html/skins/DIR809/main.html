@@ -25,6 +25,7 @@ var G_SysToken  = "<?echo $var:sys_Token?>";
 var G_SupportLang = "<?echo $var:sys_SupportLangs?>";
 //默认语言
 var G_DefaultLang = "<?echo $var:language?>";
+var userLevel   = "<?echo $var:sys_UserLevel?>";
 
 //get user info
 var G_UserInfo = new Array();
@@ -82,24 +83,26 @@ function uiOnload(){
 		Form.Checkbox('INPUT_Remember', '1');
 		$('INPUT_Psd').value = Psd;
 	}*/
-	if(G_Enable=='1')
-	{
-	 $("GAC").style.display="";
-	 $("submit").style.display="none";
-	 createCode();
-	}
-	else
-	{
-	$("submit").style.display="";
-	 $("GAC").style.display="none";	
-	}
-	$('INPUT_Psd').value="";
+    if(G_Enable=='1')
+    {
+        $("GAC").style.display="";
+        $("submit").style.display="none";
+        createCode();
+    }
+    else
+    {
+        $("submit").style.display="";
+        $("GAC").style.display="none";	
+    }
+	$('SELECT_UserName').value = G_UserInfo[0][0];
+	$('INPUT_Psd').value = "";
 	$('INPUT_Psd').focus();
 	if(G_Error=="1"&&G_Error_Msg=="result=12119007")
 	{
 		$('mbox').style.display="";
 		$('login').style.display="none";
 	}
+
 	//dealWithError();
 }
 //在全局 定义验证码 
@@ -247,7 +250,6 @@ function createUserOpt(){
          $S('SELECT_UserName', _text, _value);
 }
 
-
 function uipostLogin(){
 	/*
 	if($('INPUT_Psd').value == ''){
@@ -255,7 +257,25 @@ function uipostLogin(){
 		return false;
 	}
 	*/
+
+	var G_page;
+	var G_LanInterfaceSetupEnable = "<?get :InternetGatewayDevice.LANDevice.1.X_TWSZ-COM_WebLanInterfaceSetupAccessEnable?>";
+    var G_WaninterFaceSetupEnable = "<?get :InternetGatewayDevice.WANDevice.1.X_TWSZ-COM_WebWaninterFaceSetupAccessEnable?>";
+    var G_WirelessInterfaceSetupEnable = "<?get :InternetGatewayDevice.LANDevice.1.X_TWSZ-COM_WebWirelessInterfaceSetupAccessEnable?>";
+    if(G_WaninterFaceSetupEnable == 1){
+		G_page="Bas_wansum";
+    }
+	else if(G_WirelessInterfaceSetupEnable == 1){
+        G_page="Bas_wlansum";
+	}
+	else if(G_LanInterfaceSetupEnable == 1){
+        G_page="Bas_lan";
+	}
+	else{
+        G_page="Bas_ipv6_setup";
+	}
 	
+	var Username = $("SELECT_UserName").value;
 	var Basepsw = $("INPUT_Psd").value;
 	if($("INPUT_Psd").value != "")
 	{
@@ -267,18 +287,18 @@ function uipostLogin(){
 	//record level
     Cookie.Set('sys_UserName', $('SELECT_UserName').value);
 	//Cookie.Set('language', $("SELECT_Language").value);
-	if(G_Enable=='1')
-	{
-	 if(!validate())
-	 return false;
-	}
+    if(G_Enable=='1')
+    {
+        if(!validate())
+            return false;
+    }
 	$H({
 		'getpage'   :'<?echo $var:page?>'.indexOf("Wiz")>-1?'html/index_wiz.html':'html/index.html',
 		'errorpage' :'html/main.html',
 		'var:menu'  :'<?echo $var:menu?>',
-		'var:page'  :'<?echo $var:page?>'=="version"?"Bas_wansum":"<?echo $var:page?>",
+		'var:page'  :'<?echo $var:page?>'=="version"? "Bas_wansum" : G_page,
 		'obj-action':'auth',
-		':username' :G_UserInfo[0][0],
+		':username' :Username,
 		':password' :Basepsw,
 		'var:sys_Token' : G_SysToken,
 		':action'   :'login',
@@ -430,7 +450,7 @@ window.onload = uiOnload;
 						<span class="name" id = "DIV_UserName">UserName</span>
 						<span class="delimiter">:</span>
 						<span class="value">
-							<input id="SELECT_UserName" type="text" disabled="" value = "Admin">
+							<input id="SELECT_UserName" type="text" disabled="" >
 						</span>
 					</div>
 					<div class="loginbox">

@@ -109,6 +109,9 @@ function ValueToTime(_arr,_m){ //-> value -> time;
 	
 	_month += 1;
 	//不对用户输入的日期进行判断
+
+	if(_day<=0)
+		_day = 1;
 	return _year + '-' +
 		   (_month >= 10 ? _month : ('0' + _month)) + '-' +
 		   (_day >= 10 ? _day : ('0' + _day)) + 'T' + 
@@ -231,6 +234,7 @@ function TimeShow(_year,_month,_int,_week,_S_E,_M_W)
 		if(_M_W == 'M')
 		{
 			$S('daylight_sw', _th_options, _th_values);
+			$('daylight_sw').value =  _int;
 			$S('daylight_sd', _week_options, _week_values);
 		}
 		else if(_M_W == 'W')
@@ -243,6 +247,7 @@ function TimeShow(_year,_month,_int,_week,_S_E,_M_W)
 		if(_M_W == 'M')
 		{
 			$S('daylight_ew', _th_options, _th_values);
+			$('daylight_ew').value =  _int;
 			$S('daylight_ed', _week_options, _week_values);
 		}
 		else if(_M_W == 'W')

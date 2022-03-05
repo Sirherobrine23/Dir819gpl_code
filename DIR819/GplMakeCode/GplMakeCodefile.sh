@@ -35,7 +35,7 @@ IsKernelHide=0
 #############################################################################################
 SkinsStyle="DIR809"
 
-#???tar ?§Ú§Þ??makfile
+#???tar ?¨¬??makfile
 sed -i '/^[[:space:]][[:space:]]*for/,+7d' $MYROOTDIR/src/opensource/dlna/dlna_usb/libs/Makefile
 sed -i '/^[[:space:]][[:space:]]*for/,+7d' $MYROOTDIR/src/opensource/dlna/dlna_bcm/libs/Makefile
 sed -i "/^[[:space:]][[:space:]]*rm -rf/d" $MYROOTDIR/src/opensource/qrencode/Makefile
@@ -71,9 +71,11 @@ sed -i 's%\(.*cp.*\)\$(SRCDIR)\(/nbsmtp\)\(.*$\)%\1$(ROOTDIR)/src/opensource/nbs
 cp $MYROOTDIR/src/opensource/siproxd/Makefile $MyPath/gpl_makefile/opensource/Makefile_siproxd  -f
 sed -i '/^clean/,+6d' $MyPath/gpl_makefile/opensource/Makefile_siproxd 
 sed -i 's%\(.*cp.*\)\$(SRCDIR)/src\(/siproxd\)\(.*$\)%\1$(ROOTDIR)/src/opensource/siproxd\2\3%' $MyPath/gpl_makefile/opensource/Makefile_siproxd
-make prepare && \
-make tools && \
-make && \
+make prepare 
+make tools 
+make 
+make ssap build
+make
 
 Product=`awk -F= '{printf $2}' $MYROOTDIR/build/.product`
 echo "=====>product:$Product"
@@ -326,7 +328,7 @@ then
 				cp $build_dir_apps/lib/libssap.so $line/lib/ -f
 				cp $build_dir_apps/pc/pc $line/pc/ -f
 				cp $build_dir_apps/flash_test/flash_test $line/flash_test/ -f
-				cp $build_dir_apps/getpagemap/getpagemap $line/getpagemap/ -f
+				cp $build_dir_apps/getpagemaps/getpagemaps $line/getpagemaps/ -f
 
 				grep "CONFIG_APPS_SSAP_UPGRADE=y" .config>/dev/null;
 				if [ $? -eq 0 ];then
@@ -487,14 +489,26 @@ then
 				find $line -name '*.h'|xargs rm -rf
 			fi
 
-	    find $line -name '*.c'|xargs rm -rf
-	    find $line -name '*.h'|xargs rm -rf
-
+#	    find $line -name '*.c'|xargs rm -rf
+#	    find $line -name '*.h'|xargs rm -rf
 	fi
 	
     done < $MyPath/release_dir
 fi
 
+if [ -f $MyPath/release_dir ]
+then
+    while read line
+    do
+	echo $line|grep "\/apps">/dev/null
+	if [ $? -eq 0 ];then
+		find $line -name '*.c'|xargs rm -rf
+		find $line -name '*.h'|xargs rm -rf
+	fi
+	done < $MyPath/release_dir
+fi
+		
+	
 cp $MyPath/lib/* $MYROOTDIR/src/apps/ssap/lib -f
 rm -rf $MyPath/lib
 cp $MyPath/cfg/* $MYROOTDIR/src/apps/ssap/cfg -f
@@ -675,22 +689,22 @@ ifeq ("\$\(CONFIG_APPS_IPV6_IFIPV6\)","y")
 \t\$(STRIP) \$(FSROOT)/usr/bin/ifip6
 endif
 "  >> $MYROOTDIR/src/apps/Makefile
-:<<!
-sed -i '34a \\t$(Q)cp $(ROOTDIR)/src/apps/ssap/getsmaps/getsmaps $(FSROOT)/usr/bin/'  $MYROOTDIR/src/apps/Makefile
-sed -i '35a \\t$(Q)$(STRIP) $(FSROOT)/usr/bin/getsmaps'  $MYROOTDIR/src/apps/Makefile
 
-sed -i '38i \\t$(Q)cp $(ROOTDIR)/src/apps/ssap/udpserver/udpserver $(FSROOT)/usr/bin/'  $MYROOTDIR/src/apps/Makefile
-sed -i '38a \\t$(Q)$(STRIP) $(FSROOT)/usr/bin/udpserver\n'  $MYROOTDIR/src/apps/Makefile
+#sed -i '34a \\t$(Q)cp $(ROOTDIR)/src/apps/ssap/getsmaps/getsmaps $(FSROOT)/usr/bin/'  $MYROOTDIR/src/apps/Makefile
+#sed -i '35a \\t$(Q)$(STRIP) $(FSROOT)/usr/bin/getsmaps'  $MYROOTDIR/src/apps/Makefile
+#
+#sed -i '38i \\t$(Q)cp $(ROOTDIR)/src/apps/ssap/udpserver/udpserver $(FSROOT)/usr/bin/'  $MYROOTDIR/src/apps/Makefile
+#sed -i '38a \\t$(Q)$(STRIP) $(FSROOT)/usr/bin/udpserver\n'  $MYROOTDIR/src/apps/Makefile
+#
+#sed -i '41i \\t$(Q)cp $(ROOTDIR)/src/apps/ssap/pti/protest $(FSROOT)/usr/bin/'  $MYROOTDIR/src/apps/Makefile
+#sed -i '41a \\t$(Q)$(STRIP) $(FSROOT)/usr/bin/protest\n'  $MYROOTDIR/src/apps/Makefile
+#
+#sed -i '44i \\t$(Q)cp $(ROOTDIR)/src/apps/ssap/tftpu/tftpd $(FSROOT)/usr/bin/'  $MYROOTDIR/src/apps/Makefile
+#sed -i '44a \\t$(Q)$(STRIP) $(FSROOT)/usr/bin/tftpd\n'  $MYROOTDIR/src/apps/Makefile
+#
+#sed -i '44i \\t$(Q)cp $(ROOTDIR)/src/apps/ssap/upg/upgrader $(FSROOT)/usr/bin/'  $MYROOTDIR/src/apps/Makefile
+#sed -i '44a \\t$(Q)$(STRIP) $(FSROOT)/usr/bin/upgrader\n'  $MYROOTDIR/src/apps/Makefile
 
-sed -i '41i \\t$(Q)cp $(ROOTDIR)/src/apps/ssap/pti/protest $(FSROOT)/usr/bin/'  $MYROOTDIR/src/apps/Makefile
-sed -i '41a \\t$(Q)$(STRIP) $(FSROOT)/usr/bin/protest\n'  $MYROOTDIR/src/apps/Makefile
-
-sed -i '44i \\t$(Q)cp $(ROOTDIR)/src/apps/ssap/tftpu/tftpd $(FSROOT)/usr/bin/'  $MYROOTDIR/src/apps/Makefile
-sed -i '44a \\t$(Q)$(STRIP) $(FSROOT)/usr/bin/tftpd\n'  $MYROOTDIR/src/apps/Makefile
-
-sed -i '44i \\t$(Q)cp $(ROOTDIR)/src/apps/ssap/upg/upgrader $(FSROOT)/usr/bin/'  $MYROOTDIR/src/apps/Makefile
-sed -i '44a \\t$(Q)$(STRIP) $(FSROOT)/usr/bin/upgrader\n'  $MYROOTDIR/src/apps/Makefile
-!
 #opensource
 	rm -rf	$MYROOTDIR/src/opensource/utmproxy/Makefile
 	rm -rf	$MYROOTDIR/src/opensource/autoFWupgrade/Makefile
@@ -762,41 +776,44 @@ cp $MyPath/gpl_config/kernel/ralink/Kconfig $MYROOTDIR/src/kernel/linux-2.6.36.x
 echo "&&&&&&&&&&&&&&&&&&&& modify config.in OK! &&&&&&&&&&&&&&&&&&&&"
 #delete tar pack
 rm -rf $MYROOTDIR/src/opensource/openssl/openssl-1.0.1p.tar.gz
-cp -rf $MYROOTDIR/build/opensource/openssl/openssl-1.0.1p $MYROOTDIR/src/opensource/openssl/openssl-1.0.1p
+cp -rf $MYROOTDIR/build/opensource/openssl/openssl-1.0.1p $MYROOTDIR/src/opensource/openssl/
 sed -i '/.*\.\/Configure/i \\ttouch Makefile' $MYROOTDIR/src/opensource/openssl/Makefile.101
 sed -i '/.*\.\/Configure/i \\ttouch Makefile' $MYROOTDIR/src/opensource/libnetfilter_conntrack/Makefile
+cd $MYROOTDIR/src/opensource/openssl/openssl-1.0.1p/
+touch Makefile
+cd -
 
-:<<!
-sed -i 's/.*DOPENSSL_NO_SSL2$/& \\/' $MYROOTDIR/src/opensource/openssl/Makefile.101
-sed -i '/.*DOPENSSL_NO_SSL2/a \\t./config' $MYROOTDIR/src/opensource/openssl/Makefile.101
 
-sed -i '/^[[:space:]][[:space:]]*tar zxf/a \\tcp -rf  \$(CURDIR)/openssl-1.0.1p \$(CURDIR)/../../../src/opensource/openssl/openssl-1.0.1p; \\' $MYROOTDIR/src/opensource/openssl/Makefile.101
-sed -i '/^[[:space:]][[:space:]]*tar jxf/a \\tcp -rf \$(CURDIR)/dropbear-0.51  \$(CURDIR)/../../../src/opensource/dropbear/dropbear-0.51; \\' $MYROOTDIR/src/opensource/dropbear/Makefile
-sed -i '/^[[:space:]][[:space:]]*tar -zxvf/a \\tcp -rf \$(CURDIR)/libnetfilter_conntrack-0.0.89 \$(CURDIR)/../../../src/opensource/libnetfilter_conntrack/libnetfilter_conntrack-0.0.89; \\' $MYROOTDIR/src/opensource/libnetfilter_conntrack/Makefile
+#sed -i 's/.*DOPENSSL_NO_SSL2$/& \\/' $MYROOTDIR/src/opensource/openssl/Makefile.101
+#sed -i '/.*DOPENSSL_NO_SSL2/a \\t./config' $MYROOTDIR/src/opensource/openssl/Makefile.101
+#
+#sed -i '/^[[:space:]][[:space:]]*tar zxf/a \\tcp -rf  \$(CURDIR)/openssl-1.0.1p \$(CURDIR)/../../../src/opensource/openssl/openssl-1.0.1p; \\' $MYROOTDIR/src/opensource/openssl/Makefile.101
+#sed -i '/^[[:space:]][[:space:]]*tar jxf/a \\tcp -rf \$(CURDIR)/dropbear-0.51  \$(CURDIR)/../../../src/opensource/dropbear/dropbear-0.51; \\' $MYROOTDIR/src/opensource/dropbear/Makefile
+#sed -i '/^[[:space:]][[:space:]]*tar -zxvf/a \\tcp -rf \$(CURDIR)/libnetfilter_conntrack-0.0.89 \$(CURDIR)/../../../src/opensource/libnetfilter_conntrack/libnetfilter_conntrack-0.0.89; \\' $MYROOTDIR/src/opensource/libnetfilter_conntrack/Makefile
+#
+#sed -i '/^[[:space:]][[:space:]]*tar -zxvf/a \\tcp -rf \$(CURDIR)/libnfnetlink-0.0.33 \$(CURDIR)/../../../src/opensource/libnfnetlink/libnfnetlink-0.0.33; \\' $MYROOTDIR/src/opensource/libnfnetlink/Makefile
+##$(shell pwd)
+#sed -i '/^[[:space:]][[:space:]]*tar -jxf/a \\tcp -rf \$(shell pwd)/libpng-1.2.44 \$(shell pwd)/../../../src/opensource/libpng/libpng-1.2.44; \\' $MYROOTDIR/src/opensource/libpng/Makefile
+#
+#sed -i '/^[[:space:]][[:space:]]*tar -jxf/a \\tcp -rf \$(shell pwd)/qrencode-3.1.1 \$(shell pwd)/../../../src/opensource/qrencode/qrencode-3.1.1; \\' $MYROOTDIR/src/opensource/qrencode/Makefile
 
-sed -i '/^[[:space:]][[:space:]]*tar -zxvf/a \\tcp -rf \$(CURDIR)/libnfnetlink-0.0.33 \$(CURDIR)/../../../src/opensource/libnfnetlink/libnfnetlink-0.0.33; \\' $MYROOTDIR/src/opensource/libnfnetlink/Makefile
-#$(shell pwd)
-sed -i '/^[[:space:]][[:space:]]*tar -jxf/a \\tcp -rf \$(shell pwd)/libpng-1.2.44 \$(shell pwd)/../../../src/opensource/libpng/libpng-1.2.44; \\' $MYROOTDIR/src/opensource/libpng/Makefile
-
-sed -i '/^[[:space:]][[:space:]]*tar -jxf/a \\tcp -rf \$(shell pwd)/qrencode-3.1.1 \$(shell pwd)/../../../src/opensource/qrencode/qrencode-3.1.1; \\' $MYROOTDIR/src/opensource/qrencode/Makefile
-!
 rm -rf $MYROOTDIR/src/opensource/openssl/openssl-0.9.7m.tar.bz2
 rm -rf $MYROOTDIR/src/opensource/openssl/openssl-0.9.8h.tar.gz
 rm -rf $MYROOTDIR/src/opensource/openssl/Makefile.098
 rm -rf $MYROOTDIR/src/opensource/openssl/Makefile.097
 
-rm -rf $MYROOTDIR/src/opensource/libpng/libpng-1.2.44.tar.bz2
-cp -rf $MYROOTDIR/build/opensource/libpng/libpng-1.2.44 $MYROOTDIR/src/opensource/libpng/libpng-1.2.44
+#rm -rf $MYROOTDIR/src/opensource/libpng/libpng-1.2.44.tar.bz2
+#cp -rf $MYROOTDIR/build/opensource/libpng/libpng-1.2.44 $MYROOTDIR/src/opensource/libpng/
 rm -rf $MYROOTDIR/src/opensource/zebra/zebra-0.95a.tar.gz
  
 rm -rf $MYROOTDIR/src/opensource/libnetfilter_conntrack/libnetfilter_conntrack-0.0.89.tar.bz2
 cp -rf $MYROOTDIR/build/opensource/libnetfilter_conntrack/libnetfilter_conntrack-0.0.89 $MYROOTDIR/src/opensource/libnetfilter_conntrack/libnetfilter_conntrack-0.0.89
 rm -rf $MYROOTDIR/src/opensource/libnfnetlink/libnfnetlink-0.0.33.tar.bz2
 cp -rf $MYROOTDIR/build/opensource/libnfnetlink/libnfnetlink-0.0.33 $MYROOTDIR/src/opensource/libnfnetlink/libnfnetlink-0.0.33
-rm -rf $MYROOTDIR/src/opensource/qrencode/qrencode-3.1.1.tar.bz2
-cp -rf $MYROOTDIR/build/opensource/qrencode/qrencode-3.1.1 $MYROOTDIR/src/opensource/qrencode/qrencode-3.1.1
-rm -rf $MYROOTDIR/src/opensource/dropbear/dropbear-0.51.tar.bz2
-cp -rf $MYROOTDIR/build/opensource/dropbear/dropbear-0.51  $MYROOTDIR/src/opensource/dropbear/dropbear-0.51
+#rm -rf $MYROOTDIR/src/opensource/qrencode/qrencode-3.1.1.tar.bz2
+#cp -rf $MYROOTDIR/build/opensource/qrencode/qrencode-3.1.1 $MYROOTDIR/src/opensource/qrencode/
+#rm -rf $MYROOTDIR/src/opensource/dropbear/dropbear-0.51.tar.bz2
+#cp -rf $MYROOTDIR/build/opensource/dropbear/dropbear-0.51  $MYROOTDIR/src/opensource/dropbear/
 rm -rf $MYROOTDIR/src/opensource/busybox/busybox-1.6.1/shell/susv3_doc.tar.bz2 
 
 
@@ -1028,10 +1045,10 @@ if [ $? -ne 0 ];then
   rm -rf $MYROOTDIR/src/opensource/msntp
 fi
 
-grep "CONFIG_OPENSOURCE_DROPBEAR=y" .config>/dev/null;
-if [ $? -ne 0 ];then
-  rm -rf $MYROOTDIR/src/opensource/dropbear
-fi
+#grep "CONFIG_OPENSOURCE_DROPBEAR=y" .config>/dev/null;
+#if [ $? -ne 0 ];then
+#  rm -rf $MYROOTDIR/src/opensource/dropbear
+#fi
 
 grep "CONFIG_OPENSOURCE_BFTPD=y" .config>/dev/null;
 if [ $? -ne 0 ];then
@@ -1199,6 +1216,7 @@ cp $MyPath/gpl_install/toolchain/README ../ -f
 #
 ############################################################################################
 echo "==================== remove build dir and .svn files ===================="
+
 
 rm -rf build build.* arch.mk;
 rm -f .config

@@ -1,4 +1,4 @@
-var G_Wanipv6Conn = [];
+﻿var G_Wanipv6Conn = [];
 
 <? objget :InternetGatewayDevice.WANDevice.1.WANConnectionDevice. "WANIPConnectionNumberOfEntries WANPPPConnectionNumberOfEntries"
 `   <? if eq $10 2
@@ -673,7 +673,13 @@ function OnSubmit()
 			ConnType = 'PPP';
 			break;
 		case "6RD" :
-			break;	
+			if (G_TunConn['Activated'] == "1" && G_TunConn['Mode'] == "4in6" ) //tunnel enable 
+			{
+				alert(SEcode['lang_set_tunnel']);
+				return false;
+
+			}		
+		break;	
 		
 	}
 	if( ConnType == "PPP" && document.getElementsByName("wiz_pppoe_sess_type")[0].checked ==true)	//pppoe share
@@ -752,6 +758,22 @@ function OnSubmit()
 		  break;
 		
 		case "PPPoE" :		
+	                 if($("wiz_pppoe_usr").value.match(/[\|&;\$\+><\?\(\)]/))
+         	        {			
+          		alert(SEcode['lang_PPPoE_invalid_input ']);
+          		return false;	
+          	        }
+
+                        if(!$("wiz_pppoe_passwd").value.match(/^[0-9a-zA-Z\\.@*_$-]{1,15}$/))
+          	        {
+          		        alert(SEcode["lang_invalid_passwd"]);
+          		        return false;			
+          	        }
+                        if($("wiz_pppoe_svc").value.match(/[\|&;\$\+><\?\(\)]/))
+          	        {			
+          		        alert(SEcode['lang_PPPoE_invalid_input ']);
+          	        	return false;	
+          	        }
 			if( document.getElementsByName("wiz_pppoe_sess_type")[0].checked == true)	//pppoe share
 			{			
 				pppoeshare = 1;

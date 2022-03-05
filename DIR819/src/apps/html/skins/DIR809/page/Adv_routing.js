@@ -1,4 +1,4 @@
-
+﻿
 //wan
 var G_WANConn = [];
 <? objget :InternetGatewayDevice.WANDevice.1.WANConnectionDevice. "WANIPConnectionNumberOfEntries WANPPPConnectionNumberOfEntries"
@@ -50,7 +50,12 @@ function uiSubmit()
 	var i = 0;
 
 	for(i=1; i<33; i++)
+	{
+	    if($("name_"+i).value.match(/[\|&;\$@\+><\?\(\)]/))
 	{		
+			alert(SEcode['lang_invalid_input']);
+			return false;	
+		}
 		if($("name_"+i).value == "" && $("dstip_"+i).value == "" && $("netmask_"+i).value == "" && $("gateway_"+i).value == "")
 		{
 			$("enable_"+i).checked = false;

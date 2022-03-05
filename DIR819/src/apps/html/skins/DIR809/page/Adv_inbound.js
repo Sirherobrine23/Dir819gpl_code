@@ -1,4 +1,4 @@
-var G_inbf = [];
+﻿var G_inbf = [];
 var m = 0;
 <?objget :InternetGatewayDevice.X_TWSZ-COM_INBOUND.RuleList. "Name IPRange Action SchedvsUsed SchedpfUsed SchedrmUsed"
 `	G_inbf[m] = [];
@@ -99,7 +99,11 @@ function isValidIpAddressRange()
 function uiSubmit()
 {
 	var ipRangeList;
-	
+	if($("inbfdesc").value.match(/[\|&;\$@\+><\?\(\)]/))
+	{			
+		alert(SEcode['lang_invalid_input']);
+		return false;	
+	}
 	if ($("inbfdesc").value == "")
 	{
 		alert(SEcode['lang_name_not_blank']);

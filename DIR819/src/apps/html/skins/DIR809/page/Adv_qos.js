@@ -305,7 +305,11 @@ function uiSubmit(){
 	}, true);
 	
 	var _scheduler   = Form.Radio('qtype');
-
+	if($("desc").value.match(/[\|&;\$@\+><\?\(\)]/))
+	{			 
+		alert(SEcode['lang_invalid_input']);
+	    return false;	 
+	}	 
 	if($('en_qos').checked)
 	{
 
@@ -411,6 +415,11 @@ function uiAdd(){
 		alert(SEcode['lang_name_not_blank']);
 		$("desc").focus();
 		return false;
+	}
+	if($("desc").value.match(/[\|&;\$@\+><\?\(\)]/))
+	{			 
+		alert(SEcode['lang_invalid_input']);
+	    return false;	 
 	}
 	for(var i=0; i<G_QoSRule.length; i++)
 	{

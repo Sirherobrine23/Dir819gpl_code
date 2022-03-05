@@ -122,8 +122,8 @@ extern "C" {
 
 #if !(defined(VMS) || defined(__VMS)) /* VMS uses logical names instead */
 #if defined(HEADER_CRYPTLIB_H) && !defined(OPENSSLDIR)
-#define ENGINESDIR "/home/guohongliang/work/819/DIR819/build/tmpdist/lib/engines"
-#define OPENSSLDIR "/home/guohongliang/work/819/DIR819/build/tmpdist/ssl"
+#define ENGINESDIR "/home/zhangtianchuan/Gpl819/DIR819/build/tmpdist/lib/engines"
+#define OPENSSLDIR "/home/zhangtianchuan/Gpl819/DIR819/build/tmpdist/ssl"
 #endif
 #endif
 

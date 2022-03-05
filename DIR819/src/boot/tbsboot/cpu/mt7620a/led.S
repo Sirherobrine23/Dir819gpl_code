@@ -362,7 +362,7 @@ $LASFDE4:
 	.align	2
 $LEFDE4:
 	.align	0
-	.file 2 "/home/guohongliang/work/819/DIR819/build/include/led.h"
+	.file 2 "/home/zhangtianchuan/Gpl819/DIR819/build/include/led.h"
 	.text
 $Letext0:
 	.section	.debug_info
@@ -1250,9 +1250,6 @@ $LASF53:
 	.ascii	"gpio\000"
 $LASF14:
 	.ascii	"led_internet_red\000"
-$LASF72:
-	.ascii	"/home/guohongliang/work/819/DIR819/build.DIR-819/boot/tb"
-	.ascii	"sboot/cpu/mt7620a\000"
 $LASF35:
 	.ascii	"led_flash_trig\000"
 $LASF68:
@@ -1321,6 +1318,9 @@ $LASF3:
 	.ascii	"signed char\000"
 $LASF2:
 	.ascii	"short unsigned int\000"
+$LASF72:
+	.ascii	"/home/zhangtianchuan/Gpl819/DIR819/build.DIR-819/boot/tb"
+	.ascii	"sboot/cpu/mt7620a\000"
 $LASF73:
 	.ascii	"PHY_led_ops\000"
 	.ident	"GCC: (GNU) 3.4.2"

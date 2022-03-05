@@ -191,6 +191,8 @@ obj-${CONFIG_APPS_LOGIC_IPTUNNEL} += iptunnel/iptunnel.o
 #lan port vlan
 obj-${CONFIG_APPS_LOGIC_LAN_PORT_VLAN} += lanport_vlan/lanport_vlan.o
 
+#mdns 
+obj-${CONFIG_APPS_LOGIC_MDNS} += mdns/mdnsResponder.o
 
 E_TARGET=logic
 EXTRA_CFLAGS= -I${BUILDDIR} -I./ -I./include -I./public -I../include \
@@ -233,6 +235,10 @@ endif
 
 ifeq ("$(CONFIG_APPS_LOGIC_VPN_SDK)", "y")
 EXTRA_CFLAGS += -DVPN_SDK
+endif
+
+ifeq ("$(CONFIG_OPENSOURCE_EBTABLES)", "y")
+EXTRA_CFLAGS += -DMAC_FILTER_EBTABLES
 endif
 
 ##########################for debug#############################
@@ -306,7 +312,7 @@ debug-${CONFIG_TBS_APPS_DEBUG_V6SROUTE} += -DV6SROUTE_DEBUG
 debug-${CONFIG_TBS_APPS_DEBUG_V6CONN} += -DV6CONN_DEBUG
 debug-${CONFIG_TBS_APPS_DEBUG_RADVD} += -DRADVD_DEBUG
 debug-${CONFIG_TBS_APPS_DEBUG_DROUTE} += -DDROUTE_DEBUG
-
+debug-${CONFIG_TBS_APPS_DEBUG_MDNS} += -DMDNS_DEBUG
 
 #yuanchaoqun      
 debug-y += -DOS_INDO_DEBUG

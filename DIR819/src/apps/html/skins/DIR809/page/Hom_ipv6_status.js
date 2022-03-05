@@ -435,25 +435,37 @@ function uiOnload(){
 			$("ipv6").style.display = "block";
 			$("type").innerHTML = data_languages.Hom_ipv6_status.innerHTML.HIS032;
 			$("status").innerHTML = G_TunConn['ConnStatus'];
-			if(G_TunConn['ConnectionTime'] > 0)
+
+			if (G_TunConn['ConnStatus'] == "Connected")
 			{
-				wan_conn_run_time = G_DeviceUpTime - G_TunConn['ConnectionTime'];
-				//alert(wan_conn_run_time);
-				var wan_uptime_sec = wan_conn_run_time%60;
-				var wan_uptime_min = Math.floor(wan_conn_run_time/60)%60;
-				var wan_uptime_hour = Math.floor(wan_conn_run_time/3600)%24;
-				var wan_uptime_day = Math.floor(wan_conn_run_time/86400);
-				$("st_connection_uptime").innerHTML = wan_uptime_day+" "+data_languages.Public.innerHTML.Public023+" "+wan_uptime_hour+" "+data_languages.Public.innerHTML.Public024+" "+wan_uptime_min+" "+data_languages.Public.innerHTML.Public025+" "+wan_uptime_sec+" "+data_languages.Public.innerHTML.Public026;
-				wan_conn_time();
+				$("wan_address").innerHTML = G_TunConn['LocalIpv6Address'] || data_languages.Public.innerHTML.Public022;
+				$("gateway").innerHTML = G_TunConn['RemoteIpv6Address'];
+				_dns = G_TunConn['IPv6DNSServers'];
+				if(G_TunConn['ConnectionTime'] > 0)
+				{
+					wan_conn_run_time = G_DeviceUpTime - G_TunConn['ConnectionTime'];
+					//alert(wan_conn_run_time);
+					var wan_uptime_sec = wan_conn_run_time%60;
+					var wan_uptime_min = Math.floor(wan_conn_run_time/60)%60;
+					var wan_uptime_hour = Math.floor(wan_conn_run_time/3600)%24;
+					var wan_uptime_day = Math.floor(wan_conn_run_time/86400);
+					$("st_connection_uptime").innerHTML = wan_uptime_day+" "+data_languages.Public.innerHTML.Public023+" "+wan_uptime_hour+" "+data_languages.Public.innerHTML.Public024+" "+wan_uptime_min+" "+data_languages.Public.innerHTML.Public025+" "+wan_uptime_sec+" "+data_languages.Public.innerHTML.Public026;
+					wan_conn_time();
+				}
+				else
+				{
+					$("st_connection_uptime").innerHTML = "0 "+data_languages.Public.innerHTML.Public023+" "+"0 "+data_languages.Public.innerHTML.Public024+" "+"0 "+data_languages.Public.innerHTML.Public025+" "+"0 "+data_languages.Public.innerHTML.Public026;
+				}
+				
 			}
 			else
-			{
+			{				
+				$("wan_address").innerHTML = data_languages.Public.innerHTML.Public022;
+				$("gateway").innerHTML = data_languages.Public.innerHTML.Public022;
+				_dns = "";								
 				$("st_connection_uptime").innerHTML = "0 "+data_languages.Public.innerHTML.Public023+" "+"0 "+data_languages.Public.innerHTML.Public024+" "+"0 "+data_languages.Public.innerHTML.Public025+" "+"0 "+data_languages.Public.innerHTML.Public026;
-			}
+			}			
 
-			$("gateway").innerHTML = G_TunConn['RemoteIpv6Address'];
-			_dns = G_TunConn['IPv6DNSServers'];
-			$("wan_address").innerHTML = G_TunConn['LocalIpv6Address'] || data_languages.Public.innerHTML.Public022;
 
 			break;
 		case "6TO4":
@@ -461,24 +473,37 @@ function uiOnload(){
 			$("ipv6").style.display = "block";
 			$("type").innerHTML = data_languages.Hom_ipv6_status.innerHTML.HIS033;
 			$("status").innerHTML = G_TunConn['ConnStatus'];
-			if(G_TunConn['ConnectionTime'] > 0)
+
+				
+			if (G_TunConn['ConnStatus'] == "Connected")
 			{
-				wan_conn_run_time = G_DeviceUpTime - G_TunConn['ConnectionTime'];
-				//alert(wan_conn_run_time);
-				var wan_uptime_sec = wan_conn_run_time%60;
-				var wan_uptime_min = Math.floor(wan_conn_run_time/60)%60;
-				var wan_uptime_hour = Math.floor(wan_conn_run_time/3600)%24;
-				var wan_uptime_day = Math.floor(wan_conn_run_time/86400);
-				$("st_connection_uptime").innerHTML = wan_uptime_day+" "+data_languages.Public.innerHTML.Public023+" "+wan_uptime_hour+" "+data_languages.Public.innerHTML.Public024+" "+wan_uptime_min+" "+data_languages.Public.innerHTML.Public025+" "+wan_uptime_sec+" "+data_languages.Public.innerHTML.Public026;
-				wan_conn_time();
+				$("wan_address").innerHTML = G_TunConn['IPv6Address'] || data_languages.Public.innerHTML.Public022;
+				$("gateway").innerHTML = "::" + G_TunConn['BorderRelayAddress'];
+				_dns = G_TunConn['IPv6DNSServers'];				
+				if(G_TunConn['ConnectionTime'] > 0)
+				{
+					wan_conn_run_time = G_DeviceUpTime - G_TunConn['ConnectionTime'];
+					//alert(wan_conn_run_time);
+					var wan_uptime_sec = wan_conn_run_time%60;
+					var wan_uptime_min = Math.floor(wan_conn_run_time/60)%60;
+					var wan_uptime_hour = Math.floor(wan_conn_run_time/3600)%24;
+					var wan_uptime_day = Math.floor(wan_conn_run_time/86400);
+					$("st_connection_uptime").innerHTML = wan_uptime_day+" "+data_languages.Public.innerHTML.Public023+" "+wan_uptime_hour+" "+data_languages.Public.innerHTML.Public024+" "+wan_uptime_min+" "+data_languages.Public.innerHTML.Public025+" "+wan_uptime_sec+" "+data_languages.Public.innerHTML.Public026;
+					wan_conn_time();
+				}
+				else
+				{
+					$("st_connection_uptime").innerHTML = "0 "+data_languages.Public.innerHTML.Public023+" "+"0 "+data_languages.Public.innerHTML.Public024+" "+"0 "+data_languages.Public.innerHTML.Public025+" "+"0 "+data_languages.Public.innerHTML.Public026;
+				}
 			}
 			else
-			{
+			{				
+				$("wan_address").innerHTML = data_languages.Public.innerHTML.Public022;
+				$("gateway").innerHTML = data_languages.Public.innerHTML.Public022;
+				_dns = "";								
 				$("st_connection_uptime").innerHTML = "0 "+data_languages.Public.innerHTML.Public023+" "+"0 "+data_languages.Public.innerHTML.Public024+" "+"0 "+data_languages.Public.innerHTML.Public025+" "+"0 "+data_languages.Public.innerHTML.Public026;
 			}
-			$("gateway").innerHTML = "::" + G_TunConn['BorderRelayAddress'];
-			_dns = G_TunConn['IPv6DNSServers'];
-			$("wan_address").innerHTML = G_TunConn['IPv6Address'] || data_languages.Public.innerHTML.Public022;
+				
 			G_AddrStaticDelegate = "1";
 
 			break;
@@ -487,27 +512,38 @@ function uiOnload(){
 			$("ipv6").style.display = "block";
 			$("type").innerHTML = data_languages.Hom_ipv6_status.innerHTML.HIS034;
 			$("status").innerHTML = G_TunConn['ConnStatus'];
-			if(G_TunConn['ConnectionTime'] > 0)
+
+			
+			G_AddrStaticDelegate = "1";
+			if (G_TunConn['ConnStatus'] == "Connected")
 			{
-				wan_conn_run_time = G_DeviceUpTime - G_TunConn['ConnectionTime'];
-				//alert(wan_conn_run_time);
-				var wan_uptime_sec = wan_conn_run_time%60;
-				var wan_uptime_min = Math.floor(wan_conn_run_time/60)%60;
-				var wan_uptime_hour = Math.floor(wan_conn_run_time/3600)%24;
-				var wan_uptime_day = Math.floor(wan_conn_run_time/86400);
-				$("st_connection_uptime").innerHTML = wan_uptime_day+" "+data_languages.Public.innerHTML.Public023+" "+wan_uptime_hour+" "+data_languages.Public.innerHTML.Public024+" "+wan_uptime_min+" "+data_languages.Public.innerHTML.Public025+" "+wan_uptime_sec+" "+data_languages.Public.innerHTML.Public026;
-				wan_conn_time();
+				$("wan_address").innerHTML = G_TunConn['IPv6Address'] || data_languages.Public.innerHTML.Public022;
+				$("gateway").innerHTML = "::" + G_TunConn['BorderRelayAddress'];
+				_dns = G_TunConn['IPv6DNSServers'];
+				if(G_TunConn['ConnectionTime'] > 0)
+				{
+					wan_conn_run_time = G_DeviceUpTime - G_TunConn['ConnectionTime'];
+					//alert(wan_conn_run_time);
+					var wan_uptime_sec = wan_conn_run_time%60;
+					var wan_uptime_min = Math.floor(wan_conn_run_time/60)%60;
+					var wan_uptime_hour = Math.floor(wan_conn_run_time/3600)%24;
+					var wan_uptime_day = Math.floor(wan_conn_run_time/86400);
+					$("st_connection_uptime").innerHTML = wan_uptime_day+" "+data_languages.Public.innerHTML.Public023+" "+wan_uptime_hour+" "+data_languages.Public.innerHTML.Public024+" "+wan_uptime_min+" "+data_languages.Public.innerHTML.Public025+" "+wan_uptime_sec+" "+data_languages.Public.innerHTML.Public026;
+					wan_conn_time();
+				}
+				else
+				{
+					$("st_connection_uptime").innerHTML = "0 "+data_languages.Public.innerHTML.Public023+" "+"0 "+data_languages.Public.innerHTML.Public024+" "+"0 "+data_languages.Public.innerHTML.Public025+" "+"0 "+data_languages.Public.innerHTML.Public026;
+				}
 			}
 			else
-			{
+			{				
+				$("wan_address").innerHTML = data_languages.Public.innerHTML.Public022;
+				$("gateway").innerHTML = data_languages.Public.innerHTML.Public022;
+				_dns = "";								
 				$("st_connection_uptime").innerHTML = "0 "+data_languages.Public.innerHTML.Public023+" "+"0 "+data_languages.Public.innerHTML.Public024+" "+"0 "+data_languages.Public.innerHTML.Public025+" "+"0 "+data_languages.Public.innerHTML.Public026;
 			}
 			
-			G_AddrStaticDelegate = "1";
-			$("gateway").innerHTML = "::" + G_TunConn['BorderRelayAddress'];
-			_dns = G_TunConn['IPv6DNSServers'];
-			$("wan_address").innerHTML = G_TunConn['IPv6Address'] || data_languages.Public.innerHTML.Public022;
-
 			break;	
 	}
 		

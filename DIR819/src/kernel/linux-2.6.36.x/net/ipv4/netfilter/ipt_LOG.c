@@ -184,7 +184,7 @@ static int http_match(const unsigned char* packet_data, int packet_length)
 		 MYDEBUG("host = \"%s\", path =\"%s\"\n", host, path); 
 		 unsigned char *ipaddr = NULL;
 		 ipaddr = (unsigned char *)(&(accessSrcIPaddr)); 
-		 scrlog_printk(KERN_EXTRA_WARNING"[2][2] Wb site access host=%s from %d.%d.%d.%d.\n",host,ipaddr[0],ipaddr[1],ipaddr[2],ipaddr[3]); 
+		 scrlog_printk(KERN_EXTRA_WARNING"[2][2] Web site access host=%s from %d.%d.%d.%d.\n",host,ipaddr[0],ipaddr[1],ipaddr[2],ipaddr[3]); 
 		 //scrlog_printk(KERN_EXTRA_WARNING"[2][2] path=%s\n",path); 
 	}
 	//scrlog_printk(KERN_EXTRA_WARNING"[2][2] http_match=%d\n",__LINE__); 

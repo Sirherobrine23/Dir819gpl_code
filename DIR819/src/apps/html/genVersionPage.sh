@@ -1,5 +1,4 @@
 #!/bin/sh
-
 TMP_VER_FILE=$1"/skins/"$2"/page/version.template"
 TAG_VER_FILE=$1"/skins/"$2"/page/version.html"
 SWP_VER_FILE=$1"/skins/"$2"/.verstion"
@@ -14,3 +13,5 @@ cat $SWP_VER_FILE | sed -e "s/(%_DATE_%)/`date`/g" > $TAG_VER_FILE
 rm -f $SWP_VER_FILE
 #cp $1"skins/"$2"/page/version.html" $3 -f
 cp $1"skins/"$2"/page/version.html" $3"page" -f
+echo $1
+echo $2

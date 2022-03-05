@@ -3,6 +3,7 @@
 	<X_TWSZ-COM_PortForward type="object">
 		<X_TWSZ-COM_MaxPortForwardEntries type="unsignedInt" Writable="0">24</X_TWSZ-COM_MaxPortForwardEntries>
 		<PortForwardNumberOfEntries type="unsignedInt" Writable="0">0</PortForwardNumberOfEntries>
+		<X_TWSZ-COM_WebPortForWardingSetupAccessEnable type="string" Wirtable="1">1</X_TWSZ-COM_WebPortForWardingSetupAccessEnable>
 		<PortForward type="object" MaxNode="X_TWSZ-COM_MaxPortForwardEntries" CurNode="PortForwardNumberOfEntries">
 			<i type="object">
 				<PortForwardEnabled type="boolean">0</PortForwardEnabled>

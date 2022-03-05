@@ -636,12 +636,14 @@ static void shutdown_system(void)
 	sigprocmask(SIG_BLOCK, &block_signals, NULL);
 
 	SendSingleToSnmpd(); // Added by yujinshi
+	
+	
 	message(L_CONSOLE | L_LOG, "The system is going down NOW!");
 
 	/* Allow Ctrl-Alt-Del to reboot system. */
 	init_reboot(RB_ENABLE_CAD);
 
-
+  
 //#ifndef CONFIG_RALINK_TCWATCHDOG
 #if 1
 	message(L_CONSOLE | L_LOG, "Sending SIG%s to all processes", "TERM");
@@ -753,7 +755,9 @@ static void shutdown_signal(int sig)
         /*
          *	shutdown all wifi interfaces before reboot
          *	patch_sdk4117_20130514_Fix PCIe Software Reboot issue.pdf
-         */
+  message(L_CONSOLE | L_LOG, "killall -15 pppd!");       */
+  system("killall -15 pppd");
+         
 	shutdonw_all_wifi();
 
 	shutdown_system();

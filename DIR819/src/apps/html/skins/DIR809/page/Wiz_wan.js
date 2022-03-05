@@ -1,8 +1,9 @@
 ﻿var stages=["stage_desc", "stage_passwd", "stage_tz", "stage_ether", "stage_ether_cfg", "stage_finish"];
 var wanTypes=["DHCP", "PPPoE", "PPTP", "L2TP", "STATIC"];
 var currentStage= 0;	
-var currentWanType= 0;	
+var currentWanType= 0;
 var G_WANConn = [];
+
 
 <?objget :InternetGatewayDevice.WANDevice.1.WANConnectionDevice.  "WANIPConnectionNumberOfEntries WANPPPConnectionNumberOfEntries"
 `	<?if gt $11 0 
@@ -62,6 +63,10 @@ var G_WANConn = [];
 	`?>	
 `?>
 
+var G_Password = "";
+<?mget :InternetGatewayDevice.X_TWSZ-COM_Authentication.UserList.1. "Password"
+`	G_Password   = "$01";
+`?>
 
 <?mget :InternetGatewayDevice.Time. "LocalTimeZoneName LocalTimeZone"
 `	G_LocalTimeZoneName	= "$01";
@@ -78,7 +83,6 @@ var G_WAN = [];
 	G_WAN['VLANPriority']   = "$03";	//VLANPriority
 	
 `?>
-
 //MAC Address Clone
 var LanHosts = [];
 var n = 0;
@@ -293,21 +297,25 @@ function OnClickNext()
 		if ($("wiz_passwd").value=="")
 		{
 			alert(SEcode["lang_admin_passwd_empty"]);
-			return false;			
+			return false;
 		}	
-		if(!$("wiz_passwd").value.match(/^[0-9a-zA-Z\\.@_$-]{1,15}$/))
+		if ($("wiz_passwd").value!="**********")
 		{
-			alert(SEcode["lang_invalid_passwd"]);
-			return false;			
-		}
-		for(var i=0;i < $("wiz_passwd").value.length;i++)
-		{
-			if ($("wiz_passwd").value.charCodeAt(i) > 256)
-			{ 
+			if(!$("wiz_passwd").value.match(/^[0-9a-zA-Z\\.@_$-]{1,15}$/))
+			{
 				alert(SEcode["lang_invalid_passwd"]);
-				return false;
+				return false;			
 			}
-		}			
+			for(var i=0;i < $("wiz_passwd").value.length;i++)
+			{
+				if ($("wiz_passwd").value.charCodeAt(i) > 256)
+				{ 
+					alert(SEcode["lang_invalid_passwd"]);
+					return false;
+				}
+			}			
+		}	
+
 		if ($("wiz_passwd").value!=$("wiz_passwd2").value)
 		{
 			alert(SEcode["lang_passwd_not_match"]);
@@ -468,6 +476,11 @@ function CheckWANSettings(type)
 	switch (type)
 	{
 	case "DHCP":
+		if($("wiz_dhcp_host").value.match(/[\|&;\$@\+><\?\(\)]/))
+		{			
+			alert(SEcode['lang_invalid_input']);
+			return false;	
+		}
 		if($("wiz_dhcp_mac").value !="")
 			if(!checkMACaddr('wiz_dhcp_mac'))
 				return false;
@@ -476,6 +489,11 @@ function CheckWANSettings(type)
 				return false;
         break;
 	case "PPPoE":
+		if($("wiz_pppoe_usr").value.match(/[\|&;\$\+><\?\(\)]/))
+		{			
+			alert(SEcode['lang_PPPoE_invalid_input ']);
+			return false;	
+		}
 		if($("wiz_pppoe_usr").value=="")
 		{
 			alert(SEcode["lang_user_empty"]);
@@ -486,15 +504,31 @@ function CheckWANSettings(type)
 			alert(SEcode["lang_passwd_empty"]);
 			return false;
 		}
+		if(!$("wiz_pppoe_passwd").value.match(/^[0-9a-zA-Z\\.@*_$-]{1,15}$/))
+		{
+			alert(SEcode["lang_invalid_passwd"]);
+			return false;			
+		}
 		break;
 	case "PPTP":
+		if($("wiz_pptp_usr").value.match(/[\|&;\$@\+><\?\(\)]/))
+		{			
+			alert(SEcode['lang_invalid_input']);
+			return false;	
+		}
 		if ($("wiz_"+type.toLowerCase()+"_passwd").value!=
 			$("wiz_"+type.toLowerCase()+"_passwd2").value)
 		{
 			alert(SEcode["lang_passwd_not_match"]);
 			return false;
 		}
-		
+
+		if(!$("wiz_pptp_passwd").value.match(/^[0-9a-zA-Z\\.@*_$-]{1,15}$/))
+		{
+			alert(SEcode["lang_invalid_passwd"]);
+			return false;			
+		}	
+
 		if ($("wiz_pptp_usr").value == "") 
 		{
 			alert(SEcode["lang_user_empty"]);
@@ -579,8 +613,16 @@ function CheckWANSettings(type)
 			alert(SEcode["lang_passwd_not_match"]);
 			return false;
 		}
-
-
+		if(!$("wiz_l2tp_passwd").value.match(/^[0-9a-zA-Z\\.@*_$-]{1,15}$/))
+		{
+			alert(SEcode["lang_invalid_passwd"]);
+			return false;			
+		}
+		if($("wiz_l2tp_usr").value.match(/[\|&;\$@\+><\?\(\)]/))
+		{			
+			alert(SEcode['lang_invalid_input']);
+			return false;	
+		}
 		if ($("wiz_l2tp_usr").value == "") 
 		{
 			alert(SEcode["lang_user_empty"]);
@@ -827,6 +869,17 @@ function uiOnload(){
 	}
 	OnChangePPTPMode();
 	OnChangeL2TPMode();
+	
+	if ("$1$TW$W4EX5n8uMLE15bpd62uqD." == G_Password)
+	{
+		$("wiz_passwd").value         = ""; 
+		$("wiz_passwd2").value        = ""; 
+	}
+	else
+	{
+		$("wiz_passwd").value         = "**********"; 
+		$("wiz_passwd2").value        = "**********"; 	
+	}
 }
 
 
@@ -866,7 +919,8 @@ function Ajax_handler(_text)
 		return;
 	}
 	var Basepsw= $('wiz_passwd').value;
-	if($('wiz_passwd').value != '')
+
+	if($('wiz_passwd').value != '' && $('wiz_passwd').value != '**********' )
 	{		
 		var pass = $("wiz_passwd").value;
 		Basepsw= Base64.Encode(pass);
@@ -899,7 +953,8 @@ function Ajax_handler(_text)
 
 		
 		//password
-		$F(':InternetGatewayDevice.X_TWSZ-COM_Authentication.UserList.1.Password', Basepsw);
+		if($('wiz_passwd').value != '**********' )
+			$F(':InternetGatewayDevice.X_TWSZ-COM_Authentication.UserList.1.Password', Basepsw);
 	
 		$('uiPostForm').submit();
 	}

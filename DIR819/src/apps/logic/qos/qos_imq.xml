@@ -20,6 +20,7 @@
 		<DefaultDSCPMark type="int[-2:]" Writable="1"></DefaultDSCPMark>
 		<DefaultEthernetPriorityMark type="int[-2:]" Writable="1"></DefaultEthernetPriorityMark>
 		<AvailableAppList type="string(1024)" Writable="0"></AvailableAppList>
+		<X_TWSZ-COM_QosSetupAccessEnable type="string" Wirtable="1">0</X_TWSZ-COM_QosSetupAccessEnable>
 		<Classification type="object" MaxNode="MaxClassificationEntries" CurNode="ClassificationNumberOfEntries" Writable="1">
 			<i type="object">
 				<ClassName type="string"></ClassName>

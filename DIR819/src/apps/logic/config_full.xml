@@ -28,6 +28,7 @@
 	</X_TWSZ-COM_Mail>
 	<WANDevice type="object" Writable="0" CurNode="WANDeviceNumberOfEntries">
 		<i type="object">
+			<X_TWSZ-COM_WebWaninterFaceSetupAccessEnable type="string" Wirtable="1">1</X_TWSZ-COM_WebWaninterFaceSetupAccessEnable>
 			<X_TWSZ-COM_WANConnectionIndex type="unsignedInt" Writable="0">0</X_TWSZ-COM_WANConnectionIndex>
 			<MAXWANConnectionNumberOfEntries type="unsignedInt" Writable="0">8</MAXWANConnectionNumberOfEntries>
 			<WANConnectionNumberOfEntries type="unsignedInt" Writable="0">0</WANConnectionNumberOfEntries>
@@ -390,6 +391,8 @@
 			<RipPassive type="string"></RipPassive>
 			<RouteProtocolRx type="string">Off</RouteProtocolRx>
 			<LANEthernetInterfaceNumberOfEntries type="unsignedInt" Writable="0"></LANEthernetInterfaceNumberOfEntries>
+			<X_TWSZ-COM_WebWirelessInterfaceSetupAccessEnable type="string">1</X_TWSZ-COM_WebWirelessInterfaceSetupAccessEnable>
+			<X_TWSZ-COM_WebLanInterfaceSetupAccessEnable type="string" Wirtable="1">1</X_TWSZ-COM_WebLanInterfaceSetupAccessEnable>
 			<X_TWSZ-COM_ProxyArp type="boolean">0</X_TWSZ-COM_ProxyArp>
 			<X_TWSZ-COM_MacAddress type="string" Writable="0"></X_TWSZ-COM_MacAddress>
 			<X_TWSZ-COM_Name type="string">LAN1</X_TWSZ-COM_Name>
@@ -839,6 +842,7 @@
 	</LANDevice>
 	<Layer2Bridging type="object">
 		<AvailableInterfaceNumberOfEntries type="unsignedInt" Writable="0"></AvailableInterfaceNumberOfEntries>
+		<X_TWSZ-COM_WebFiltersSetupAccessEnable type="string" Wirtable="1">0</X_TWSZ-COM_WebFiltersSetupAccessEnable>
 		<MaxVLANEntries type="unsignedInt" Writable="0"></MaxVLANEntries>
 		<MarkingNumberOfEntries type="unsignedInt" Writable="0"></MarkingNumberOfEntries>
 		<FilterNumberOfEntries type="unsignedInt" Writable="0"></FilterNumberOfEntries>
@@ -978,6 +982,7 @@
 		</PortMapping>
 	</X_TWSZ-COM_PortMapping>
 	<X_TWSZ-COM_PortForward type="object">
+		<X_TWSZ-COM_WebPortForWardingSetupAccessEnable type="string" Wirtable="1">1</X_TWSZ-COM_WebPortForWardingSetupAccessEnable>
 		<PortForwardNumberOfEntries type="unsignedInt" Writable="0">0</PortForwardNumberOfEntries>
 		<X_TWSZ-COM_MaxPortForwardEntries type="unsignedInt" Writable="0">24</X_TWSZ-COM_MaxPortForwardEntries>
 		<PortForward type="object" MaxNode="X_TWSZ-COM_MaxPortForwardEntries" CurNode="PortForwardNumberOfEntries">
@@ -1254,6 +1259,7 @@
 		</Proxy>
 	</X_TWSZ-COM_MLD>
 	<QueueManagement type="object" Writable="0">
+		<X_TWSZ-COM_QosSetupAccessEnable type="string" Wirtable="1">0</X_TWSZ-COM_QosSetupAccessEnable>
 		<AvailableAppList type="string(1024)" Writable="0"></AvailableAppList>
 		<DefaultEthernetPriorityMark type="int[-2:]" Writable="1"></DefaultEthernetPriorityMark>
 		<DefaultDSCPMark type="int[-2:]" Writable="1"></DefaultDSCPMark>
@@ -1515,6 +1521,7 @@
 	</X_TWSZ-COM_DynamicRouting>
 	<X_TWSZ-COM_Authentication type="object" Writable="0">
 		<X_TWSZ-COM_UserAdminPassword_FLAG type="unsignedInt" Writable="1">0</X_TWSZ-COM_UserAdminPassword_FLAG>
+		<X_TWSZ-COM_ToolPassword type="string" Writable="1"></X_TWSZ-COM_ToolPassword>
 		<UserNumberOfEntries type="unsignedInt" Writable="0">0</UserNumberOfEntries>
 		<MaxUserEntries type="unsignedInt" Writable="0">0</MaxUserEntries>
 		<SessionTimeout type="unsignedInt">300</SessionTimeout>
@@ -1530,6 +1537,7 @@
 		<ConfigPassword type="string(64)" Writable="1"></ConfigPassword>
 	</LANConfigSecurity>
 	<X_TWSZ-COM_Firewall type="object">
+		<X_TWSZ-COM_WebFireWallSetupAccessEnable type="string" Wirtable="1">1</X_TWSZ-COM_WebFireWallSetupAccessEnable>
 		<LanPortBlackFilterNumberOfEntries type="unsignedInt" Writable="0">0</LanPortBlackFilterNumberOfEntries>
 		<LanWhiteFilterNumberOfEntries type="unsignedInt" Writable="0">0</LanWhiteFilterNumberOfEntries>
 		<LanBlackFilterNumberOfEntries type="unsignedInt" Writable="0">0</LanBlackFilterNumberOfEntries>
@@ -1860,6 +1868,14 @@
 				<Name type="string(64)" Writable="0"></Name>
 			</i>
 		</VendorConfigFile>
+		<X_TWSZ-COM_ServiceManage Standard="0" type="object">
+			<WebFactoryRestoreAccessEnable type="string" Wirtable="1">1</WebFactoryRestoreAccessEnable>
+			<WebAccessEnable type="string" Wirtable="1">1</WebAccessEnable>
+			<TelnetEnable type="string" Wirtable="1">0</TelnetEnable>
+			<X_TWSZ-COM_WebFirmwareUpgradeAccess type="object">
+				<Enable type="string" Wirtable="1">1</Enable>
+			</X_TWSZ-COM_WebFirmwareUpgradeAccess>
+		</X_TWSZ-COM_ServiceManage>
 	</DeviceInfo>
 	<X_TWSZ-COM_URL_Filter type="object">
 		<FilterMode type="string">Deny</FilterMode>

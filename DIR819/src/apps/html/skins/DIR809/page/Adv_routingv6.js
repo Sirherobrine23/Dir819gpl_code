@@ -44,6 +44,13 @@ function uiSubmit()
 	
 	for(i=1; i<=10; i++)
 	{		
+	  	if($("dsc_"+i).value.match(/[\|&;\$@\+><\?\(\)]/)||$("gateway_"+i).value.match(/[\|&;\$@\+><\?\(\)]/)
+			||$("dest2_"+i).value.match(/[\|&;\$@\+><\?\(\)]/)||$("metric_"+i).value.match(/[\|&;\$@\+><\?\(\)]/)
+			||$("gateway_"+i).value.match(/[\|&;\$@\+><\?\(\)]/))
+		{			
+			alert(SEcode['lang_invalid_input']);
+			return false;	
+		}
 		if(!CheckData(i))return false;
 		$F(':InternetGatewayDevice.X_TWSZ-COM_IPv6Layer3Forwarding.IPv6Forwarding.'+i+'.Enable' , $('enable_'+i).checked?"1":"0");
 		$F(':InternetGatewayDevice.X_TWSZ-COM_IPv6Layer3Forwarding.IPv6Forwarding.'+i+'.Name' , $('dsc_'+i).value);

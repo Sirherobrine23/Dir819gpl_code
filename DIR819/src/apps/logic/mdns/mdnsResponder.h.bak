@@ -1,0 +1,16 @@
+#ifndef _MDNS_H_
+#define _MDNS_H_
+
+#define 2.4G_SSID_PATH "InternetGatewayDevice.LANDevice.1.WLANConfiguration.SSID"
+#define 5.8G_SSID_PATH "InternetGatewayDevice.LANDevice.2.WLANConfiguration.SSID"
+#define MODE_NAME_PATH "InternetGatewayDevice.DeviceInfo.ModelName"
+#define LAN_MAC     "InternetGatewayDevice.LANDevice.1.X_TWSZ-COM_MacAddress"
+
+static int writeMdnsCfg(void);
+static int startMdnsService(void);
+int restartMdnsByLanMsg(ST_MSG * pstMsg);
+int restartMdnsByWlanMsg(ST_MSG * pstMsg);
+int MDNS_init(void);
+int MDNS_ModuleDestroy();
+
+#endif

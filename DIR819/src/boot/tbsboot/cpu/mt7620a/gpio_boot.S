@@ -445,7 +445,7 @@ $LASFDE6:
 	.align	2
 $LEFDE6:
 	.align	0
-	.file 2 "/home/guohongliang/work/819/DIR819/build/include/gpio.h"
+	.file 2 "/home/zhangtianchuan/Gpl819/DIR819/build/include/gpio.h"
 	.text
 $Letext0:
 	.section	.debug_info
@@ -1563,9 +1563,6 @@ $LASF140:
 	.ascii	"mt7620a_gpios\000"
 $LASF16:
 	.ascii	"GPIO07\000"
-$LASF144:
-	.ascii	"/home/guohongliang/work/819/DIR819/build.DIR-819/boot/tb"
-	.ascii	"sboot/cpu/mt7620a\000"
 $LASF146:
 	.ascii	"get_gpio_para\000"
 $LASF114:
@@ -1740,6 +1737,9 @@ $LASF127:
 	.ascii	"dir_addr\000"
 $LASF2:
 	.ascii	"short unsigned int\000"
+$LASF144:
+	.ascii	"/home/zhangtianchuan/Gpl819/DIR819/build.DIR-819/boot/tb"
+	.ascii	"sboot/cpu/mt7620a\000"
 $LASF137:
 	.ascii	"gpio_write\000"
 	.ident	"GCC: (GNU) 3.4.2"

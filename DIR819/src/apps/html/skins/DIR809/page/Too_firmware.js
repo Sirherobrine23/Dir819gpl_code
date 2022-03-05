@@ -168,7 +168,8 @@ function Ajax_handler(_text)
 				{
 					var x=document.getElementById("fw_dl_locs");
 					var option=document.createElement("option");
-					option.text=urls1[i];
+					//option.text=urls1[i];
+					option.text="Global";
 					option.value=urls[i];
 					try
 						{

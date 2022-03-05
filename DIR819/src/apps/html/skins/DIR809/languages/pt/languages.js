@@ -18,7 +18,7 @@ var top_menu = {
 		TOPM016 : 'Versão de hardware：',
 		TOPM017 : 'Versão de firmware:',
 		TOPM018 : 'Wireless(5.8G)',
-		TOPM019     :       'Copyright &copy; 2016 D-Link Corporation. All rights reserved.',
+		TOPM019     :       'Copyright &copy; 2017 D-Link Corporation. All rights reserved.',
 		lang_saving     :       'Salvando',
 		lang_take_effect     :       'As configurações estão sendo salvas e aplicadas.',
 		lang_waiting     :       'Aguarde ...',
@@ -545,7 +545,7 @@ var data_languages = {
 		DIV_ProductPage : 'Página do produto：',
 		DIV_FirmwareVersion : 'Versão de firmware：',
 		DIV_HardwareVersion : 'Versão de hardware:',
-		DIV_Copyright : 'Copyright &copy; 2016 D-Link Corporation. All rights reserved.',
+		DIV_Copyright : 'Copyright &copy; 2017 D-Link Corporation. All rights reserved.',
 		lang_saving     :       'Salvando',
 		lang_take_effect     :       'As configurações estão sendo salvas e aplicadas.',
 		lang_waiting     :       'Aguarde ...',		
@@ -3812,10 +3812,10 @@ var data_languages = {
 		upgrading002 : 'Versão de firmware：',
 		upgrading003 : 'Versão de hardware：',
 		upgrading004 : 'Reiniciar……',
-		result : 'Este endereço IP do AP será resetada para 192.168.0.1, se feito alguma mudança no endereço IP do AP, você deverá lançar e atualizar o endereço IP do seu PC para as novas configurações.',
+		result : '<p>Upgrading...</p><p>Do not power off the device until the Firmware Upgrade is complete</p>',
 		upgrading006 : 'Tempo de espera:',
 		upgrading007 : 'segundo(s)',
-		upgrading008 : 'Copyright &copy; 2016 D-Link Corporation. All rights reserved.'
+		upgrading008 : 'Copyright &copy; 2017 D-Link Corporation. All rights reserved.'
 	}           
   },
   'upconfig' :
@@ -3825,10 +3825,10 @@ var data_languages = {
 		upconfig002 : 'Versão de firmware：',
 		upconfig003 : 'Versão de firmware：',
 		upconfig004 : 'Reiniciar…',
-		result : 'Este endereço IP do AP será resetada para 192.168.0.1, se feito alguma mudança no endereço IP do AP, você deverá lançar e atualizar o endereço IP do seu PC para as novas configurações.',
+		result : 'Reiniciar…',
 		upconfig006 : 'Tempo de espera:',
 		upconfig007 : 'segundo(s)',
-		upconfig008 : 'Copyright &copy; 2016 D-Link Corporation. All rights reserved.'
+		upconfig008 : 'Copyright &copy; 2017 D-Link Corporation. All rights reserved.'
 	}                
   },
   'Wait_lan' :
@@ -3838,10 +3838,10 @@ var data_languages = {
 		wait_lan002 : 'Versão de firmware：',
 		wait_lan003 : 'Versão de firmware：',
 		wait_lan004 : 'Reiniciar…',
-		result : 'O endereço LAN IP ou Netmask poderá resultar en falhas ao acessar este roteador, você deverá atualizar o endereço IP do seu PC para realizar mudanças nas suas configurações.',
+		result : ' If you changed the IP address of the router you will need to change the IP address in your browser before accessing the configuration website again.',
 		wait_lan006 : 'Tempo de espera:',
 		wait_lan007 : 'segundo(s)',
-		wait_lan008 : 'Copyright &copy; 2016 D-Link Corporation. All rights reserved.'
+		wait_lan008 : 'Copyright &copy; 2017 D-Link Corporation. All rights reserved.'
 	}              
   },
   'restarting' :
@@ -3851,10 +3851,10 @@ var data_languages = {
 		restarting002 : 'Versão de firmware：',
 		restarting003 : 'Versão de hardware:',
 		restarting004 : 'Reiniciar…',
-		result : 'Se você tiver alterado o endereço IP do roteador você terá que alterar o endereço IP no navegador  antes de acessar o site de configuração novamente.',
+		result : 'Reiniciar…',
 		restarting006 : 'Tempo de espera:',
 		restarting007 : 'segundo(s)',
-		restarting008 : 'Copyright &copy; 2016 D-Link Corporation. All rights reserved.'
+		restarting008 : 'Copyright &copy; 2017 D-Link Corporation. All rights reserved.'
 	}               
   },
   'language_pack' :
@@ -3869,7 +3869,7 @@ var data_languages = {
 		lang_update005 : 'Página do produto：',
 		lang_update006 : 'Versão de firmware：',
 		lang_update007 : 'Versão de hardware:',
-		lang_update008 : 'Copyright &copy; 2016 D-Link Corporation. All rights reserved.',
+		lang_update008 : 'Copyright &copy; 2017 D-Link Corporation. All rights reserved.',
 		back : 'Clique aqui para retornar à página anterior.'
 	}                 
   },
@@ -3880,10 +3880,10 @@ var data_languages = {
 		restore002 : 'Versão de firmware：',
 		restore003 : 'Versão de hardware:',
 		restore004 : 'Reiniciar…',
-		result : 'Este endereço IP do AP será resetada para 192.168.0.1, se feito alguma mudança no endereço IP do AP, você deverá lançar e atualizar o endereço IP do seu PC para as novas configurações.',
+		result : 'Reiniciar…',
 		restore006 : 'Tempo de espera:',
 		restore007 : 'segundo(s)',
-		restore008 : 'Copyright &copy; 2016 D-Link Corporation. All rights reserved.'
+		restore008 : 'Copyright &copy; 2017 D-Link Corporation. All rights reserved.'
 	}            
   }   
 };                           

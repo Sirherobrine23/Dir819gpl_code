@@ -102,9 +102,9 @@ mt7620a_gpios:
 	.word	0
 	.word	0
 	.file 1 "product.c"
-	.file 2 "/home/guohongliang/work/819/DIR819/build/include/gpio.h"
-	.file 3 "/home/guohongliang/work/819/DIR819/build/include/led.h"
-	.file 4 "/home/guohongliang/work/819/DIR819/build/include/btn.h"
+	.file 2 "/home/zhangtianchuan/Gpl819/DIR819/build/include/gpio.h"
+	.file 3 "/home/zhangtianchuan/Gpl819/DIR819/build/include/led.h"
+	.file 4 "/home/zhangtianchuan/Gpl819/DIR819/build/include/btn.h"
 	.text
 $Letext0:
 	.section	.debug_info
@@ -936,6 +936,9 @@ $LASF69:
 	.ascii	"activate\000"
 $LASF97:
 	.ascii	"product.c\000"
+$LASF98:
+	.ascii	"/home/zhangtianchuan/Gpl819/DIR819/build.DIR-819/boot/tb"
+	.ascii	"sboot/cpu/mt7620a\000"
 $LASF70:
 	.ascii	"deactivate\000"
 $LASF30:
@@ -1026,9 +1029,6 @@ $LASF50:
 	.ascii	"led_wps_overlap_trig\000"
 $LASF46:
 	.ascii	"led_flash_4hz_trig\000"
-$LASF98:
-	.ascii	"/home/guohongliang/work/819/DIR819/build.DIR-819/boot/tb"
-	.ascii	"sboot/cpu/mt7620a\000"
 $LASF54:
 	.ascii	"trig_name\000"
 $LASF77:

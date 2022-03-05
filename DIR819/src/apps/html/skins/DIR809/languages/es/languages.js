@@ -18,7 +18,7 @@ var top_menu = {
 		TOPM016 : 'Versión del hardware：',
 		TOPM017 : 'Versión del firmware：',
 		TOPM018 : 'Wireless(5.8G)',
-		TOPM019 : 'Copyright &copy; 2016 D-Link Corporation. All rights reserved.',
+		TOPM019 : 'Copyright &copy; 2017 D-Link Corporation. All rights reserved.',
 		lang_saving     :       'Guardando',
 		lang_take_effect     :       'Los parámetros se están guardando y se están aplicando.',
 		lang_waiting     :       'Espere ...',			
@@ -548,7 +548,7 @@ var data_languages = {
 		lang_saving     :       'Guardando',
 		lang_take_effect     :       'Los parámetros se están guardando y se están aplicando.',
 		lang_waiting     :       'Espere ...',		
-		DIV_Copyright : 'Copyright &copy; 2016 D-Link Corporation. All rights reserved.',
+		DIV_Copyright : 'Copyright &copy; 2017 D-Link Corporation. All rights reserved.',
 		WIZLOGIN217 : '',
 		WIZLOGIN218 : 'Nombre de red Wi-Fi(SSID)'		
 	},
@@ -3815,7 +3815,7 @@ var data_languages = {
 		result : 'La dirección IP del punto de acceso será reseteada a 192.168.0.1, Si ha cambiado la dirección IP del punto de acceso, se debe liberar y renovar la dirección IP del PC para una configuración correcta.',
 		upgrading006 : 'Tiempo de espera:',
 		upgrading007 : 'segundo(s)',
-		upgrading008 : 'Copyright &copy; 2016 D-Link Corporation. All rights reserved.'
+		upgrading008 : 'Copyright &copy; 2017 D-Link Corporation. All rights reserved.'
 	}                 
   },
   'upconfig' :
@@ -3828,7 +3828,7 @@ var data_languages = {
 		result : 'La dirección IP del punto de acceso será reseteada a 192.168.0.1, Si ha cambiado la dirección IP del punto de acceso, se debe liberar y renovar la dirección IP del PC para una configuración correcta.',
 		upconfig006 : 'Tiempo de espera:',
 		upconfig007 : 'segundo(s)',
-		upconfig008 : 'Copyright &copy; 2016 D-Link Corporation. All rights reserved.'
+		upconfig008 : 'Copyright &copy; 2017 D-Link Corporation. All rights reserved.'
 	}              
   },
   'Wait_lan' :
@@ -3841,7 +3841,7 @@ var data_languages = {
 		result : 'Cambio de Dirección IP LAN o de máscara de red puede producir una falla para acceder a este router, debe liberar y renovar la dirección IP del PC para una configuración correcta.',
 		wait_lan006 : 'Tiempo de espera:',
 		wait_lan007 : 'segundo(s)',
-		wait_lan008 : 'Copyright &copy; 2016 D-Link Corporation. All rights reserved.'
+		wait_lan008 : 'Copyright &copy; 2017 D-Link Corporation. All rights reserved.'
 	}              
   },
   'restarting' :
@@ -3854,7 +3854,7 @@ var data_languages = {
 		result : 'Si ha cambiado la dirección IP del router,necesitará cambiar la dirección IP en el explorador antes de acceder de nuevo al sitio web de configuración.',
 		restarting006 : 'Tiempo de espera:',
 		restarting007 : 'segundo(s)',
-		restarting008 : 'Copyright &copy; 2016 D-Link Corporation. All rights reserved.'
+		restarting008 : 'Copyright &copy; 2017 D-Link Corporation. All rights reserved.'
 	}              
   },
   'language_pack' :
@@ -3869,7 +3869,7 @@ var data_languages = {
 		lang_update005 : 'Página del producto：',
 		lang_update006 : 'Versión del firmware：',
 		lang_update007 : 'Versión del hardware：',
-		lang_update008 : 'Copyright &copy; 2016 D-Link Corporation. All rights reserved.',
+		lang_update008 : 'Copyright &copy; 2017 D-Link Corporation. All rights reserved.',
 		back : 'Haga clic aquí para volver a la página anterior.'
 	}               
   },
@@ -3883,7 +3883,7 @@ var data_languages = {
 		result : 'La dirección IP del punto de acceso será reseteada a 192.168.0.1, Si ha cambiado la dirección IP del punto de acceso, se debe liberar y renovar la dirección IP del PC para una configuración correcta.',
 		restore006 : 'Tiempo de espera:',
 		restore007 : 'segundo(s)',
-		restore008 : 'Copyright &copy; 2016 D-Link Corporation. All rights reserved.'
+		restore008 : 'Copyright &copy; 2017 D-Link Corporation. All rights reserved.'
 	}                
   }   
 };                           

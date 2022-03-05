@@ -2350,7 +2350,7 @@ case YY_STATE_EOF(INITIAL):
 				{
 				(yy_did_buffer_switch_on_eof) = 0;
 
-				if ( yywrap( ) )
+				if ( 1/*yywrap( )*/ )
 					{
 					/* Note: because we've taken care in
 					 * yy_get_next_buffer() to have set up
@@ -2677,7 +2677,7 @@ static int yy_get_next_buffer (void)
 
 				case EOB_ACT_END_OF_FILE:
 					{
-					if ( yywrap( ) )
+					if ( 1/*yywrap( )*/ )
 						return EOF;
 
 					if ( ! (yy_did_buffer_switch_on_eof) )
@@ -3293,3 +3293,4 @@ int l2tp_config_parse(FILE **fp)
 }
 
 
+ 

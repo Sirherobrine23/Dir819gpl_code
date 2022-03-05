@@ -142,17 +142,15 @@ var n = 0;
 `?>
 
 var LanHosts = [];
-var t = 0;
+var m = 0;
 <?objget :InternetGatewayDevice.LANDevice. "Hosts.HostNumberOfEntries"
 `	<?if gt $11 0
-	`	<?objget :InternetGatewayDevice.LANDevice.$20.Hosts.Host. "HostName MACAddress IPAddress LeaseTimeRemaining VendorClassID AddressSource"
-             `	<?if eq `DHCP` `<?echo $26?>` 	
+	`	<?objget :InternetGatewayDevice.LANDevice.$20.Hosts.Host. "HostName MACAddress IPAddress LeaseTimeRemaining VendorClassID AddressSource"	
 		`	LanHosts[m] = [];
-			LanHosts[m][0] = "<?echo $22?>";
-			LanHosts[m][1] = "<?echo $23?>";
-			LanHosts[m][2] = "<?echo $21?>"=="ZFc1cmJtOTNiZz09"?"unknown":strAnsi2Unicode((Base64.Decode("<?echo $21?>")));
+			LanHosts[m][0] = "<?echo $12?>";
+			LanHosts[m][1] = "<?echo $13?>";
+			LanHosts[m][2] = "<?echo $11?>"=="ZFc1cmJtOTNiZz09"?"unknown":strAnsi2Unicode((Base64.Decode("<?echo $11?>")));
 			++m;
-			`?>
 		`?>
 	`?>
 `?>
@@ -175,7 +173,7 @@ var m = 0;
 `?>
 
 var G_TunConn = [];
-<?objget :InternetGatewayDevice.X_TWSZ-COM_IPTunnel. "Activated Mode Dynamic RemoteIpv6Address BorderRelayAddress ConnStatus"
+<?objget :InternetGatewayDevice.X_TWSZ-COM_IPTunnel. "Activated Mode Dynamic RemoteIpv6Address BorderRelayAddress ConnStatus ConnectionTime"
 `
 	G_TunConn['Path'] 		= ":InternetGatewayDevice.X_TWSZ-COM_IPTunnel.$00.";
 	G_TunConn['Activated']   = "$01";	//Activated
@@ -184,6 +182,7 @@ var G_TunConn = [];
 	G_TunConn['RemoteIpv6Address']   = "$04";	//RemoteIpv6Address
 	G_TunConn['BorderRelayAddress']   = "$05";	//BorderRelayAddress
 	G_TunConn['ConnStatus']   = "$06";	//BorderRelayAddress
+	G_TunConn['ConnectionTime']   = "$07";	//BorderRelayAddress
 `?>
 
 
@@ -306,12 +305,24 @@ function initial_DSLITE() {
 		$("wan_ethernet_block").style.display = "none";	
 
 	var WanConnected = (G_TunConn['ConnStatus'] == "Connected" ? true : false);
-		
+	var wan_uptime_sec = "0";
+	var wan_uptime_min = "0";
+	var wan_uptime_hour = "0";
+	var wan_uptime_day = "0";
+	if(WanConnected && G_TunConn['ConnectionTime'] != "-1")
+	{
+		wan_conn_run_time = G_DeviceUpTime - G_TunConn['ConnectionTime'];
+		wan_uptime_sec = wan_conn_run_time%60;
+		wan_uptime_min = Math.floor(wan_conn_run_time/60)%60;
+		wan_uptime_hour = Math.floor(wan_conn_run_time/3600)%24;
+		wan_uptime_day = Math.floor(wan_conn_run_time/86400);
+	}
+	
 	setJSONValue({
 				'st_dslite_networkstatus'	: WanConnected ? SEcode[8004] : SEcode[8005],
 				'st_dslite_wancable' 		: G_cable_status=="Up" ? SEcode[8004] : SEcode[8005],
 				'st_dslite_wantype' 		: "DS-Lite",
-				'st_dslite_connection_uptime'	: 0+" "+data_languages.Public.innerHTML.Public023+" "+0+" "+data_languages.Public.innerHTML.Public024+" "+0+" "+data_languages.Public.innerHTML.Public025+" "+0+" "+data_languages.Public.innerHTML.Public026,
+				'st_dslite_connection_uptime'	: wan_uptime_day+" "+data_languages.Public.innerHTML.Public023+" "+wan_uptime_hour+" "+data_languages.Public.innerHTML.Public024+" "+wan_uptime_min+" "+data_languages.Public.innerHTML.Public025+" "+wan_uptime_sec+" "+data_languages.Public.innerHTML.Public026,
 				'st_dslite_wan_mac' 		: G_wan_clone_mac == "" ? G_wan_mac : G_wan_clone_mac,
 				'st_aftrserver' 			: G_TunConn['RemoteIpv6Address'],
 				'st_dslite_dhcp6opt' 		    : G_TunConn['Dynamic'] = "1" ? data_languages.Public.innerHTML.Public001 : data_languages.Public.innerHTML.Public002
@@ -329,6 +340,9 @@ function initial_WAN() {
 		return ;
 	}
 	var WanConnected = (G_WANConn['ConnectionStatus'] == "Connected" ? true : false);
+
+	if(G_WANConn['ConnectionTrigger'] == "OnDemand" && (G_WANConn['ExternalIPAddress'] == "10.64.64.64"||G_WANConn['ExternalIPAddress'] == ""))
+		WanConnected = false;
 	if(findProtocol()=="DHCP Client")
 	{		
 		$("st_wan_dhcp_action").style.display = "";
@@ -552,12 +566,46 @@ function Ajax_handler(_text)
 		uiPageRefresh();
 		return;
 	}
+	var wan_uptime_sec = "0";
+	var wan_uptime_min = "0";
+	var wan_uptime_hour = "0";
+	var wan_uptime_day = "0";
+	var WanConnected ;
 	
 	if (G_WANConn['Enable'] == "0")
 	{
+		if (G_TunConn['Activated'] == "1" && G_TunConn['Mode'] == "4in6")
+		{
+			$("wan_ethernet_dslite_block").style.display = "";
+			$("wan_ethernet_block").style.display = "none";	
+
+			WanConnected = (G_TunConn['ConnStatus'] == "Connected" ? true : false);
+			if(WanConnected && G_TunConn['ConnectionTime'] != "-1")
+			{
+				wan_conn_run_time = G_DeviceUpTime - G_TunConn['ConnectionTime'];
+				wan_uptime_sec = wan_conn_run_time%60;
+				wan_uptime_min = Math.floor(wan_conn_run_time/60)%60;
+				wan_uptime_hour = Math.floor(wan_conn_run_time/3600)%24;
+				wan_uptime_day = Math.floor(wan_conn_run_time/86400);
+			}
+		
+			setJSONValue({
+						'st_dslite_networkstatus'	: WanConnected ? SEcode[8004] : SEcode[8005],
+						'st_dslite_wancable' 		: G_cable_status=="Up" ? SEcode[8004] : SEcode[8005],
+						'st_dslite_wantype' 		: "DS-Lite",
+						'st_dslite_connection_uptime'	: wan_uptime_day+" "+data_languages.Public.innerHTML.Public023+" "+wan_uptime_hour+" "+data_languages.Public.innerHTML.Public024+" "+wan_uptime_min+" "+data_languages.Public.innerHTML.Public025+" "+wan_uptime_sec+" "+data_languages.Public.innerHTML.Public026,
+						'st_dslite_wan_mac' 		: G_wan_clone_mac == "" ? G_wan_mac : G_wan_clone_mac,
+						'st_aftrserver' 			: G_TunConn['RemoteIpv6Address'],
+						'st_dslite_dhcp6opt' 		    : G_TunConn['Dynamic'] = "1" ? data_languages.Public.innerHTML.Public001 : data_languages.Public.innerHTML.Public002
+			});
+			setTimeout('get_wan_conn_time()', 5*1000); 
+		}
 		return ;
 	}
-	var WanConnected = (G_WANConn['ConnectionStatus'] == "Connected" ? true : false);
+	WanConnected = (G_WANConn['ConnectionStatus'] == "Connected" ? true : false);
+	if(G_WANConn['ConnectionTrigger'] == "OnDemand" && (G_WANConn['ExternalIPAddress'] == "10.64.64.64"||G_WANConn['ExternalIPAddress'] == ""))
+	//if(G_WANConn['ConnectionTrigger'] == "OnDemand" && G_WANConn['ExternalIPAddress'] == "10.64.64.64")
+		WanConnected = false; //demand show disconnect
 	if(findProtocol()=="DHCP Client")
 	{		
 		$("st_wan_dhcp_action").style.display = "";
@@ -593,10 +641,7 @@ function Ajax_handler(_text)
 			$("st_wan_ppp_disconnect").disabled = true;
 		}	
 	}
-	var wan_uptime_sec = "0";
-	var wan_uptime_min = "0";
-	var wan_uptime_hour = "0";
-	var wan_uptime_day = "0";
+
 	if(WanConnected && G_WANConn['ExternalIPAddress'] != "10.64.64.64" && G_WANConn['ConnectionTime'] != "-1")
 	{
 		wan_conn_run_time = G_DeviceUpTime - G_WANConn['ConnectionTime'];

@@ -1,5 +1,5 @@
 
-.PHONY: xmltool imgbuilder squashfs_tool testtools install sstrip uboot_mkimage mktree generatepin
+.PHONY: xmltool imgbuilder squashfs_tool testtools install sstrip uboot_mkimage mktree  generatepin
 CC=gcc
 ALL : xmltool imgbuilder squashfs_tool testtools sstrip mktree generatepin
 imgbuilder:

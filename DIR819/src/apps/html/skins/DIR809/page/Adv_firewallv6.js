@@ -1,4 +1,4 @@
-var schedule_num=0;
+﻿var schedule_num=0;
 var schedule_list=[];
 <?objget :InternetGatewayDevice.X_TWSZ-COM_SCHEDULES.SchedEntry. "SchedName Enable"
 	`schedule_list[schedule_num] = [];
@@ -172,7 +172,7 @@ function createSchedule(){
 		
 }
 
-var   r   =   /^[0-9]*[1-9][0-9]*$/　　//正整数   
+var   r   =   /^[0-9]*[1-9][0-9]*$/　　//正整数
 function CheckData(index)
 {
 	if($('en_'+index).checked==true && $('dsc_'+index).value=="")
@@ -332,7 +332,16 @@ function uiSubmit()
 	}
 
 	for(i=1; i<=20; i++)
+	{
+	    if($("dsc_"+i).value.match(/[\|&;\$@\+><\?\(\)]/)||$("src_startip_"+i).value.match(/[\|&;\$@\+><\?\(\)]/)||
+			$("src_prelen_"+i).value.match(/[\|&;\$@\+><\?\(\)]/)||$("dst_startip_"+i).value.match(/[\|&;\$@\+><\?\(\)]/)||
+			$("dst_prelen_"+i).value.match(/[\|&;\$@\+><\?\(\)]/)||$("dst_startport_"+i).value.match(/[\|&;\$@\+><\?\(\)]/)||
+			$("dst_endport_"+i).value.match(/[\|&;\$@\+><\?\(\)]/))
 	{		
+			alert(SEcode['lang_invalid_input']);
+			return false;	
+		}
+
 		if(!CheckData(i))return false;
 		$F(':InternetGatewayDevice.X_TWSZ-COM_IP6Firewall.IPV6Filter.'+i+'.Enable' , $('en_'+i).checked? "1":"0");
 		$F(':InternetGatewayDevice.X_TWSZ-COM_IP6Firewall.IPV6Filter.'+i+'.Description' , $('dsc_'+i).value);

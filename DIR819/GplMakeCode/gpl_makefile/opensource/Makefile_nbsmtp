@@ -15,6 +15,7 @@ all: build
 build:
 	cd $(SRCDIR);\
 	chmod 777 ./configure;\
+	chmod 777 ./configure;\
 	./configure --prefix=$(TMPDISTDIR) --build=i386-linux --host=mipsel-linux --enable-ssl
 	CFLAGS="$(CFLAGS)"	make -C $(SRCDIR) CC=$(CROSS_COMPILE)gcc all 
 

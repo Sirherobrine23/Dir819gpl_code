@@ -192,6 +192,15 @@ typedef enum
 	"Host: %s\r\n" \
 	"User-Agent: "DYNDNS_AGENT_NAME " " DYNDNS_EMAIL_ADDR"\r\n\r\n"
 
+/*freedns.afraid.org specific update request format */
+#define FREEDNS_UPDATE_MY_IP_REQUEST_FORMAT_NEW \
+	"GET %s" \
+	"%s " \
+	"HTTP/1.0\r\n" \
+	"Host: %s\r\n" \
+	"User-Agent: "DYNDNS_AGENT_NAME " " DYNDNS_EMAIL_ADDR"\r\n\r\n"
+
+
 /** generic update format for sites that perform the update
 	with:
 	http://some.address.domain/somesubdir
@@ -212,6 +221,14 @@ typedef enum
 	"Authorization: Basic %s\r\n" \
 	"Host: %s\r\n" \
 	"User-Agent: "DYNDNS_AGENT_NAME " " DYNDNS_EMAIL_ADDR"\r\n\r\n"
+	
+#define GENERIC_NOIP_AUTH_MY_IP_REQUEST_FORMAT_NEW \
+    "GET %s%s " \
+	 "HTTP/1.0\r\n" \
+	"Authorization: Basic %s\r\n" \
+	"Host: %s\r\n" \
+	"User-Agent: "DYNDNS_AGENT_NAME " " DYNDNS_EMAIL_ADDR"\r\n\r\n"
+	
 
 /** dont ask me why easydns is so picky
 */

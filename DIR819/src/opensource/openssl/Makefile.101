@@ -35,7 +35,8 @@ distclean:
 install:
 	cp -Pf $(TMPDISTDIR)/lib/libssl.so* $(FSROOT)/lib
 	cp -Pf $(TMPDISTDIR)/lib/libcrypto.so* $(FSROOT)/lib
-	#cp -Pf $(TMPDISTDIR)/bin/openssl $(FSROOT)/bin
+	cp -Pf $(TMPDISTDIR)/bin/openssl $(FSROOT)/bin
 	chmod u+w $(FSROOT)/lib/lib{ssl,crypto}.so*
 	$(STRIP)  $(FSROOT)/lib/libssl.so*  $(FSROOT)/lib/libcrypto.so*
-	#$(STRIP)  $(FSROOT)/bin/openssl
+	$(STRIP)  $(FSROOT)/bin/openssl
+	#cp -Pf $(TMPDISTDIR)/ssl/openssl.cnf $(FSROOT)/etc/openssl.cnf

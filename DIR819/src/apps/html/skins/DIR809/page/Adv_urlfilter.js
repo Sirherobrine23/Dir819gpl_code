@@ -48,6 +48,15 @@ function uiOnload()
 function uiSubmit()
 {	
 	var url;
+	var i=0;
+	for (i=1; i<=40; i+=1)
+	{
+		if($("url_"+i).value.match(/[\|&;\$@\+><\?\(\)]/))
+		{			
+				alert(SEcode['lang_invalid_input']);
+				return false;	
+		}
+	}
 	if($("url_mode").value == "Deny")
 	{	
 		$F(':InternetGatewayDevice.X_TWSZ-COM_URL_Filter.Enable' , '1');
@@ -67,6 +76,11 @@ function uiSubmit()
 		$F(':InternetGatewayDevice.X_TWSZ-COM_URL_Filter.FilterMode' , 'Allow');
 		for(i=1; i<=40; i++)
 		{			
+     		if($("url_"+i).value.match(/[\|&;\$@\+><\?\(\)]/))
+     		{			
+     			alert(SEcode['lang_invalid_input']);
+     			return false;	
+     		}
 			if($('url_'+i).value.indexOf("http://")>-1)
 				url = $('url_'+i).value.substring(7);		
 			else

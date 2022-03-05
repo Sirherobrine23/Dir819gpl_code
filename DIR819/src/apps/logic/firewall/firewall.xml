@@ -12,6 +12,7 @@
 		<LanBlackFilterNumberOfEntries type="unsignedInt" Writable="0">0</LanBlackFilterNumberOfEntries>
 		<LanWhiteFilterNumberOfEntries type="unsignedInt" Writable="0">0</LanWhiteFilterNumberOfEntries>
 		<LanPortBlackFilterNumberOfEntries type="unsignedInt" Writable="0">0</LanPortBlackFilterNumberOfEntries>
+		<X_TWSZ-COM_WebFireWallSetupAccessEnable type="string" Wirtable="1">1</X_TWSZ-COM_WebFireWallSetupAccessEnable>
 		<WanBlackFilter type="object" CurNode="WanBlackFilterNumberOfEntries" MaxNode="MaxFilterNumberOfEntries">
 			<i type="object">
 				<DevPath type="string"></DevPath>

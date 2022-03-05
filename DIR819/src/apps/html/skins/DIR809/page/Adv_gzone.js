@@ -688,6 +688,12 @@ function ValidityCheck(str_Aband)
 }
 function uiSubmit()
 {
+    if($("ssid").value.match(/[\|&;\$@\+><\?\(\)]/)||
+		$("ssid_Aband").value.match(/[\|&;\$@\+><\?\(\)]/))
+	{			
+		alert(SEcode['lang_invalid_input']);
+		return false;	
+	}
 	if(Form.Checkbox('en_gzone'))
 	if(!ValidityCheck(""))return false;
 	if(Form.Checkbox('en_gzone_Aband'))

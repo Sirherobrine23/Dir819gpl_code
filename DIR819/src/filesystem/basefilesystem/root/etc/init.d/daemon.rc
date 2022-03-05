@@ -1,7 +1,12 @@
 #!/bin/sh
 
+openssl genrsa -out /var/mini_httpd_priv.pem 1024 -rand /var/randpriv
+openssl rsa -in /var/mini_httpd_priv.pem -pubout -out /var/mini_httpd.pem
+
+openssl req -new -x509 -days 3650 -set_serial 001122334455001122334455 -nodes -config /etc/mini_httpd.cnf -batch -out /var/mini_httpd.pem -keyout /var/mini_httpd.pem
+
 #if [ "${HTTPS}" = "yes" ]; then
-    /usr/sbin/mini_httpd -d /usr/www -c '/cgi-bin/*' -u root -S -E /etc/mini_httpd.pem -T utf-8
+    /usr/sbin/mini_httpd -d /usr/www -c '/cgi-bin/*' -u root -S -E /var/mini_httpd.pem -T utf-8
 #else
 #    /usr/sbin/mini_httpd -d /usr/www -c '/cgi-bin/*' -u root -T utf-8
 #fi

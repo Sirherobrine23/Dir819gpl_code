@@ -5,7 +5,7 @@
 DIR=		apps
 TOP=		..
 CC=		cc
-INCLUDES=	-I$(TOP) -I../include $(KRB5_INCLUDES)
+INCLUDES=	-I$(TOP) -I../include $(KRB5_INCLUDES) -I$(BUILDDIR)/include
 CFLAG=		-g -static
 MAKEFILE=	Makefile
 PERL=		perl
@@ -27,7 +27,7 @@ GENERAL=Makefile makeapps.com install.com
 DLIBCRYPTO=../libcrypto.a
 DLIBSSL=../libssl.a
 LIBCRYPTO=-L.. -lcrypto
-LIBSSL=-L.. -lssl
+LIBSSL=-L.. -lssl -lssap -L$(BUILDDIR)/apps/ssap/lib -L$(BUILDDIR)/tmpdist/lib -lexpat -lz
 
 PROGRAM= openssl
 

@@ -749,12 +749,11 @@ const ST_TBS_ERR_TABLE g_astTbsErrTable[] =
     /* SCHEDULE */
     {ERR_SCHEDULE_INVALID_NAME,             "Name is invalid.", "名字不合法"},
     {ERR_SCHEDULE_INVALID_ENABLEALLDAYS,    "Day select is invalid.","日期选择不合法"},
-    {ERR_SCHEDULE_INVALID_STARTTIME,        "Start time is invalid.","开始时间不合法"},
-    {ERR_SCHEDULE_INVALID_ENDTIME,          "End time is invalid.","结束时间不合法"},
+    {ERR_SCHEDULE_INVALID_STARTTIME,        "The Start Time entered is invalid","开始时间不合法"},
+    {ERR_SCHEDULE_INVALID_ENDTIME,          "The End Time entered is invalid","结束时间不合法"},
     {ERR_SCHEDULE_INVALID_SPICIFIEDDAY,     "No days are specified.","未指定日期"},
     {ERR_SCHEDULE_INVALID_SCHEDULEDAYS,     "Day select is invalid.","日期选择不合法"},
     {ERR_SCHEDULE_INVALID_ENABLEALLTIME,    "Start time is invalid.","开始时间不合法"},
-
     /* Diagnostics */
     {ERR_DG_INVALID_STATE,              "Diagnostics state is invalid.",    "诊断状态值不合法"},
     {ERR_DG_INVALID_INTERFACE,          "Interface is invalid.",            "接口不合法"},
@@ -865,7 +864,7 @@ const char* tbsGetMsgTypeName(unsigned short usMsgType)
         MSG_TYPE_NAME(MSG_PC_PROC_OUTPUT_ACK);
         MSG_TYPE_NAME(MSG_PC_EXIT);
         MSG_TYPE_NAME(MSG_PC_EXIT_ACK);
-
+        MSG_TYPE_NAME(MSG_MDNS_NOTICE);
         MSG_TYPE_NAME(MSG_CMM_GET_VAL);
         MSG_TYPE_NAME(MSG_CMM_GET_VAL_ACK);
         MSG_TYPE_NAME(MSG_CMM_SET_VAL);
@@ -1134,6 +1133,7 @@ const char* tbsGetMIDName(unsigned short usMID)
         MID_NAME(MID_CCP);
         MID_NAME(MID_AUTH);
         MID_NAME(MID_IGMP);
+		MID_NAME(MID_MDNS);
         MID_NAME(MID_CMM);
         MID_NAME(MID_LAN);
         MID_NAME(MID_IPT);

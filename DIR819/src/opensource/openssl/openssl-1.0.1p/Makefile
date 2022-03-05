@@ -13,8 +13,8 @@ SHLIB_MAJOR=1
 SHLIB_MINOR=0.0
 SHLIB_EXT=.so.$(SHLIB_MAJOR).$(SHLIB_MINOR)
 PLATFORM=linux-generic32
-OPTIONS=--cross-compile-prefix=  --prefix=/home/guohongliang/work/819/DIR819/build/tmpdist enable-shared -I/home/guohongliang/work/819/DIR819/build/tmpdist/include -L/home/guohongliang/work/819/DIR819/build/tmpdist/lib -DOPENSSL_NO_CAPIENG -DOPENSSL_NO_DTLS1 -DOPENSSL_NO_GOST -DOPENSSL_NO_HEARTBEATS -DOPENSSL_NO_RDRAND -DOPENSSL_NO_RSAX -DOPENSSL_NO_SHA0 -DOPENSSL_NO_STATIC_ENGINE -DOPENSSL_NO_WHIRLPOOL -DOPENSSL_NO_SSL3 -DOPENSSL_NO_SSL2 no-asm no-camellia no-cms no-ec_nistp_64_gcc_128 no-gmp no-idea no-jpake no-krb5 no-md2 no-mdc2 no-rc4 no-rc5 no-rfc3779 no-sctp no-store no-threads no-unit-test no-zlib no-zlib-dynamic no-static-engine
-CONFIGURE_ARGS=--cross-compile-prefix=  --prefix=/home/guohongliang/work/819/DIR819/build/tmpdist shared -I/home/guohongliang/work/819/DIR819/build/tmpdist/include -L/home/guohongliang/work/819/DIR819/build/tmpdist/lib linux-generic32 no-zlib no-zlib-dynamic no-rc4 no-asm no-camellia no-cms no-idea no-mdc2 no-threads -DOPENSSL_NO_CAPIENG -DOPENSSL_NO_DTLS1 -DOPENSSL_NO_GOST -DOPENSSL_NO_HEARTBEATS -DOPENSSL_NO_RDRAND -DOPENSSL_NO_RSAX -DOPENSSL_NO_SHA0 -DOPENSSL_NO_STATIC_ENGINE -DOPENSSL_NO_WHIRLPOOL -DOPENSSL_NO_SSL3 -DOPENSSL_NO_SSL2
+OPTIONS=--cross-compile-prefix=  --prefix=/home/zhangtianchuan/Gpl819/DIR819/build/tmpdist enable-shared -I/home/zhangtianchuan/Gpl819/DIR819/build/tmpdist/include -L/home/zhangtianchuan/Gpl819/DIR819/build/tmpdist/lib -DOPENSSL_NO_CAPIENG -DOPENSSL_NO_DTLS1 -DOPENSSL_NO_GOST -DOPENSSL_NO_HEARTBEATS -DOPENSSL_NO_RDRAND -DOPENSSL_NO_RSAX -DOPENSSL_NO_SHA0 -DOPENSSL_NO_STATIC_ENGINE -DOPENSSL_NO_WHIRLPOOL -DOPENSSL_NO_SSL3 -DOPENSSL_NO_SSL2 no-asm no-camellia no-cms no-ec_nistp_64_gcc_128 no-gmp no-idea no-jpake no-krb5 no-md2 no-mdc2 no-rc4 no-rc5 no-rfc3779 no-sctp no-store no-threads no-unit-test no-zlib no-zlib-dynamic no-static-engine
+CONFIGURE_ARGS=--cross-compile-prefix=  --prefix=/home/zhangtianchuan/Gpl819/DIR819/build/tmpdist shared -I/home/zhangtianchuan/Gpl819/DIR819/build/tmpdist/include -L/home/zhangtianchuan/Gpl819/DIR819/build/tmpdist/lib linux-generic32 no-zlib no-zlib-dynamic no-rc4 no-asm no-camellia no-cms no-idea no-mdc2 no-threads -DOPENSSL_NO_CAPIENG -DOPENSSL_NO_DTLS1 -DOPENSSL_NO_GOST -DOPENSSL_NO_HEARTBEATS -DOPENSSL_NO_RDRAND -DOPENSSL_NO_RSAX -DOPENSSL_NO_SHA0 -DOPENSSL_NO_STATIC_ENGINE -DOPENSSL_NO_WHIRLPOOL -DOPENSSL_NO_SSL3 -DOPENSSL_NO_SSL2
 SHLIB_TARGET=linux-shared
 
 # HERE indicates where this Makefile lives.  This can be used to indicate
@@ -61,7 +61,7 @@ OPENSSLDIR=$(TMPDISTDIR)/ssl
 
 CROSS_COMPILE=  
 CC= $(CROSS_COMPILE)mipsel-linux-gcc
-CFLAG= -fPIC -DOPENSSL_PIC -DDSO_DLFCN -DHAVE_DLFCN_H -I/home/guohongliang/work/819/DIR819/build/tmpdist/include -DOPENSSL_NO_CAPIENG -DOPENSSL_NO_DTLS1 -DOPENSSL_NO_GOST -DOPENSSL_NO_HEARTBEATS -DOPENSSL_NO_RDRAND -DOPENSSL_NO_RSAX -DOPENSSL_NO_SHA0 -DOPENSSL_NO_STATIC_ENGINE -DOPENSSL_NO_WHIRLPOOL -DOPENSSL_NO_SSL3 -DOPENSSL_NO_SSL2 -O3 -DB_ENDIAN -fomit-frame-pointer -Wall
+CFLAG= -fPIC -DOPENSSL_PIC -DDSO_DLFCN -DHAVE_DLFCN_H -I/home/zhangtianchuan/Gpl819/DIR819/build/tmpdist/include -DOPENSSL_NO_CAPIENG -DOPENSSL_NO_DTLS1 -DOPENSSL_NO_GOST -DOPENSSL_NO_HEARTBEATS -DOPENSSL_NO_RDRAND -DOPENSSL_NO_RSAX -DOPENSSL_NO_SHA0 -DOPENSSL_NO_STATIC_ENGINE -DOPENSSL_NO_WHIRLPOOL -DOPENSSL_NO_SSL3 -DOPENSSL_NO_SSL2 -O3 -fomit-frame-pointer -Wall
 DEPFLAG= -DOPENSSL_NO_CAMELLIA -DOPENSSL_NO_CMS -DOPENSSL_NO_EC_NISTP_64_GCC_128 -DOPENSSL_NO_GMP -DOPENSSL_NO_IDEA -DOPENSSL_NO_JPAKE -DOPENSSL_NO_MD2 -DOPENSSL_NO_MDC2 -DOPENSSL_NO_RC4 -DOPENSSL_NO_RC5 -DOPENSSL_NO_RFC3779 -DOPENSSL_NO_SCTP -DOPENSSL_NO_STORE -DOPENSSL_NO_UNIT_TEST
 PEX_LIBS= 
 EX_LIBS= -L/opt/buildroot-gcc342/mipsel-linux/lib -ldl

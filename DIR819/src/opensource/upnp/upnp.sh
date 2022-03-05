@@ -23,5 +23,5 @@ echo "system_uptime=yes">> $CONF_FILE
 echo "notify_interval=60">> $CONF_FILE
 echo "clean_ruleset_interval=600">> $CONF_FILE
 echo "uuid=$UUID">> $CONF_FILE
-echo "serial=100">> $CONF_FILE
+echo "serial=102">> $CONF_FILE
 #echo "model_number=1.0.0">> $CONF_FILE

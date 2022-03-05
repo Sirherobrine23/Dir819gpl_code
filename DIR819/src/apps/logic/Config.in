@@ -920,7 +920,12 @@ config APPS_LOGIC_DLink_AC750
 	depends on APPS_LOGIC
 	help
 	  D-Link-AC750 module
-
+config APPS_LOGIC_MDNS 
+		bool 'MDNS'
+		default y
+	    depends on APPS_LOGIC
+		help
+			mdns module
 choice
 	prompt "TR069 PASSWORD SELECTION"
 	default n
@@ -945,4 +950,5 @@ choice
 		bool 'Telefonica_Chile'
 		help
 			Pppoe&wlan username and password use the mac and serialnumber
+	
 endchoice

@@ -42,7 +42,7 @@ libnfnetlink.lo libnfnetlink.o: libnfnetlink.c \
   /opt/buildroot-gcc342/bin/../lib/gcc/mipsel-linux-uclibc/3.4.2/../../../../mipsel-linux-uclibc/sys-include/limits.h \
   /opt/buildroot-gcc342/bin/../lib/gcc/mipsel-linux-uclibc/3.4.2/../../../../mipsel-linux-uclibc/sys-include/bits/posix1_lim.h \
   /opt/buildroot-gcc342/bin/../lib/gcc/mipsel-linux-uclibc/3.4.2/../../../../mipsel-linux-uclibc/sys-include/bits/local_lim.h \
-  /home/guohongliang/work/819/DIR819/build/kernel/linux-2.6.36.x/include/linux/limits.h \
+  /home/zhangtianchuan/Gpl819/DIR819/build/kernel/linux-2.6.36.x/include/linux/limits.h \
   /opt/buildroot-gcc342/bin/../lib/gcc/mipsel-linux-uclibc/3.4.2/../../../../mipsel-linux-uclibc/sys-include/bits/posix2_lim.h \
   /opt/buildroot-gcc342/bin/../lib/gcc/mipsel-linux-uclibc/3.4.2/../../../../mipsel-linux-uclibc/sys-include/bits/sockaddr.h \
   /opt/buildroot-gcc342/bin/../lib/gcc/mipsel-linux-uclibc/3.4.2/../../../../mipsel-linux-uclibc/sys-include/asm/socket.h \
@@ -51,19 +51,19 @@ libnfnetlink.lo libnfnetlink.o: libnfnetlink.c \
   /opt/buildroot-gcc342/bin/../lib/gcc/mipsel-linux-uclibc/3.4.2/../../../../mipsel-linux-uclibc/sys-include/bits/in.h \
   /opt/buildroot-gcc342/bin/../lib/gcc/mipsel-linux-uclibc/3.4.2/../../../../mipsel-linux-uclibc/sys-include/bits/byteswap.h \
   /opt/buildroot-gcc342/bin/../lib/gcc/mipsel-linux-uclibc/3.4.2/../../../../mipsel-linux-uclibc/sys-include/assert.h \
-  /home/guohongliang/work/819/DIR819/build/kernel/linux-2.6.36.x/include/linux/types.h \
+  /home/zhangtianchuan/Gpl819/DIR819/build/kernel/linux-2.6.36.x/include/linux/types.h \
   /opt/buildroot-gcc342/bin/../lib/gcc/mipsel-linux-uclibc/3.4.2/../../../../mipsel-linux-uclibc/sys-include/asm/types.h \
-  /home/guohongliang/work/819/DIR819/build/kernel/linux-2.6.36.x/include/linux/config.h \
-  /home/guohongliang/work/819/DIR819/build/kernel/linux-2.6.36.x/include/linux/autoconf.h \
-  /home/guohongliang/work/819/DIR819/build/kernel/linux-2.6.36.x/include/linux/posix_types.h \
-  /home/guohongliang/work/819/DIR819/build/kernel/linux-2.6.36.x/include/linux/stddef.h \
-  /home/guohongliang/work/819/DIR819/build/kernel/linux-2.6.36.x/include/linux/compiler.h \
+  /home/zhangtianchuan/Gpl819/DIR819/build/kernel/linux-2.6.36.x/include/linux/config.h \
+  /home/zhangtianchuan/Gpl819/DIR819/build/kernel/linux-2.6.36.x/include/linux/autoconf.h \
+  /home/zhangtianchuan/Gpl819/DIR819/build/kernel/linux-2.6.36.x/include/linux/posix_types.h \
+  /home/zhangtianchuan/Gpl819/DIR819/build/kernel/linux-2.6.36.x/include/linux/stddef.h \
+  /home/zhangtianchuan/Gpl819/DIR819/build/kernel/linux-2.6.36.x/include/linux/compiler.h \
   /opt/buildroot-gcc342/bin/../lib/gcc/mipsel-linux-uclibc/3.4.2/../../../../mipsel-linux-uclibc/sys-include/asm/posix_types.h \
   /opt/buildroot-gcc342/bin/../lib/gcc/mipsel-linux-uclibc/3.4.2/../../../../mipsel-linux-uclibc/sys-include/sys/socket.h \
   /opt/buildroot-gcc342/bin/../lib/gcc/mipsel-linux-uclibc/3.4.2/../../../../mipsel-linux-uclibc/sys-include/sys/uio.h \
   /opt/buildroot-gcc342/bin/../lib/gcc/mipsel-linux-uclibc/3.4.2/../../../../mipsel-linux-uclibc/sys-include/bits/uio.h \
-  /home/guohongliang/work/819/DIR819/build/kernel/linux-2.6.36.x/include/linux/netlink.h \
-  /home/guohongliang/work/819/DIR819/build/kernel/linux-2.6.36.x/include/linux/socket.h \
+  /home/zhangtianchuan/Gpl819/DIR819/build/kernel/linux-2.6.36.x/include/linux/netlink.h \
+  /home/zhangtianchuan/Gpl819/DIR819/build/kernel/linux-2.6.36.x/include/linux/socket.h \
   ../include/libnfnetlink/libnfnetlink.h \
   ../include/libnfnetlink/linux_nfnetlink.h \
   /opt/buildroot-gcc342/bin/../lib/gcc/mipsel-linux-uclibc/3.4.2/../../../../mipsel-linux-uclibc/sys-include/byteswap.h
@@ -154,7 +154,7 @@ libnfnetlink.lo libnfnetlink.o: libnfnetlink.c \
 
 /opt/buildroot-gcc342/bin/../lib/gcc/mipsel-linux-uclibc/3.4.2/../../../../mipsel-linux-uclibc/sys-include/bits/local_lim.h:
 
-/home/guohongliang/work/819/DIR819/build/kernel/linux-2.6.36.x/include/linux/limits.h:
+/home/zhangtianchuan/Gpl819/DIR819/build/kernel/linux-2.6.36.x/include/linux/limits.h:
 
 /opt/buildroot-gcc342/bin/../lib/gcc/mipsel-linux-uclibc/3.4.2/../../../../mipsel-linux-uclibc/sys-include/bits/posix2_lim.h:
 
@@ -172,19 +172,19 @@ libnfnetlink.lo libnfnetlink.o: libnfnetlink.c \
 
 /opt/buildroot-gcc342/bin/../lib/gcc/mipsel-linux-uclibc/3.4.2/../../../../mipsel-linux-uclibc/sys-include/assert.h:
 
-/home/guohongliang/work/819/DIR819/build/kernel/linux-2.6.36.x/include/linux/types.h:
+/home/zhangtianchuan/Gpl819/DIR819/build/kernel/linux-2.6.36.x/include/linux/types.h:
 
 /opt/buildroot-gcc342/bin/../lib/gcc/mipsel-linux-uclibc/3.4.2/../../../../mipsel-linux-uclibc/sys-include/asm/types.h:
 
-/home/guohongliang/work/819/DIR819/build/kernel/linux-2.6.36.x/include/linux/config.h:
+/home/zhangtianchuan/Gpl819/DIR819/build/kernel/linux-2.6.36.x/include/linux/config.h:
 
-/home/guohongliang/work/819/DIR819/build/kernel/linux-2.6.36.x/include/linux/autoconf.h:
+/home/zhangtianchuan/Gpl819/DIR819/build/kernel/linux-2.6.36.x/include/linux/autoconf.h:
 
-/home/guohongliang/work/819/DIR819/build/kernel/linux-2.6.36.x/include/linux/posix_types.h:
+/home/zhangtianchuan/Gpl819/DIR819/build/kernel/linux-2.6.36.x/include/linux/posix_types.h:
 
-/home/guohongliang/work/819/DIR819/build/kernel/linux-2.6.36.x/include/linux/stddef.h:
+/home/zhangtianchuan/Gpl819/DIR819/build/kernel/linux-2.6.36.x/include/linux/stddef.h:
 
-/home/guohongliang/work/819/DIR819/build/kernel/linux-2.6.36.x/include/linux/compiler.h:
+/home/zhangtianchuan/Gpl819/DIR819/build/kernel/linux-2.6.36.x/include/linux/compiler.h:
 
 /opt/buildroot-gcc342/bin/../lib/gcc/mipsel-linux-uclibc/3.4.2/../../../../mipsel-linux-uclibc/sys-include/asm/posix_types.h:
 
@@ -194,9 +194,9 @@ libnfnetlink.lo libnfnetlink.o: libnfnetlink.c \
 
 /opt/buildroot-gcc342/bin/../lib/gcc/mipsel-linux-uclibc/3.4.2/../../../../mipsel-linux-uclibc/sys-include/bits/uio.h:
 
-/home/guohongliang/work/819/DIR819/build/kernel/linux-2.6.36.x/include/linux/netlink.h:
+/home/zhangtianchuan/Gpl819/DIR819/build/kernel/linux-2.6.36.x/include/linux/netlink.h:
 
-/home/guohongliang/work/819/DIR819/build/kernel/linux-2.6.36.x/include/linux/socket.h:
+/home/zhangtianchuan/Gpl819/DIR819/build/kernel/linux-2.6.36.x/include/linux/socket.h:
 
 ../include/libnfnetlink/libnfnetlink.h:
 

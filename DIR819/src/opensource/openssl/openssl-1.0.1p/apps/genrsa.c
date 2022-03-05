@@ -87,6 +87,8 @@
 static int MS_CALLBACK genrsa_cb(int p, int n, BN_GENCB *cb);
 
 int MAIN(int, char **);
+extern int TBS_GET_SYS_MAC(char *pszMAC);
+#include "flash_layout.h"
 
 int MAIN(int argc, char **argv)
 {
@@ -108,6 +110,47 @@ int MAIN(int argc, char **argv)
     BIO *out = NULL;
     BIGNUM *bn = BN_new();
     RSA *rsa = NULL;
+
+	char szSysMac[32] = {0};
+	char szserial[64] = {0};
+	char szCmd[256] = {0};
+
+	if(-1 == TBS_GET_SYS_MAC(szSysMac))
+	{
+		sprintf(szSysMac,"%s","szSysMac:001122334455");
+	}
+
+	
+#if 1 //get POT value
+		int iPot = 0;
+	
+		if(1)
+		{
+#define MAX_POT_LEN 33
+#define TBS_POT_ITEM_NAME "POT"
+			char szPOT[MAX_POT_LEN] = {0};
+			int iRet = 0;
+			unsigned short len;
+			
+			/* 从FLASH读取第一个VAP的ssid */
+			len = MAX_POT_LEN;
+			iRet = app_item_get(szPOT , TBS_POT_ITEM_NAME, &len);
+			if((ERROR_ITEM_OK == iRet) && (strlen(szPOT) > 0))
+			{
+				iPot = atoi(szPOT);
+			}
+			else
+			{
+				iPot = 1;
+			}
+		 }
+									
+#endif
+     sprintf(szserial,"%s%08d",szSysMac,iPot);
+
+	 sprintf(szCmd,"echo \"%s\" > /var/randpriv",szserial);
+	 system(szCmd);
+
 
     if (!bn)
         goto err;

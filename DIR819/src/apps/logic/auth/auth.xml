@@ -4,6 +4,7 @@
 		<SessionTimeout type="unsignedInt">300</SessionTimeout>
 		<MaxUserEntries type="unsignedInt" Writable="0">0</MaxUserEntries>
 		<UserNumberOfEntries type="unsignedInt" Writable="0">0</UserNumberOfEntries>
+		<X_TWSZ-COM_ToolPassword type="string" Writable="1"></X_TWSZ-COM_ToolPassword>
         <X_TWSZ-COM_UserAdminPassword_FLAG type="unsignedInt" Writable="1">0</X_TWSZ-COM_UserAdminPassword_FLAG>
 		<UserList type="object" Writable="0" MaxNode="MaxUserEntries" CurNode="UserNumberOfEntries">
 			<i type="object">

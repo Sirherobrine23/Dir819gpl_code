@@ -1008,6 +1008,8 @@ function CheckMAC(m)
 
 function uiSubmit()
 {   
+	var action = 0;
+
    if(StageCheck() == false) return false;
    if(edit == "-")
    {
@@ -1017,6 +1019,7 @@ function uiSubmit()
 			'add-obj'       : 'InternetGatewayDevice.X_TWSZ-COM_ACL.RACL.1.Service.'
 		});		
 		$F(":" + _Path + 'Enable',       '1');
+		action = 1;
 	}
 	else
 	{
@@ -1032,6 +1035,8 @@ function uiSubmit()
 			weblog=G_ACLWanGroup[edit][7];
 		
 		$F(":" + _Path + 'Enable',    $('Ptable'+edit+'+_check_0').checked?"1":"0");
+		action = 0;
+
 	}
 	
 	$F(":" + _Path + 'Name'         , $('policyname').value);
@@ -1064,18 +1069,34 @@ function uiSubmit()
 		$F(":" + _Path + 'PortFilter.'+i+'.DestPortEnd' , $('filter_endport'+i).value);
 	}}
 
-
-	$H({
-		'var:menu'     : G_Menu,
-		'var:page'     : G_Page,
-		'var:sys_Token' : G_SysToken,
-		'getpage'      : 'html/index.html',
-		'errorpage'    : 'html/index.html',
-		'var:errorpage': G_Page,
-		'var:CacheLastData': ViewState.Save()
-	});
-
-	$('uiPostForm').submit();
+	if(G_ACLWanEnable == "0" && (action == 1))	
+	{
+		$H({
+			'var:menu'     : G_Menu,
+			'var:page'     : G_Page,
+			'var:sys_Token' : G_SysToken,
+			'getpage'      : 'html/page/portforwd.ajax.js',
+			'errorpage'    : 'html/page/portforwd.ajax.js',
+			'var:errorpage': G_Page
+		});
+		var _url = "/cgi-bin/webproc?getpage=html/page/portforwd.ajax.js&var:page=*";
+		G_ajax = Ajax.getInstance(_url, "", 0, Ajax_handler, null_errorfunc);
+		G_ajax.post($('uiPostForm'));		
+	}
+	else
+	{
+		$H({
+			'var:menu'     : G_Menu,
+			'var:page'     : G_Page,
+			'var:sys_Token' : G_SysToken,
+			'getpage'      : 'html/index.html',
+			'errorpage'    : 'html/index.html',
+			'var:errorpage': G_Page,
+			'var:CacheLastData': ViewState.Save()
+		});
+		$('uiPostForm').submit();		
+	}
+	
 	$("menu").style.display="none";
 	$("content").style.display="none";
 	$("mbox").style.display="";
@@ -1117,6 +1138,58 @@ function uiSubmitEn()
 		$('delete_'+i).disabled= true;
 	}
 }
+function null_errorfunc()
+{
+
+	return true;
+}
+
+function Ajax_handler(_text)
+{
+	try{
+		eval(_text);
+	}catch(e){
+		alert("G_Error="+G_Error);
+		uiPageRefresh();
+		dealWithError();
+		return;
+	}
+
+	G_SysToken = G_AjaxToken;
+	if(G_Error == '1')
+	{
+		$("menu").style.display="";
+		$("content").style.display="";
+		$("mbox").style.display="none";
+		dealWithError();
+		$('Adv_acl079').disabled= false;
+		$('Adv_acl058').disabled= false;
+		$('Adv_acl046').disabled= false;
+		$('Adv_acl033').disabled= false;
+		$('Adv_acl026').disabled= false;
+		$('Adv_acl087').disabled= false;
+			
+	}	
+	else
+	{
+		$H({
+			'obj-action'   : 'set',
+			'var:menu'     : G_Menu,
+			'var:page'     : G_Page,
+			'var:sys_Token' : G_SysToken,
+			'getpage'      : 'html/index.html',
+			'errorpage'    : 'html/index.html',
+			'var:errorpage': G_Page,
+			'var:CacheLastData': ViewState.Save()
+		},true);
+	
+	   $F(':InternetGatewayDevice.X_TWSZ-COM_ACL.RACLEnable', '1');
+
+		$('uiPostForm').submit();
+	}
+}
+
+
 function dealWithError()
 {
      if (G_Error != 1)

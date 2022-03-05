@@ -368,7 +368,7 @@ $LASFDE10:
 	.align	2
 $LEFDE10:
 	.align	0
-	.file 2 "/home/guohongliang/work/819/DIR819/build.DIR-819/boot/build/include2/asm/types.h"
+	.file 2 "/home/zhangtianchuan/Gpl819/DIR819/build.DIR-819/boot/build/include2/asm/types.h"
 	.text
 $Letext0:
 	.section	.debug_info
@@ -838,9 +838,6 @@ $LASF9:
 	.ascii	"clock_divisor\000"
 $LASF12:
 	.ascii	"serial_putc\000"
-$LASF21:
-	.ascii	"/home/guohongliang/work/819/DIR819/build.DIR-819/boot/tb"
-	.ascii	"sboot/cpu/mt7620a\000"
 $LASF6:
 	.ascii	"long long int\000"
 $LASF4:
@@ -867,4 +864,7 @@ $LASF3:
 	.ascii	"signed char\000"
 $LASF2:
 	.ascii	"short unsigned int\000"
+$LASF21:
+	.ascii	"/home/zhangtianchuan/Gpl819/DIR819/build.DIR-819/boot/tb"
+	.ascii	"sboot/cpu/mt7620a\000"
 	.ident	"GCC: (GNU) 3.4.2"

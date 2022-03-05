@@ -1,6 +1,6 @@
 # libnetfilter_conntrack pkg-config file
 
-prefix=/home/guohongliang/work/819/DIR819/build/tmpdist
+prefix=/yeyingke/TBS/flush/build/tmpdist
 exec_prefix=${prefix}
 libdir=${exec_prefix}/lib
 includedir=${prefix}/include

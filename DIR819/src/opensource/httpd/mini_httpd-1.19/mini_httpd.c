@@ -275,7 +275,7 @@ int child_listen_fd = -1;
 int child_accept_fd = -1;
 
 #ifdef USE_SSL
-static SSL* ssl;
+static SSL* ssl = NULL;
 #endif /* USE_SSL */
 static usockaddr client_addr;
 static char* request;
@@ -406,7 +406,7 @@ main( int argc, char** argv )
         FILE *http_pid=NULL;
     #endif
     /* END   - Added on 28-04-2006 Missedout during merging */
-    struct passwd* pwd;
+    struct passwd* pwd= NULL;;
     uid_t uid = 0;
     gid_t gid = 0;
 	int ret=-1;/*Added*/
@@ -414,7 +414,7 @@ main( int argc, char** argv )
     usockaddr host_addr4;
     usockaddr host_addr6;
     int gotv4, gotv6;
-    char* cp;
+    char* cp= NULL;;
 
     /* Parse args. */
     argv0 = argv[0];
@@ -1426,15 +1426,15 @@ static int factory_tool_telnet(int opt)
 {
 	if(opt==START_TELNET){ // open telnet for LAN
 		system("iptables -t filter -D ACL_ALLOW_INPUT -i br0 -p TCP -s 0.0.0.0/0 --dport 23 -j DROP  2>/dev/null 1>&2");
-		system("iptables -t filter -D ACL_ALLOW_INPUT -i br0 -p TCP --dport 23 -j DROP  2>/dev/null 1>&2");
+		system("iptables -t filter -D ACL_ALLOW_INPUT -i br0 -p TCP  -s 0.0.0.0/0 --dport 23 -j DROP  2>/dev/null 1>&2");
 		system("iptables -t filter -A ACL_ALLOW_INPUT -i br0 -p TCP -s 0.0.0.0/0 --dport 23 -j ACCEPT  2>/dev/null 1>&2");
-		system("iptables -t filter -A ACL_ALLOW_INPUT -i br0 -p TCP --dport 23 -j DROP  2>/dev/null 1>&2");
+		//system("iptables -t filter -A ACL_ALLOW_INPUT -i br0 -p TCP --dport 23 -j DROP  2>/dev/null 1>&2");
 		system("/sbin/flush_conntrack 2>/dev/null 1>&2");
 	}else if(opt==CLOSE_TELNET){ // close telnet for LAN
 		system("iptables -t filter -D ACL_ALLOW_INPUT -i br0 -p TCP -s 0.0.0.0/0 --dport 23 -j ACCEPT  2>/dev/null 1>&2");
-		system("iptables -t filter -D ACL_ALLOW_INPUT -i br0 -p TCP --dport 23 -j DROP  2>/dev/null 1>&2");
+		system("iptables -t filter -D ACL_ALLOW_INPUT -i br0 -p TCP -s 0.0.0.0/0 --dport 23 -j ACCEPT  2>/dev/null 1>&2");
 		system("iptables -t filter -A ACL_ALLOW_INPUT -i br0 -p TCP -s 0.0.0.0/0 --dport 23 -j DROP  2>/dev/null 1>&2");
-		system("iptables -t filter -A ACL_ALLOW_INPUT -i br0 -p TCP --dport 23 -j DROP  2>/dev/null 1>&2");
+		//system("iptables -t filter -A ACL_ALLOW_INPUT -i br0 -p TCP --dport 23 -j DROP  2>/dev/null 1>&2");
 		system("/sbin/flush_conntrack 2>/dev/null 1>&2");
 	}
 }
@@ -1446,10 +1446,10 @@ static int factory_tool_telnet(int opt)
 static void
 handle_request( int rfd )
 {
-    char* method_str;
-    char* line;
-    char* cp;
-	char *tmpGetpage;     // save the getpage's start address in the path.
+    char* method_str = NULL;
+    char* line= NULL;
+    char* cp= NULL;
+	char *tmpGetpage= NULL;     // save the getpage's start address in the path.
     char tmppath[256] = {0};    //  save the path for analysis
     char get_page[256]={0};
 	//static char g_szPVC[64] = {0};
@@ -1557,6 +1557,11 @@ handle_request( int rfd )
 			break;
 		}
 		(void) alarm( READ_TIMEOUT );
+		if(strstr(buf,"page/login_cancel.js"))
+		{
+            //system("rm -rf /var/loginflag");
+            unlink("/var/loginflag");
+		}
 		add_to_request( buf, r );
 		if ( strstr( request, "\015\012\015\012" ) != (char*) 0 ||
 			 strstr( request, "\012\012" ) != (char*) 0 )
@@ -1875,7 +1880,11 @@ handle_request( int rfd )
 #ifdef USE_SSL
 	if (do_ssl_child && do_ssl_con)
 	{
-    	SSL_free( ssl );
+	    if(NULL != ssl)
+	    {
+    	    SSL_free( ssl );
+			ssl = NULL;
+	    }
 	}
 #endif /* USE_SSL */
 }
@@ -2014,11 +2023,11 @@ get_pathinfo( void )
 static void
 do_file( void )
 {
-    char *buf;/*[10000]*/
-    char *mime_encodings;/*[500]*/
-    const char* mime_type;
-    char *fixed_mime_type;/*[500]*/
-    char* cp;
+    char *buf= NULL;;/*[10000]*/
+    char *mime_encodings= NULL;;/*[500]*/
+    const char* mime_type= NULL;;
+    char *fixed_mime_type= NULL;;/*[500]*/
+    char* cp= NULL;;
     int fd;
 	if((mime_encodings=(char *)malloc(5*SMALL_BUFF))==NULL)
 	{
@@ -3936,7 +3945,10 @@ void ssl_cleanup()
 	if(do_ssl_child && do_ssl_con)
 	{
 		if(ssl != NULL)
+		{
 			SSL_free(ssl);
+			ssl = NULL;
+		}
 	}
 #endif
 }

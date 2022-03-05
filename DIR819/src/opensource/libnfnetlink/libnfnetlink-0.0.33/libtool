@@ -44,7 +44,7 @@ available_tags=" CXX F77"
 
 # ### BEGIN LIBTOOL CONFIG
 
-# Libtool was configured on host localhost.localdomain:
+# Libtool was configured on host wireless:
 
 # Shell to use when invoking shell scripts.
 SHELL="/bin/sh"
@@ -85,7 +85,7 @@ AR_FLAGS="cru"
 LTCC="mipsel-linux-gcc"
 
 # LTCC compiler flags.
-LTCFLAGS="-Dlinux -D__linux__ -Dunix  -D_LINUX_2_6_ -I. -I/opt/buildroot-gcc342/mipsel-linux//include -I/home/guohongliang/work/819/DIR819/build/kernel/linux-2.6.36.x/include -I/opt/buildroot-gcc342/mipsel-linux//../lib/gcc-lib/mips-linux-uclibc/3.3.5/include"
+LTCFLAGS="-Dlinux -D__linux__ -Dunix  -D_LINUX_2_6_ -I. -I/opt/buildroot-gcc342/mipsel-linux//include -I/home/zhangtianchuan/Gpl819/DIR819/build/kernel/linux-2.6.36.x/include -I/opt/buildroot-gcc342/mipsel-linux//../lib/gcc-lib/mips-linux-uclibc/3.3.5/include"
 
 # A language-specific compiler.
 CC="mipsel-linux-gcc"
@@ -147,7 +147,7 @@ pic_flag=" -fPIC -DPIC"
 pic_mode=default
 
 # What is the maximum length of a command?
-max_cmd_len=98304
+max_cmd_len=1966080
 
 # Does compiler simultaneously support -c and -o options?
 compiler_c_o="yes"
@@ -328,7 +328,7 @@ link_all_deplibs=no
 sys_lib_search_path_spec="/opt/buildroot-gcc342/lib/gcc/mipsel-linux-uclibc/3.4.2 /opt/buildroot-gcc342/lib/gcc /opt/buildroot-gcc342/mipsel-linux-uclibc/lib"
 
 # Run-time system search path for libraries
-sys_lib_dlsearch_path_spec="/lib /usr/lib /usr/lib/qt-3.3/lib "
+sys_lib_dlsearch_path_spec="/lib /usr/lib /usr/local/lib /usr/lib/mysql "
 
 # Fix the shell variable $srcfile for the compiler.
 fix_srcfile_path=""
@@ -7290,7 +7290,7 @@ disable_libs=static
 # End:
 # ### BEGIN LIBTOOL TAG CONFIG: CXX
 
-# Libtool was configured on host localhost.localdomain:
+# Libtool was configured on host wireless:
 
 # Shell to use when invoking shell scripts.
 SHELL="/bin/sh"
@@ -7331,7 +7331,7 @@ AR_FLAGS="cru"
 LTCC="mipsel-linux-gcc"
 
 # LTCC compiler flags.
-LTCFLAGS="-Dlinux -D__linux__ -Dunix  -D_LINUX_2_6_ -I. -I/opt/buildroot-gcc342/mipsel-linux//include -I/home/guohongliang/work/819/DIR819/build/kernel/linux-2.6.36.x/include -I/opt/buildroot-gcc342/mipsel-linux//../lib/gcc-lib/mips-linux-uclibc/3.3.5/include"
+LTCFLAGS="-Dlinux -D__linux__ -Dunix  -D_LINUX_2_6_ -I. -I/opt/buildroot-gcc342/mipsel-linux//include -I/home/zhangtianchuan/Gpl819/DIR819/build/kernel/linux-2.6.36.x/include -I/opt/buildroot-gcc342/mipsel-linux//../lib/gcc-lib/mips-linux-uclibc/3.3.5/include"
 
 # A language-specific compiler.
 CC="mipsel-linux-g++"
@@ -7393,7 +7393,7 @@ pic_flag=" -fPIC -DPIC"
 pic_mode=default
 
 # What is the maximum length of a command?
-max_cmd_len=98304
+max_cmd_len=1966080
 
 # Does compiler simultaneously support -c and -o options?
 compiler_c_o="yes"
@@ -7571,7 +7571,7 @@ link_all_deplibs=no
 sys_lib_search_path_spec="/opt/buildroot-gcc342/lib/gcc/mipsel-linux-uclibc/3.4.2 /opt/buildroot-gcc342/lib/gcc /opt/buildroot-gcc342/mipsel-linux-uclibc/lib"
 
 # Run-time system search path for libraries
-sys_lib_dlsearch_path_spec="/lib /usr/lib /usr/lib/qt-3.3/lib "
+sys_lib_dlsearch_path_spec="/lib /usr/lib /usr/local/lib /usr/lib/mysql "
 
 # Fix the shell variable $srcfile for the compiler.
 fix_srcfile_path=""
@@ -7595,7 +7595,7 @@ include_expsyms=""
 
 # ### BEGIN LIBTOOL TAG CONFIG: F77
 
-# Libtool was configured on host localhost.localdomain:
+# Libtool was configured on host wireless:
 
 # Shell to use when invoking shell scripts.
 SHELL="/bin/sh"
@@ -7636,7 +7636,7 @@ AR_FLAGS="cru"
 LTCC="mipsel-linux-gcc"
 
 # LTCC compiler flags.
-LTCFLAGS="-Dlinux -D__linux__ -Dunix  -D_LINUX_2_6_ -I. -I/opt/buildroot-gcc342/mipsel-linux//include -I/home/guohongliang/work/819/DIR819/build/kernel/linux-2.6.36.x/include -I/opt/buildroot-gcc342/mipsel-linux//../lib/gcc-lib/mips-linux-uclibc/3.3.5/include"
+LTCFLAGS="-Dlinux -D__linux__ -Dunix  -D_LINUX_2_6_ -I. -I/opt/buildroot-gcc342/mipsel-linux//include -I/home/zhangtianchuan/Gpl819/DIR819/build/kernel/linux-2.6.36.x/include -I/opt/buildroot-gcc342/mipsel-linux//../lib/gcc-lib/mips-linux-uclibc/3.3.5/include"
 
 # A language-specific compiler.
 CC="gfortran"
@@ -7698,7 +7698,7 @@ pic_flag=" -fPIC"
 pic_mode=default
 
 # What is the maximum length of a command?
-max_cmd_len=98304
+max_cmd_len=1966080
 
 # Does compiler simultaneously support -c and -o options?
 compiler_c_o="yes"
@@ -7879,7 +7879,7 @@ link_all_deplibs=no
 sys_lib_search_path_spec="/opt/buildroot-gcc342/lib/gcc/mipsel-linux-uclibc/3.4.2 /opt/buildroot-gcc342/lib/gcc /opt/buildroot-gcc342/mipsel-linux-uclibc/lib"
 
 # Run-time system search path for libraries
-sys_lib_dlsearch_path_spec="/lib /usr/lib /usr/lib/qt-3.3/lib "
+sys_lib_dlsearch_path_spec="/lib /usr/lib /usr/local/lib /usr/lib/mysql "
 
 # Fix the shell variable $srcfile for the compiler.
 fix_srcfile_path=""

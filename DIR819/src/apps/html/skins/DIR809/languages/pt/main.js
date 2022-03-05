@@ -5,7 +5,7 @@
 		DIV_HardwareVersion : 'Versão de hardware:',
 		login_title : 'Falha de Início de sessão',
 		login_msg : 'O nome de usuário ou a senha estão incorretos.',
-		DIV_Copyright : 'Copyright &copy; 2016 D-Link Corporation. All rights reserved.',
+		DIV_Copyright : 'Copyright &copy; 2017 D-Link Corporation. All rights reserved.',
 		DIV_LogIn : 'Iniciar sessão',
 		DIV_LogInfo : 'Iniciar sessão no router:',
 		DIV_UserName : 'Nome de usuário',

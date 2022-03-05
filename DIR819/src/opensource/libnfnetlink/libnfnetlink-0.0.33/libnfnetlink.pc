@@ -1,6 +1,6 @@
 # libnfnetlink pkg-config file
 
-prefix=/home/guohongliang/work/819/DIR819/build/tmpdist
+prefix=/home/zhangtianchuan/Gpl819/DIR819/build/tmpdist
 exec_prefix=${prefix}
 libdir=${exec_prefix}/lib
 includedir=${prefix}/include

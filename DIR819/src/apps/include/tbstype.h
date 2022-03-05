@@ -207,6 +207,7 @@
 #define MID_PORTFW ((PID_CCP << 8) | 0xa0)     /* PortFward模块 */
 #define MID_LANG ((PID_CCP << 8) | 0xa1)     /* multilang*/
 #define MID_RMANAGE ((PID_CCP << 8) | 0xa2)     /* remote manage*/
+#define MID_MDNS  ((PID_CCP << 8) | 0xa3)   /*mDNS 模块*/
 
 #define MID_WEB         ((PID_WEB << 8) | 0x01)     /* WEB模块 */
 #define MID_LNB         ((PID_LNB << 8) | 0x01)     /* Load & Backup */
@@ -570,6 +571,8 @@ enum
     MSG_LOG_SET_LEVEL,
 
     MSG_CMDDAEMON_APPLYCMD_REQUEST,
+	
+	MSG_MDNS_NOTICE,
 
 #ifdef CONFIG_LAST_SAVE_CFG
     MSG_CMM_SAVE_LAST_CFG,
@@ -589,6 +592,7 @@ enum
     MSG_RAI0_WPS_LOCK_SETUP,
     MSG_ACL_RULE_UPDATE,				/*ACL规则更新消息*/
     MSG_ACL_WEB_FILTER_UPDATE,			//add by wyh at 2016-07-15 to let the WEB FILTER contact with the ACL
+	MSG_DELETE_SESSIONS_ID,
     MSG_PUB_END      = 0x7FFF
 
 } ;

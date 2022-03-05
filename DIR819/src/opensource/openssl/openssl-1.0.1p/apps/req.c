@@ -159,6 +159,31 @@ static int batch = 0;
 
 int MAIN(int, char **);
 
+int TBS_GET_SYS_MAC(char *pszMAC)
+{
+    /*
+             # cat /proc/sys/kernel/random/uuid
+              83e0a804-67b4-49d8-8706-52f2c57c0303
+	*/
+    int i;
+    FILE * pFile = NULL;
+    char szMac[32] = {0};
+
+    pFile=fopen("/proc/llconfig/macaddr","r");
+
+    if(!pFile)
+    {
+        return -1;
+    }
+
+    sprintf(pszMAC,"%s",(const char *)fgets(szMac, 32, pFile));
+	
+    fclose(pFile);
+	
+    return 0;
+}
+#include "flash_layout.h"
+
 int MAIN(int argc, char **argv)
 {
     ENGINE *e = NULL, *gen_eng = NULL;
@@ -200,10 +225,39 @@ int MAIN(int argc, char **argv)
     long errline;
 #endif
 
+    
+#if 1 //get POT value
+	int iPot = 0;
+
+	if(1)
+	{
+#define MAX_POT_LEN 33
+#define TBS_POT_ITEM_NAME "POT"
+		char szPOT[MAX_POT_LEN] = {0};
+		int iRet = 0;
+		unsigned short len;
+		
+		/* 从FLASH读取第一个VAP的ssid */
+		len = MAX_POT_LEN;
+		iRet = app_item_get(szPOT , TBS_POT_ITEM_NAME, &len);
+		if((ERROR_ITEM_OK == iRet) && (strlen(szPOT) > 0))
+		{
+			iPot = atoi(szPOT);
+		}
+		else
+		{
+			iPot = 1;
+		}
+	 }
+								
+#endif
+
     req_conf = NULL;
 #ifndef OPENSSL_NO_DES
     cipher = EVP_des_ede3_cbc();
 #endif
+
+
     apps_startup();
 
     if (bio_err == NULL)
@@ -348,12 +402,40 @@ int MAIN(int argc, char **argv)
             if (--argc < 1)
                 goto bad;
             days = atoi(*(++argv));
+
+			char szSysMac[32] = {0};
+			if(-1 == TBS_GET_SYS_MAC(szSysMac))
+			{
+			
+			}
+			else
+			{
+			    fprintf(stderr, "szSysMac   %s\n", szSysMac);
+                days =365*4 +((*(unsigned int*)(szSysMac)) + (*(unsigned int*)(szSysMac+4))+(*(unsigned int*)(szSysMac+8)))%365 + iPot;
+			}
+
             if (days == 0)
                 days = 30;
+			fprintf(stderr, "Key11  days %d\n", days);
         } else if (strcmp(*argv, "-set_serial") == 0) {
             if (--argc < 1)
                 goto bad;
-            serial = s2i_ASN1_INTEGER(NULL, *(++argv));
+			char szSysMac[32] = {0};
+			char szserial[64] = {0};
+			int tmp = 0;
+			if(-1 == TBS_GET_SYS_MAC(szSysMac))
+			{
+			    serial = s2i_ASN1_INTEGER(NULL, *(++argv));
+			}
+			else
+			{
+				  tmp =365*4 +((*(unsigned int*)(szSysMac)) + (*(unsigned int*)(szSysMac+4))+(*(unsigned int*)(szSysMac+8)))%365 + iPot;
+			    sprintf(szserial,"%04d%08d",tmp,iPot);
+				fprintf(stderr, "szserial   %s\n", szserial);
+			    serial = s2i_ASN1_INTEGER(NULL, szserial);
+				fprintf(stderr, "*(++argv)   %s\n", *(++argv));
+			}
+            //serial = s2i_ASN1_INTEGER(NULL, *(++argv));
             if (!serial)
                 goto bad;
         } else if (strcmp(*argv, "-extensions") == 0) {

@@ -84,8 +84,8 @@
 		<ProductClass type="string(64)" Writable="0">DIR-819</ProductClass>
 		<SerialNumber type="string(64)" Writable="0">001ee3995f25</SerialNumber>
 		<HardwareVersion type="string(64)" Writable="0">A1</HardwareVersion>
-		<SoftwareVersion type="string(64)" Writable="0" Notification="2">1.00</SoftwareVersion>
-		<ModemFirmwareVersion type="string(64)" Writable="0">V1.00</ModemFirmwareVersion>
+		<SoftwareVersion type="string(64)" Writable="0" Notification="2">1.02</SoftwareVersion>
+		<ModemFirmwareVersion type="string(64)" Writable="0">V1.02</ModemFirmwareVersion>
 		<EnabledOptions type="string(1024)" Writable="0"></EnabledOptions>
 		<AdditionalHardwareVersion type="string(64)" Writable="0"></AdditionalHardwareVersion>
 		<AdditionalSoftwareVersion type="string(64)" Writable="0"></AdditionalSoftwareVersion>
@@ -95,6 +95,14 @@
 		<FirstUseDate type="dateTime" Writable="0"></FirstUseDate>
 		<DeviceLog type="string(32k)" Writable="0"></DeviceLog>
 		<VendorConfigFileNumberOfEntries type="unsignedInt" Writable="0"></VendorConfigFileNumberOfEntries>
+		<X_TWSZ-COM_ServiceManage Standard="0" type="object">
+			<TelnetEnable type="string" Wirtable="1">0</TelnetEnable>
+			<WebAccessEnable type="string" Wirtable="1">1</WebAccessEnable>
+			<WebFactoryRestoreAccessEnable type="string" Wirtable="1">1</WebFactoryRestoreAccessEnable>
+			<X_TWSZ-COM_WebFirmwareUpgradeAccess type="object">
+		        <Enable type="string" Wirtable="1">1</Enable>
+	        </X_TWSZ-COM_WebFirmwareUpgradeAccess>
+		</X_TWSZ-COM_ServiceManage>
 		<VendorConfigFile type="object" MaxIdx="1" Writable="0">
 			<1 type="object">
 				<Name type="string(64)" Writable="0"></Name>
@@ -136,6 +144,7 @@
 				</2>
 			</IndependentCfg>
 		</X_TWSZ-COM_WANSelect>
+		
 	</Services>
 	<DeviceConfig type="object">
 		<PersistentData type="string(256)"></PersistentData>
@@ -199,8 +208,8 @@
 		<LocalTimeZoneName type="string(64)">EST</LocalTimeZoneName>
 		<DaylightSavingsUsed type="boolean">1</DaylightSavingsUsed>
 		<X_TWSZ-COM_DateTime type="dateTime">2000-04-01T02:00:00</X_TWSZ-COM_DateTime>
-		<DaylightSavingsStart type="dateTime">2012-03-11T02:00:00</DaylightSavingsStart>
-		<DaylightSavingsEnd type="dateTime">2036-11-04T02:00:00</DaylightSavingsEnd>
+		<DaylightSavingsStart type="dateTime">2013-03-10T02:00:00</DaylightSavingsStart>
+		<DaylightSavingsEnd type="dateTime">2013-11-03T02:00:00</DaylightSavingsEnd>
 		<DaylightSavingsDelta type="string(6)">+01:00</DaylightSavingsDelta>	
 	</Time>
 	<Layer3Forwarding type="object">
@@ -883,6 +892,7 @@
 		<FilterNumberOfEntries type="unsignedInt" Writable="0">12</FilterNumberOfEntries>
 		<MarkingNumberOfEntries type="unsignedInt" Writable="0">1</MarkingNumberOfEntries>
 		<MaxVLANEntries type="unsignedInt" Writable="0"></MaxVLANEntries>
+		<X_TWSZ-COM_WebFiltersSetupAccessEnable type="string" Wirtable="1">1</X_TWSZ-COM_WebFiltersSetupAccessEnable>
 		<AvailableInterfaceNumberOfEntries type="unsignedInt" Writable="0">4</AvailableInterfaceNumberOfEntries>
 		<Bridge type="object" MaxIdx="3" MaxNode="MaxBridgeEntries" CurNode="BridgeNumberOfEntries">
 			<1 type="object">
@@ -1141,6 +1151,7 @@
 		<X_TWSZ-COM_UpClsNumOfEntries type="unsignedInt" Writable="0">1</X_TWSZ-COM_UpClsNumOfEntries>
 		<X_TWSZ-COM_DownClsNumOfEntries type="unsignedInt" Writable="0">0</X_TWSZ-COM_DownClsNumOfEntries>
 		<AvailableAppList type="string(1024)" Writable="0"></AvailableAppList>
+		<X_TWSZ-COM_QosSetupAccessEnable type="string" Wirtable="1">1</X_TWSZ-COM_QosSetupAccessEnable>
 		<X_TWSZ-COM_Interface type="object" MaxIdx="2" Writable="0" MaxNode="MaxInterfaceEntries" CurNode="InterfaceNumberOfEntries">
 			<1 type="object">
 				<Enable type="boolean">1</Enable>
@@ -1450,6 +1461,8 @@
 			<RouteProtocolRx type="string">Off</RouteProtocolRx>
 			<RipPassive type="string"></RipPassive>
 			<RipDirection type="string"></RipDirection>
+			<X_TWSZ-COM_WebLanInterfaceSetupAccessEnable type="string" Wirtable="1">1</X_TWSZ-COM_WebLanInterfaceSetupAccessEnable>
+			<X_TWSZ-COM_WebWirelessInterfaceSetupAccessEnable type="string">1</X_TWSZ-COM_WebWirelessInterfaceSetupAccessEnable >
 			<LANHostConfigManagement type="object">
 				<DHCPServerEnable type="boolean">1</DHCPServerEnable>
 				<DHCPServerAlwaysBroadcastEnable type="boolean">0</DHCPServerAlwaysBroadcastEnable>
@@ -2344,6 +2357,7 @@
 		<1 type="object">
 			<WANConnectionNumberOfEntries type="unsignedInt" Writable="0">1</WANConnectionNumberOfEntries>
 			<MAXWANConnectionNumberOfEntries type="unsignedInt" Writable="0">8</MAXWANConnectionNumberOfEntries>
+			<X_TWSZ-COM_WebWaninterFaceSetupAccessEnable type="string" Wirtable="1">1</X_TWSZ-COM_WebWaninterFaceSetupAccessEnable>
 			<WANCommonInterfaceConfig type="object">
 				<X_TWSZ-COM_DeviceName type="string" Writable="0" Standard="0">eth1</X_TWSZ-COM_DeviceName>
 				<EnabledForInternet type="boolean">1</EnabledForInternet>
@@ -2975,6 +2989,7 @@
 		<LanBlackFilter type="object" MaxIdx="0" CurNode="LanBlackFilterNumberOfEntries" MaxNode="MaxFilterNumberOfEntries"></LanBlackFilter>
 		<LanWhiteFilter type="object" MaxIdx="0" CurNode="LanWhiteFilterNumberOfEntries" MaxNode="MaxFilterNumberOfEntries"></LanWhiteFilter>
 		<LanPortBlackFilter type="object" MaxIdx="0" CurNode="LanPortBlackFilterNumberOfEntries" MaxNode="MaxFilterNumberOfEntries"></LanPortBlackFilter>
+		<X_TWSZ-COM_WebFireWallSetupAccessEnable type="string" Wirtable="1">1</X_TWSZ-COM_WebFireWallSetupAccessEnable>
 	</X_TWSZ-COM_Firewall>
 	<X_TWSZ-COM_IP6Firewall type="object">
 	    <SPIEnable type="boolean">0</SPIEnable>
@@ -3856,6 +3871,7 @@
   <X_TWSZ-COM_PortForward type="object">
 		<X_TWSZ-COM_MaxPortForwardEntries type="unsignedInt" Writable="0">24</X_TWSZ-COM_MaxPortForwardEntries>
 		<PortForwardNumberOfEntries type="unsignedInt" Writable="0">0</PortForwardNumberOfEntries>
+		<X_TWSZ-COM_WebPortForWardingSetupAccessEnable type="string" Wirtable="1">1</X_TWSZ-COM_WebPortForWardingSetupAccessEnable>
 		<PortForward type="object" MaxNode="X_TWSZ-COM_MaxPortForwardEntries" CurNode="PortForwardNumberOfEntries">
 		<1 type="object">
 				<PortForwardEnabled type="boolean">0</PortForwardEnabled>

@@ -332,6 +332,17 @@ function uiSubmit()
 			return false;	
 		}	
 		
+		if($("host").value.match(/[\|&;\$@\+><\?\(\)]/))
+		{			
+				alert(SEcode['lang_invalid_input']);
+				return false;	
+		}	
+		if($("user").value.match(/[\|&;\$@\+><\?\(\)]/))
+		{			
+				alert(SEcode['lang_invalid_input']);
+				return false;	
+		}	
+
 		if(IsBlank($("host").value) && $("v4addr").value!="Oray.cn")
 		{			
 			alert(SEcode['lang_ddns_host_name']);
@@ -355,6 +366,12 @@ function uiSubmit()
 			alert(SEcode['lang_ddns_vfpasswd']);
 			return false;
 		}
+		if(!$("passwd").value.match(/^[0-9a-zA-Z\\.@_$-]{1,15}$/))
+		{
+			alert(SEcode["lang_invalid_passwd"]);
+			return false;			
+		}
+
 		if (!TEMP_IsDigit($("timeout").value) || parseInt($("timeout").value, 10)>8670 || parseInt($("timeout").value, 10)<1)
 		{
 			alert(SEcode['lang_ddns_period']);

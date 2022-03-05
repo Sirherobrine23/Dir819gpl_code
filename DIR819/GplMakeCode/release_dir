@@ -14,4 +14,4 @@ src/apps/CTC_UPnP_DM_FE
 src/apps/include
 src/boot
 src/kernel/linux-2.6.36.x/drivers/net/wireless/MT7620A
-src/kernel/linux-2.6.36.x/drivers/net/wireless/MT76120
+src/kernel/linux-2.6.36.x/drivers/net/wireless/MT7610

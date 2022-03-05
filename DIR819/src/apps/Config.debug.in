@@ -126,7 +126,14 @@ config TBS_APPS_DEBUG_LAN
     depends on TBS_APPS_DEBUG
     help
       LAN module debug
-
+	  
+config TBS_APPS_DEBUG_MDNS
+    bool "MDNS"
+    default n
+    depends on TBS_APPS_DEBUG
+    help
+      MDNS module debug
+	  
 config TBS_APPS_DEBUG_LVLAN
     bool "LVLAN"
     default n

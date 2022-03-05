@@ -34,7 +34,7 @@
 //<![CDATA[
 <? include html/js/global.js ?>
 <? include html/page/<?echo $var:realpage?>.js ?>
-var myTime = setTimeout("Timeout()", 10*60000);   
+var myTime = setTimeout("Timeout()", 10*60000 +1);   
 function Timeout() {
      document.location.href='/cgi-bin/webproc?getpage=html/logout.html&var:menu=basic&var:page=Bas_wansum';   
 } 
@@ -70,7 +70,7 @@ function Timeout() {
 	</div><!-- logo menu -->
 	<div style="display: block;" class="topmenucontainer" id="menu"><div class="modelname">DIR-819</div>
 		<div>
-			<a class="<?if eq `$var:menu` `basic` `label`?>" href="/cgi-bin/webproc?getpage=html/index.html&var:menu=basic&var:page=Bas_wansum"><span id = "TOPM009">Setup</span></a>
+			<a id="SUBbasic" class="<?if eq `$var:menu` `basic` `label`?>" href="/cgi-bin/webproc?getpage=html/index.html&var:menu=basic&var:page=Bas_wansum"><span id = "TOPM009">Setup</span></a>
 			<!--a class="<?if eq `$var:menu` `24gwlan` `label`?>" href="/cgi-bin/webproc?getpage=html/index.html&var:menu=24gwlan&var:page=24G_basic"><span id = "TOPM010">Wireless 2.4G</span></a>
 			<a class="<?if eq `$var:menu` `5gwlan` `label`?>" href="/cgi-bin/webproc?getpage=html/index.html&var:menu=5gwlan&var:page=5G_basic"><span id = "TOPM018">Wireless 5G</span></a-->
 			<a class="<?if eq `$var:menu` `advanced` `label`?>" href="/cgi-bin/webproc?getpage=html/index.html&var:menu=advanced&var:page=Adv_virtual"><span id = "TOPM011">Advanced</span></a>
@@ -108,3 +108,36 @@ function Timeout() {
 	<form id="uiPostForm" method="post" action="webproc"></form>
 </body>
 </html>
+<script type="text/javascript">
+function uiOnload()
+{
+    var subbasic;
+	var G_LanInterfaceSetupEnable = "<?get :InternetGatewayDevice.LANDevice.1.X_TWSZ-COM_WebLanInterfaceSetupAccessEnable?>";
+    var G_WaninterFaceSetupEnable = "<?get :InternetGatewayDevice.WANDevice.1.X_TWSZ-COM_WebWaninterFaceSetupAccessEnable?>";
+    var G_WirelessInterfaceSetupEnable = "<?get :InternetGatewayDevice.LANDevice.1.X_TWSZ-COM_WebWirelessInterfaceSetupAccessEnable?>";
+    subbasic=document.getElementById("SUBbasic");
+	if(G_WaninterFaceSetupEnable == 1){
+		subbasic.href="/cgi-bin/webproc?getpage=html/index.html&var:menu=basic&var:page=Bas_wansum";
+    }
+	else if(G_WirelessInterfaceSetupEnable == 1){
+        subbasic.href="/cgi-bin/webproc?getpage=html/index.html&var:menu=basic&var:page=Bas_wlansum";
+	}
+	else if(G_LanInterfaceSetupEnable == 1){
+       subbasic.href="/cgi-bin/webproc?getpage=html/index.html&var:menu=basic&var:page=Bas_lan";
+	}
+	else{
+       subbasic.href="/cgi-bin/webproc?getpage=html/index.html&var:menu=basic&var:page=Bas_ipv6_setup";
+	}
+	
+}
+function dealWithError(){
+    if (G_Error != 1){ 
+        return false;
+    }
+    var arrayHint = [];
+    dealErrorMsg(arrayHint, G_Error_Msg);
+}
+//监听加载与错误处理函数
+addListeners(uiOnload, dealWithError);
+
+</script>

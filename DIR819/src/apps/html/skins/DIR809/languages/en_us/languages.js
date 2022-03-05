@@ -18,7 +18,7 @@ var top_menu = {
 		'TOPM016'     :       'Hardware Version :',
 		'TOPM017'     :       'Firmware Version :',
 		'TOPM018'     :       'WIRELESS(5.8G)',
-		'TOPM019'     :       'Copyright &copy; 2016 D-Link Corporation. All rights reserved.',
+		'TOPM019'     :       'Copyright &copy; 2017 D-Link Corporation. All rights reserved.',
 		'lang_saving'     :       'Saving',
 		'lang_take_effect'     :       'The settings are being saved and are taking effect.',
 		'lang_waiting'     :       'Please wait ...',
@@ -443,14 +443,14 @@ var data_languages = {
 			'WIZLOGIN078'    :       'Secondary DNS Address',
 			'WIZLOGIN079'    :       'Step 2: Configure your Wi-Fi Security',
 			'wifi24_name_pwd_show'    :'Give your Wi-Fi network a name and a password. (2.4GHz Band)',
-			'fld_ssid_24'    :       'Wi-Fi Network Name(SSID)',
+			'fld_ssid_24'    :       'Wi-Fi Network Name (SSID)',
 			'WIZLOGIN080'    :       '(Using up to 32 characters)',
 			'wifi24_pwd_show'    :       'Give your Wi-Fi network a password.',
 			'WIZLOGIN081'    :       'Wi-Fi Password ',
 			'WIZLOGIN082'    :       '(Between 8 and 63 characters)',
 			'WIZLOGIN083'    :       'Give your Wi-Fi network a name and a password. (5GHz Band)',
-			'fld_ssid_5'    :       'Wi-Fi Network Name(SSID)',
-			'WIZLOGIN084'    :       '(Using up to  32 characters)',
+			'fld_ssid_5'    :       'Wi-Fi Network Name (SSID)',
+			'WIZLOGIN084'    :       '(Using up to 32 characters)',
 			'WIZLOGIN085'    :       'Wi-Fi Password ',
 			'WIZLOGIN086'    :       '(Between 8 and 63 characters)',
 			'WIZLOGIN087'    :       'Step 3: Set your Password',
@@ -540,9 +540,9 @@ var data_languages = {
      		'WIZLOGIN171'      :       '(GMT+13:00) Samoa',
      		'WIZLOGIN172'      :       'Step 5: Confirm WI-FI settings',
      		'WIZLOGIN173'      :       'Below is a detailed summary of your Wi-Fi security settings. Please print this page out, or write the information on a piece of paper, so you can configure the correct settings on your Wi-Fi devices.',
-     		'fld_ssid_24_result'      :       ' Wi-Fi Network Name(SSID) 2.4GHz',
+     		'fld_ssid_24_result'      :       ' Wi-Fi Network Name (SSID) 2.4GHz',
      		'WIZLOGIN174'      :       'Wi-Fi Password ',
-     		'fld_ssid_5G'      :       ' Wi-Fi Network Name(SSID) 5GHz',
+     		'fld_ssid_5G'      :       ' Wi-Fi Network Name (SSID) 5GHz',
      		'WIZLOGIN175'      :       'Wi-Fi Password ',
 			'DIV_ProductPage'    :       'Product Page : ',
 			'DIV_FirmwareVersion'    :       'Firmware Version : ',
@@ -550,9 +550,9 @@ var data_languages = {
 			'lang_saving'     :       'Saving',
 			'lang_take_effect'     :       'The settings are being saved and are taking effect.',
 			'lang_waiting'     :       'Please wait ...',			
-			'DIV_Copyright'    :       'Copyright &copy; 2016 D-Link Corporation. All rights reserved.',	
+			'DIV_Copyright'    :       'Copyright &copy; 2017 D-Link Corporation. All rights reserved.',	
 			'WIZLOGIN217'    :       'Please for your Wi-Fi network setup a name.',	
-			'WIZLOGIN218'    :       'Wi-Fi Network Name(SSID)'	
+			'WIZLOGIN218'    :       'Wi-Fi Network Name (SSID)'	
     },       
     value : {
         'WIZLOGIN176'    :       'Cancel',
@@ -3820,10 +3820,10 @@ var data_languages = {
       	'upgrading002'      :       'Firmware Version : ',
       	'upgrading003'      :       'Hardware Version : ',
       	'upgrading004'      :       'REBOOTING...',
-      	'result'      		:       'LAN IP address or Netmask change will result in failure of accessing to this Router. If you changed the IP address of the AP,you should release and renew PC\'s IP address for the succedent configuraion.',
+      	'result'      		:       '<p>Upgrading...</p><p>Do not power off the device until the Firmware Upgrade is complete</p>',
       	'upgrading006'      :       'Waiting time :',
       	'upgrading007'      :       'second(s)',
-		'upgrading008'      :       'Copyright &copy; 2016 D-Link Corporation. All rights reserved.'
+		'upgrading008'      :       'Copyright &copy; 2017 D-Link Corporation. All rights reserved.'
     }                 
   },
   'upconfig' :
@@ -3833,10 +3833,10 @@ var data_languages = {
       	'upconfig002'      :       'Firmware Version : ',
       	'upconfig003'      :       'Hardware Version : ',
       	'upconfig004'      :       'REBOOTING...',
-      	'result' 			:       'LAN IP address or Netmask change will result in failure of accessing to this Router. If you changed the IP address of the AP,you should release and renew PC\'s IP address for the succedent configuraion.',
+      	'result' 			:       'Rebooting',
       	'upconfig006'      :       'Waiting time :',
       	'upconfig007'      :       'second(s)',
-		'upconfig008'      :       'Copyright &copy; 2016 D-Link Corporation. All rights reserved.'
+		'upconfig008'      :       'Copyright &copy; 2017 D-Link Corporation. All rights reserved.'
     }                 
   },
   'Wait_lan' :
@@ -3846,10 +3846,10 @@ var data_languages = {
       	'wait_lan002'      :       'Firmware Version : ',
       	'wait_lan003'      :       'Hardware Version : ',
       	'wait_lan004'      :       'REBOOTING...',
-      	'result' 			:       'LAN IP address or Netmask change may result in failure of accessing to this Router, you should release and renew PC\'s IP address for the succedent configuraion.',
+      	'result' 			:       'If you changed the IP address of the router you will need to change the IP address in your browser before accessing the configuration website again.',
       	'wait_lan006'      :       'Waiting time :',
       	'wait_lan007'      :       'second(s)',
-		'wait_lan008'      :       'Copyright &copy; 2016 D-Link Corporation. All rights reserved.'
+		'wait_lan008'      :       'Copyright &copy; 2017 D-Link Corporation. All rights reserved.'
     }                 
   },
   'restarting' :
@@ -3859,10 +3859,10 @@ var data_languages = {
       	'restarting002'      :       'Firmware Version : ',
       	'restarting003'      :       'Hardware Version : ',
       	'restarting004'      :       'REBOOTING...',
-      	'result' 			:       'If you changed the IP address of the router you will need to change the IP address in your browser before accessing the configuration web page again.',
+      	'result' 			:       'Rebooting',
 		'restarting006' : 'Waiting time :',
       	'restarting007'      :       'second(s)',
-		'restarting008'      :       'Copyright &copy; 2016 D-Link Corporation. All rights reserved.'
+		'restarting008'      :       'Copyright &copy; 2017 D-Link Corporation. All rights reserved.'
     }                 
   },
   'language_pack' :
@@ -3877,7 +3877,7 @@ var data_languages = {
 		'lang_update005'      :       'Product Page : ',
       	'lang_update006'      :       'Firmware Version : ',
       	'lang_update007'      :       'Hardware Version : ',
-		'lang_update008'      :       'Copyright &copy; 2016 D-Link Corporation. All rights reserved.',
+		'lang_update008'      :       'Copyright &copy; 2017 D-Link Corporation. All rights reserved.',
 		'back'      :       'Click here to return to the previous page.'
     }                 
   },
@@ -3888,10 +3888,10 @@ var data_languages = {
       	'restore002'      :       'Firmware Version : ',
       	'restore003'      :       'Hardware Version : ',
       	'restore004'      :       'REBOOTING...',
-      	'result' 			:       'The IP address of the AP will be reseted to 192.168.0.1, If you changed the IP address of the AP,you should release and renew PC\'s IP address for the succedent configuraion.',
+      	'result' 			:       'Rebooting',
       	'restore006'      :       'Waiting time :',
       	'restore007'      :       'second(s)',
-		'restore008'      :       'Copyright &copy; 2016 D-Link Corporation. All rights reserved.'
+		'restore008'      :       'Copyright &copy; 2017 D-Link Corporation. All rights reserved.'
     }                 
   }   
 };                           

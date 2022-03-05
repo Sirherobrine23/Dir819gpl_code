@@ -18,6 +18,14 @@ var n = 0;
 	G_SchedEntry[n][12] = "$0b";   	//SchednfUsed
 	++n;
 `?>
+	
+var G_ACLWanGroup = []
+var m = 0;
+<?objget :InternetGatewayDevice.X_TWSZ-COM_ACL.RACL.1.Service. "Schedule"
+`	G_ACLWanGroup[m] = [];
+	G_ACLWanGroup[m][0] = "$01";   	//ScheduleName
+	++m;
+`?>
 //全局变量
 var editIdx   = -1;
 
@@ -141,10 +149,24 @@ function EditEntry(_idx){
 		$('schendhrs').disabled=true;
 		$('schendmin').disabled=true;
 	}
+	else
+	{
+		$('schstarthrs').disabled=false;
+		$('schstartmin').disabled=false;
+		$('schendhrs').disabled=false;
+		$('schendmin').disabled=false;
+	}
 	if($('schallweek').checked){
 		var _input=$('daysArea').getElementsByTagName('INPUT');
 		for(var k = 0, _len = _input.length; k < _len; k++){
 			_input[k].disabled = true;
+		}
+	}
+	else
+	{
+		var _input=$('daysArea').getElementsByTagName('INPUT');
+		for(var k = 0, _len = _input.length; k < _len; k++){
+			_input[k].disabled = false;
 		}
 	}
 	
@@ -172,6 +194,11 @@ function uiSubmit(){
 	var starttime=_nodes[1].value+':'+_nodes[2].value;
 	var endtime=_nodes[3].value+':'+_nodes[4].value;
 	var selectdays='';
+	if($("schdesc").value.match(/[\|&;\$@\+><\?\(\)]/))
+	{			
+		alert(SEcode['lang_invalid_input']);
+		return false;	
+	}	
 	if($('schsun').checked)
 	     selectdays='Sun,';
 	if($('schmon').checked)
@@ -258,7 +285,20 @@ function uiSubmit(){
 
 //删除
 function RemoveEntry(Idx){
-	if((G_SchedEntry[Idx][9]!= 0)||(G_SchedEntry[Idx][10]!= 0)||(G_SchedEntry[Idx][11]!= 0)||(G_SchedEntry[Idx][12]!= 0)||(G_SchedEntry[Idx][1]!= 0))
+    var SchedpfUsed = 0;
+	
+    for(var i = 0; i < G_ACLWanGroup.length; i++)
+	{
+	    //alert(i);
+	    //alert(G_ACLWanGroup[i][0]);
+		//alert(G_SchedEntry[Idx][7]);
+		if(G_ACLWanGroup[i][0] == G_SchedEntry[Idx][7])
+		{
+			SchedpfUsed = 1;
+			break;
+		}
+	}	
+	if((G_SchedEntry[Idx][9]!= 0)||(1 == SchedpfUsed) /*|| (G_SchedEntry[Idx][10]!= 0)*/||(G_SchedEntry[Idx][11]!= 0)||(G_SchedEntry[Idx][12]!= 0)||(G_SchedEntry[Idx][1]!= 0))
 	{
 		alert(SEcode['lang_sec_used']);
         return false;

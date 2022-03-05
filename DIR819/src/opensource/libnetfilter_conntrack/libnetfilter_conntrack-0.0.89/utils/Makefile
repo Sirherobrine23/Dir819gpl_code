@@ -36,26 +36,26 @@ NORMAL_UNINSTALL = :
 PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = i686-pc-linux-gnu
-host_triplet = mipsel-unknown-linux-gnu
-target_triplet = mipsel-unknown-linux-gnu
-ACLOCAL = ${SHELL} /home/guohongliang/work/819/DIR819/build.DIR-819/opensource/libnetfilter_conntrack/libnetfilter_conntrack-0.0.89/missing --run aclocal-1.7
+host_triplet = mipseb-unknown-linux-uclibc
+target_triplet = mipseb-unknown-linux-uclibc
+ACLOCAL = ${SHELL} /yeyingke/TBS/flush/build.AR7130_AP699E7.2U10-4/alp/opensource/libnetfilter_conntrack/libnetfilter_conntrack-0.0.89/missing --run aclocal-1.7
 AMDEP_FALSE = #
 AMDEP_TRUE = 
-AMTAR = ${SHELL} /home/guohongliang/work/819/DIR819/build.DIR-819/opensource/libnetfilter_conntrack/libnetfilter_conntrack-0.0.89/missing --run tar
-AR = mipsel-linux-ar
-AUTOCONF = ${SHELL} /home/guohongliang/work/819/DIR819/build.DIR-819/opensource/libnetfilter_conntrack/libnetfilter_conntrack-0.0.89/missing --run autoconf
-AUTOHEADER = ${SHELL} /home/guohongliang/work/819/DIR819/build.DIR-819/opensource/libnetfilter_conntrack/libnetfilter_conntrack-0.0.89/missing --run autoheader
-AUTOMAKE = ${SHELL} /home/guohongliang/work/819/DIR819/build.DIR-819/opensource/libnetfilter_conntrack/libnetfilter_conntrack-0.0.89/missing --run automake-1.7
+AMTAR = ${SHELL} /yeyingke/TBS/flush/build.AR7130_AP699E7.2U10-4/alp/opensource/libnetfilter_conntrack/libnetfilter_conntrack-0.0.89/missing --run tar
+AR = mipseb-linux-uclibc-ar
+AUTOCONF = ${SHELL} /yeyingke/TBS/flush/build.AR7130_AP699E7.2U10-4/alp/opensource/libnetfilter_conntrack/libnetfilter_conntrack-0.0.89/missing --run autoconf
+AUTOHEADER = ${SHELL} /yeyingke/TBS/flush/build.AR7130_AP699E7.2U10-4/alp/opensource/libnetfilter_conntrack/libnetfilter_conntrack-0.0.89/missing --run autoheader
+AUTOMAKE = ${SHELL} /yeyingke/TBS/flush/build.AR7130_AP699E7.2U10-4/alp/opensource/libnetfilter_conntrack/libnetfilter_conntrack-0.0.89/missing --run automake-1.7
 AWK = awk
-CC = mipsel-linux-gcc
+CC = mipseb-linux-uclibc-gcc
 CCDEPMODE = depmode=gcc3
-CFLAGS = -Dlinux -D__linux__ -Dunix  -D_LINUX_2_6_ -I. -I/opt/buildroot-gcc342/mipsel-linux//include -I/home/guohongliang/work/819/DIR819/build/kernel/linux-2.6.36.x/include -I/opt/buildroot-gcc342/mipsel-linux//../lib/gcc-lib/mips-linux-uclibc/3.3.5/include -DLIBNETFILTER_CONNTRACK_DIR=\"${exec_prefix}/lib/libnetfilter_conntrack/\" -I/home/guohongliang/work/819/DIR819/build/tmpdist/include
-CPP = mipsel-linux-gcc -E
+CFLAGS = -O2 -DLIBNETFILTER_CONNTRACK_DIR=\"${exec_prefix}/lib/libnetfilter_conntrack/\" -I/yeyingke/TBS/flush/build/tmpdist/include
+CPP = mipseb-linux-uclibc-gcc -E
 CPPFLAGS = 
-CXX = mipsel-linux-g++
-CXXCPP = mipsel-linux-g++ -E
+CXX = mipseb-linux-uclibc-g++
+CXXCPP = mipseb-linux-uclibc-g++ -E
 CXXDEPMODE = depmode=gcc3
-CXXFLAGS = -g -O2
+CXXFLAGS = -O2
 CYGPATH_W = echo
 DEFS = -DPACKAGE_NAME=\"\" -DPACKAGE_TARNAME=\"\" -DPACKAGE_VERSION=\"\" -DPACKAGE_STRING=\"\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE=\"libnetfilter_conntrack\" -DVERSION=\"0.0.89\" -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_DLFCN_H=1 -DHAVE_ARPA_INET_H=1 -DHAVE_INET_NTOP=1
 DEPDIR = .deps
@@ -65,24 +65,24 @@ ECHO_N = -n
 ECHO_T = 
 EGREP = /bin/grep -E
 EXEEXT = 
-F77 = gfortran
-FFLAGS = -g -O2
+F77 = g77
+FFLAGS = -O2
 GREP = /bin/grep
 INSTALL_DATA = ${INSTALL} -m 644
 INSTALL_PROGRAM = ${INSTALL}
 INSTALL_SCRIPT = ${INSTALL}
 INSTALL_STRIP_PROGRAM = ${SHELL} $(install_sh) -c -s
 LDFLAGS = 
-LIBNFCONNTRACK_LIBS = -L/home/guohongliang/work/819/DIR819/build/tmpdist/lib -lnfnetlink
-LIBNFNETLINK_CFLAGS = -I/home/guohongliang/work/819/DIR819/build/tmpdist/include
-LIBNFNETLINK_LIBS = -L/home/guohongliang/work/819/DIR819/build/tmpdist/lib -lnfnetlink
+LIBNFCONNTRACK_LIBS = -L/yeyingke/TBS/flush/build/tmpdist/lib -lnfnetlink
+LIBNFNETLINK_CFLAGS = -I/yeyingke/TBS/flush/build/tmpdist/include
+LIBNFNETLINK_LIBS = -L/yeyingke/TBS/flush/build/tmpdist/lib -lnfnetlink
 LIBOBJS = 
 LIBS = 
 LIBTOOL = $(SHELL) $(top_builddir)/libtool
 LIBTOOL_DEPS = ./ltmain.sh
 LN_S = ln -s
 LTLIBOBJS = 
-MAKEINFO = ${SHELL} /home/guohongliang/work/819/DIR819/build.DIR-819/opensource/libnetfilter_conntrack/libnetfilter_conntrack-0.0.89/missing --run makeinfo
+MAKEINFO = ${SHELL} /yeyingke/TBS/flush/build.AR7130_AP699E7.2U10-4/alp/opensource/libnetfilter_conntrack/libnetfilter_conntrack-0.0.89/missing --run makeinfo
 OBJEXT = o
 PACKAGE = libnetfilter_conntrack
 PACKAGE_BUGREPORT = 
@@ -92,15 +92,15 @@ PACKAGE_TARNAME =
 PACKAGE_VERSION = 
 PATH_SEPARATOR = :
 PKG_CONFIG = /usr/bin/pkg-config
-RANLIB = mipsel-linux-ranlib
+RANLIB = mipseb-linux-uclibc-ranlib
 SED = /bin/sed
 SET_MAKE = 
 SHELL = /bin/sh
-STRIP = mipsel-linux-strip
+STRIP = mipseb-linux-uclibc-strip
 VERSION = 0.0.89
 ac_ct_CC = 
 ac_ct_CXX = 
-ac_ct_F77 = gfortran
+ac_ct_F77 = g77
 am__fastdepCC_FALSE = #
 am__fastdepCC_TRUE = 
 am__fastdepCXX_FALSE = #
@@ -119,15 +119,15 @@ datarootdir = ${prefix}/share
 docdir = ${datarootdir}/doc/${PACKAGE}
 dvidir = ${docdir}
 exec_prefix = ${prefix}
-host = mipsel-unknown-linux-gnu
-host_alias = mipsel-linux
-host_cpu = mipsel
-host_os = linux-gnu
+host = mipseb-unknown-linux-uclibc
+host_alias = mipseb-linux-uclibc
+host_cpu = mipseb
+host_os = linux-uclibc
 host_vendor = unknown
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
-install_sh = /home/guohongliang/work/819/DIR819/build.DIR-819/opensource/libnetfilter_conntrack/libnetfilter_conntrack-0.0.89/install-sh
+install_sh = /yeyingke/TBS/flush/build.AR7130_AP699E7.2U10-4/alp/opensource/libnetfilter_conntrack/libnetfilter_conntrack-0.0.89/install-sh
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
 localedir = ${datarootdir}/locale
@@ -135,16 +135,16 @@ localstatedir = ${prefix}/var
 mandir = ${datarootdir}/man
 oldincludedir = /usr/include
 pdfdir = ${docdir}
-prefix = /home/guohongliang/work/819/DIR819/build/tmpdist
+prefix = /yeyingke/TBS/flush/build/tmpdist
 program_transform_name = s,x,x,
 psdir = ${docdir}
 sbindir = ${exec_prefix}/sbin
 sharedstatedir = ${prefix}/com
 sysconfdir = ${prefix}/etc
-target = mipsel-unknown-linux-gnu
+target = mipseb-unknown-linux-uclibc
 target_alias = 
-target_cpu = mipsel
-target_os = linux-gnu
+target_cpu = mipseb
+target_os = linux-uclibc
 target_vendor = unknown
 
 # This is _NOT_ the library release version, it's an API version.
@@ -155,151 +155,31 @@ LIBVERSION = 3:0:2
 
 INCLUDES = $(all_includes) -I$(top_srcdir)/include
 
-noinst_PROGRAMS = expect_dump expect_create expect_get expect_delete \
-	       expect_flush expect_events \
-	       conntrack_create conntrack_dump conntrack_update \
-	       conntrack_delete conntrack_flush conntrack_create_nat \
-	       conntrack_get conntrack_events \
-	       conntrack_master
+noinst_PROGRAMS = conntrack_flush
 
-
-conntrack_create_SOURCES = conntrack_create.c
-conntrack_create_LDADD = ../src/libnetfilter_conntrack.la
-conntrack_create_LDFLAGS = -dynamic -ldl
-
-conntrack_get_SOURCES = conntrack_get.c
-conntrack_get_LDADD = ../src/libnetfilter_conntrack.la
-conntrack_get_LDFLAGS = -dynamic -ldl
-
-conntrack_create_nat_SOURCES = conntrack_create_nat.c
-conntrack_create_nat_LDADD = ../src/libnetfilter_conntrack.la
-conntrack_create_nat_LDFLAGS = -dynamic -ldl
-
-conntrack_update_SOURCES = conntrack_update.c
-conntrack_update_LDADD = ../src/libnetfilter_conntrack.la
-conntrack_update_LDFLAGS = -dynamic -ldl
-
-conntrack_delete_SOURCES = conntrack_delete.c
-conntrack_delete_LDADD = ../src/libnetfilter_conntrack.la
-conntrack_delete_LDFLAGS = -dynamic -ldl
-
-conntrack_dump_SOURCES = conntrack_dump.c
-conntrack_dump_LDADD = ../src/libnetfilter_conntrack.la
-conntrack_dump_LDFLAGS = -dynamic -ldl
 
 conntrack_flush_SOURCES = conntrack_flush.c
 conntrack_flush_LDADD = ../src/libnetfilter_conntrack.la
 conntrack_flush_LDFLAGS = -dynamic -ldl
 
-conntrack_events_SOURCES = conntrack_events.c
-conntrack_events_LDADD = ../src/libnetfilter_conntrack.la
-conntrack_events_LDFLAGS = -dynamic -ldl
-
-conntrack_master_SOURCES = conntrack_master.c
-conntrack_master_LDADD = ../src/libnetfilter_conntrack.la
-conntrack_master_LDFLAGS = -dynamic -ldl
-
-expect_dump_SOURCES = expect_dump.c
-expect_dump_LDADD = ../src/libnetfilter_conntrack.la
-expect_dump_LDFLAGS = -dynamic -ldl
-
-expect_create_SOURCES = expect_create.c
-expect_create_LDADD = ../src/libnetfilter_conntrack.la
-expect_create_LDFLAGS = -dynamic -ldl
-
-expect_get_SOURCES = expect_get.c
-expect_get_LDADD = ../src/libnetfilter_conntrack.la
-expect_get_LDFLAGS = -dynamic -ldl
-
-expect_delete_SOURCES = expect_delete.c
-expect_delete_LDADD = ../src/libnetfilter_conntrack.la
-expect_delete_LDFLAGS = -dynamic -ldl
-
-expect_flush_SOURCES = expect_flush.c
-expect_flush_LDADD = ../src/libnetfilter_conntrack.la
-expect_flush_LDFLAGS = -dynamic -ldl
-
-expect_events_SOURCES = expect_events.c
-expect_events_LDADD = ../src/libnetfilter_conntrack.la
-expect_events_LDFLAGS = -dynamic -ldl
 subdir = utils
+
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
 CONFIG_CLEAN_FILES =
-noinst_PROGRAMS = expect_dump$(EXEEXT) expect_create$(EXEEXT) \
-	expect_get$(EXEEXT) expect_delete$(EXEEXT) \
-	expect_flush$(EXEEXT) expect_events$(EXEEXT) \
-	conntrack_create$(EXEEXT) conntrack_dump$(EXEEXT) \
-	conntrack_update$(EXEEXT) conntrack_delete$(EXEEXT) \
-	conntrack_flush$(EXEEXT) conntrack_create_nat$(EXEEXT) \
-	conntrack_get$(EXEEXT) conntrack_events$(EXEEXT) \
-	conntrack_master$(EXEEXT)
+noinst_PROGRAMS = conntrack_flush$(EXEEXT)
+
 PROGRAMS = $(noinst_PROGRAMS)
 
-am_conntrack_create_OBJECTS = conntrack_create.$(OBJEXT)
-conntrack_create_OBJECTS = $(am_conntrack_create_OBJECTS)
-conntrack_create_DEPENDENCIES = ../src/libnetfilter_conntrack.la
-am_conntrack_create_nat_OBJECTS = conntrack_create_nat.$(OBJEXT)
-conntrack_create_nat_OBJECTS = $(am_conntrack_create_nat_OBJECTS)
-conntrack_create_nat_DEPENDENCIES = ../src/libnetfilter_conntrack.la
-am_conntrack_delete_OBJECTS = conntrack_delete.$(OBJEXT)
-conntrack_delete_OBJECTS = $(am_conntrack_delete_OBJECTS)
-conntrack_delete_DEPENDENCIES = ../src/libnetfilter_conntrack.la
-am_conntrack_dump_OBJECTS = conntrack_dump.$(OBJEXT)
-conntrack_dump_OBJECTS = $(am_conntrack_dump_OBJECTS)
-conntrack_dump_DEPENDENCIES = ../src/libnetfilter_conntrack.la
-am_conntrack_events_OBJECTS = conntrack_events.$(OBJEXT)
-conntrack_events_OBJECTS = $(am_conntrack_events_OBJECTS)
-conntrack_events_DEPENDENCIES = ../src/libnetfilter_conntrack.la
 am_conntrack_flush_OBJECTS = conntrack_flush.$(OBJEXT)
 conntrack_flush_OBJECTS = $(am_conntrack_flush_OBJECTS)
 conntrack_flush_DEPENDENCIES = ../src/libnetfilter_conntrack.la
-am_conntrack_get_OBJECTS = conntrack_get.$(OBJEXT)
-conntrack_get_OBJECTS = $(am_conntrack_get_OBJECTS)
-conntrack_get_DEPENDENCIES = ../src/libnetfilter_conntrack.la
-am_conntrack_master_OBJECTS = conntrack_master.$(OBJEXT)
-conntrack_master_OBJECTS = $(am_conntrack_master_OBJECTS)
-conntrack_master_DEPENDENCIES = ../src/libnetfilter_conntrack.la
-am_conntrack_update_OBJECTS = conntrack_update.$(OBJEXT)
-conntrack_update_OBJECTS = $(am_conntrack_update_OBJECTS)
-conntrack_update_DEPENDENCIES = ../src/libnetfilter_conntrack.la
-am_expect_create_OBJECTS = expect_create.$(OBJEXT)
-expect_create_OBJECTS = $(am_expect_create_OBJECTS)
-expect_create_DEPENDENCIES = ../src/libnetfilter_conntrack.la
-am_expect_delete_OBJECTS = expect_delete.$(OBJEXT)
-expect_delete_OBJECTS = $(am_expect_delete_OBJECTS)
-expect_delete_DEPENDENCIES = ../src/libnetfilter_conntrack.la
-am_expect_dump_OBJECTS = expect_dump.$(OBJEXT)
-expect_dump_OBJECTS = $(am_expect_dump_OBJECTS)
-expect_dump_DEPENDENCIES = ../src/libnetfilter_conntrack.la
-am_expect_events_OBJECTS = expect_events.$(OBJEXT)
-expect_events_OBJECTS = $(am_expect_events_OBJECTS)
-expect_events_DEPENDENCIES = ../src/libnetfilter_conntrack.la
-am_expect_flush_OBJECTS = expect_flush.$(OBJEXT)
-expect_flush_OBJECTS = $(am_expect_flush_OBJECTS)
-expect_flush_DEPENDENCIES = ../src/libnetfilter_conntrack.la
-am_expect_get_OBJECTS = expect_get.$(OBJEXT)
-expect_get_OBJECTS = $(am_expect_get_OBJECTS)
-expect_get_DEPENDENCIES = ../src/libnetfilter_conntrack.la
 
 DEFAULT_INCLUDES =  -I. -I$(srcdir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__depfiles_maybe = depfiles
-DEP_FILES = ./$(DEPDIR)/conntrack_create.Po \
-	./$(DEPDIR)/conntrack_create_nat.Po \
-	./$(DEPDIR)/conntrack_delete.Po \
-	./$(DEPDIR)/conntrack_dump.Po \
-	./$(DEPDIR)/conntrack_events.Po \
-	./$(DEPDIR)/conntrack_flush.Po \
-	./$(DEPDIR)/conntrack_get.Po \
-	./$(DEPDIR)/conntrack_master.Po \
-	./$(DEPDIR)/conntrack_update.Po \
-	./$(DEPDIR)/expect_create.Po \
-	./$(DEPDIR)/expect_delete.Po \
-	./$(DEPDIR)/expect_dump.Po \
-	./$(DEPDIR)/expect_events.Po \
-	./$(DEPDIR)/expect_flush.Po \
-	./$(DEPDIR)/expect_get.Po
+DEP_FILES = ./$(DEPDIR)/conntrack_flush.Po 
+
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
 LTCOMPILE = $(LIBTOOL) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) \
@@ -307,17 +187,11 @@ LTCOMPILE = $(LIBTOOL) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) \
 CCLD = $(CC)
 LINK = $(LIBTOOL) --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
 	$(AM_LDFLAGS) $(LDFLAGS) -o $@
-DIST_SOURCES = $(conntrack_create_SOURCES) \
-	$(conntrack_create_nat_SOURCES) $(conntrack_delete_SOURCES) \
-	$(conntrack_dump_SOURCES) $(conntrack_events_SOURCES) \
-	$(conntrack_flush_SOURCES) $(conntrack_get_SOURCES) \
-	$(conntrack_master_SOURCES) $(conntrack_update_SOURCES) \
-	$(expect_create_SOURCES) $(expect_delete_SOURCES) \
-	$(expect_dump_SOURCES) $(expect_events_SOURCES) \
-	$(expect_flush_SOURCES) $(expect_get_SOURCES)
+DIST_SOURCES = $(conntrack_flush_SOURCES)
+
 DIST_COMMON = $(srcdir)/Makefile.in $(top_srcdir)/Make_global.am \
 	Makefile.am
-SOURCES = $(conntrack_create_SOURCES) $(conntrack_create_nat_SOURCES) $(conntrack_delete_SOURCES) $(conntrack_dump_SOURCES) $(conntrack_events_SOURCES) $(conntrack_flush_SOURCES) $(conntrack_get_SOURCES) $(conntrack_master_SOURCES) $(conntrack_update_SOURCES) $(expect_create_SOURCES) $(expect_delete_SOURCES) $(expect_dump_SOURCES) $(expect_events_SOURCES) $(expect_flush_SOURCES) $(expect_get_SOURCES)
+SOURCES = $(conntrack_flush_SOURCES)
 
 all: all-am
 
@@ -335,51 +209,10 @@ clean-noinstPROGRAMS:
 	  echo " rm -f $$p $$f"; \
 	  rm -f $$p $$f ; \
 	done
-conntrack_create$(EXEEXT): $(conntrack_create_OBJECTS) $(conntrack_create_DEPENDENCIES) 
-	@rm -f conntrack_create$(EXEEXT)
-	$(LINK) $(conntrack_create_LDFLAGS) $(conntrack_create_OBJECTS) $(conntrack_create_LDADD) $(LIBS)
-conntrack_create_nat$(EXEEXT): $(conntrack_create_nat_OBJECTS) $(conntrack_create_nat_DEPENDENCIES) 
-	@rm -f conntrack_create_nat$(EXEEXT)
-	$(LINK) $(conntrack_create_nat_LDFLAGS) $(conntrack_create_nat_OBJECTS) $(conntrack_create_nat_LDADD) $(LIBS)
-conntrack_delete$(EXEEXT): $(conntrack_delete_OBJECTS) $(conntrack_delete_DEPENDENCIES) 
-	@rm -f conntrack_delete$(EXEEXT)
-	$(LINK) $(conntrack_delete_LDFLAGS) $(conntrack_delete_OBJECTS) $(conntrack_delete_LDADD) $(LIBS)
-conntrack_dump$(EXEEXT): $(conntrack_dump_OBJECTS) $(conntrack_dump_DEPENDENCIES) 
-	@rm -f conntrack_dump$(EXEEXT)
-	$(LINK) $(conntrack_dump_LDFLAGS) $(conntrack_dump_OBJECTS) $(conntrack_dump_LDADD) $(LIBS)
-conntrack_events$(EXEEXT): $(conntrack_events_OBJECTS) $(conntrack_events_DEPENDENCIES) 
-	@rm -f conntrack_events$(EXEEXT)
-	$(LINK) $(conntrack_events_LDFLAGS) $(conntrack_events_OBJECTS) $(conntrack_events_LDADD) $(LIBS)
+
 conntrack_flush$(EXEEXT): $(conntrack_flush_OBJECTS) $(conntrack_flush_DEPENDENCIES) 
 	@rm -f conntrack_flush$(EXEEXT)
 	$(LINK) $(conntrack_flush_LDFLAGS) $(conntrack_flush_OBJECTS) $(conntrack_flush_LDADD) $(LIBS)
-conntrack_get$(EXEEXT): $(conntrack_get_OBJECTS) $(conntrack_get_DEPENDENCIES) 
-	@rm -f conntrack_get$(EXEEXT)
-	$(LINK) $(conntrack_get_LDFLAGS) $(conntrack_get_OBJECTS) $(conntrack_get_LDADD) $(LIBS)
-conntrack_master$(EXEEXT): $(conntrack_master_OBJECTS) $(conntrack_master_DEPENDENCIES) 
-	@rm -f conntrack_master$(EXEEXT)
-	$(LINK) $(conntrack_master_LDFLAGS) $(conntrack_master_OBJECTS) $(conntrack_master_LDADD) $(LIBS)
-conntrack_update$(EXEEXT): $(conntrack_update_OBJECTS) $(conntrack_update_DEPENDENCIES) 
-	@rm -f conntrack_update$(EXEEXT)
-	$(LINK) $(conntrack_update_LDFLAGS) $(conntrack_update_OBJECTS) $(conntrack_update_LDADD) $(LIBS)
-expect_create$(EXEEXT): $(expect_create_OBJECTS) $(expect_create_DEPENDENCIES) 
-	@rm -f expect_create$(EXEEXT)
-	$(LINK) $(expect_create_LDFLAGS) $(expect_create_OBJECTS) $(expect_create_LDADD) $(LIBS)
-expect_delete$(EXEEXT): $(expect_delete_OBJECTS) $(expect_delete_DEPENDENCIES) 
-	@rm -f expect_delete$(EXEEXT)
-	$(LINK) $(expect_delete_LDFLAGS) $(expect_delete_OBJECTS) $(expect_delete_LDADD) $(LIBS)
-expect_dump$(EXEEXT): $(expect_dump_OBJECTS) $(expect_dump_DEPENDENCIES) 
-	@rm -f expect_dump$(EXEEXT)
-	$(LINK) $(expect_dump_LDFLAGS) $(expect_dump_OBJECTS) $(expect_dump_LDADD) $(LIBS)
-expect_events$(EXEEXT): $(expect_events_OBJECTS) $(expect_events_DEPENDENCIES) 
-	@rm -f expect_events$(EXEEXT)
-	$(LINK) $(expect_events_LDFLAGS) $(expect_events_OBJECTS) $(expect_events_LDADD) $(LIBS)
-expect_flush$(EXEEXT): $(expect_flush_OBJECTS) $(expect_flush_DEPENDENCIES) 
-	@rm -f expect_flush$(EXEEXT)
-	$(LINK) $(expect_flush_LDFLAGS) $(expect_flush_OBJECTS) $(expect_flush_LDADD) $(LIBS)
-expect_get$(EXEEXT): $(expect_get_OBJECTS) $(expect_get_DEPENDENCIES) 
-	@rm -f expect_get$(EXEEXT)
-	$(LINK) $(expect_get_LDFLAGS) $(expect_get_OBJECTS) $(expect_get_LDADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT) core *.core
@@ -387,21 +220,7 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-include ./$(DEPDIR)/conntrack_create.Po
-include ./$(DEPDIR)/conntrack_create_nat.Po
-include ./$(DEPDIR)/conntrack_delete.Po
-include ./$(DEPDIR)/conntrack_dump.Po
-include ./$(DEPDIR)/conntrack_events.Po
 include ./$(DEPDIR)/conntrack_flush.Po
-include ./$(DEPDIR)/conntrack_get.Po
-include ./$(DEPDIR)/conntrack_master.Po
-include ./$(DEPDIR)/conntrack_update.Po
-include ./$(DEPDIR)/expect_create.Po
-include ./$(DEPDIR)/expect_delete.Po
-include ./$(DEPDIR)/expect_dump.Po
-include ./$(DEPDIR)/expect_events.Po
-include ./$(DEPDIR)/expect_flush.Po
-include ./$(DEPDIR)/expect_get.Po
 
 .c.o:
 	if $(COMPILE) -MT $@ -MD -MP -MF "$(DEPDIR)/$*.Tpo" \

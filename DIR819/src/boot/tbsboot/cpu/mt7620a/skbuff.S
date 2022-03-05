@@ -1151,9 +1151,6 @@ $Letext0:
 	.section	.debug_str,"MS",@progbits,1
 $LASF21:
 	.ascii	"skb_reserve\000"
-$LASF26:
-	.ascii	"/home/guohongliang/work/819/DIR819/build.DIR-819/boot/tb"
-	.ascii	"sboot/cpu/mt7620a\000"
 $LASF3:
 	.ascii	"signed char\000"
 $LASF1:
@@ -1178,6 +1175,9 @@ $LASF17:
 	.ascii	"free_skb\000"
 $LASF27:
 	.ascii	"sk_buff_s\000"
+$LASF26:
+	.ascii	"/home/zhangtianchuan/Gpl819/DIR819/build.DIR-819/boot/tb"
+	.ascii	"sboot/cpu/mt7620a\000"
 $LASF25:
 	.ascii	"skbuff.c\000"
 $LASF12:

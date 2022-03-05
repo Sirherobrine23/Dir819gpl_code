@@ -829,7 +829,10 @@ function OnChangeWPAMode(str_Aband)
 			break;	
 		default :
 			$("bw"+str_Aband).disabled = false;
-			$("cipher_type"+str_Aband).value = "TKIP+AES";
+			if ($("wlan_mode"+str_Aband).value == "n" ||$("wlan_mode"+str_Aband).value == "5n" )
+				$("cipher_type"+str_Aband).value = "AES";
+			else
+				$("cipher_type"+str_Aband).value = "TKIP+AES";
 	}
 }
 function OnChangeWEPAuth(str_Aband)
@@ -1302,6 +1305,85 @@ function checkSpace(id) {
 
 function uiSubmit()
 {
+    if($("ssid").value.match(/[\|&;\$@\+><\?\(\)]/)||
+		$("ssid_Aband").value.match(/[\|&;\$@\+><\?\(\)]/)||
+		$("wpa_grp_key_intrv").value.match(/[\|&;\$@\+><\?\(\)]/)||
+		$("wpa_grp_key_intrv_Aband").value.match(/[\|&;\$@\+><\?\(\)]/))
+	{			
+		alert(SEcode['lang_invalid_input']);
+		return false;	
+	}
+
+	switch($('security_type').value){
+	case 'wep' : {
+		if('40-bit' == $('wep_key_len').value)
+		{
+			if(!$("wep_64_1").value.match(/^[0-9a-zA-Z\\.@_$-]{1,15}$/))
+			{
+				alert(SEcode["lang_invalid_passwd"]);
+				return false;
+			}
+		}
+		else if('104-bit' == $('wep_key_len').value)
+		{
+			if(!$("wep_128_1").value.match(/^[0-9a-zA-Z\\.@_$-]{1,15}$/))
+			{
+				alert(SEcode["lang_invalid_passwd"]);
+				return false;
+			}
+		}
+		
+		break;
+	}
+	case 'wpa_personal':{
+		if(!$("wpa_psk_key").value.match(/^[0-9a-zA-Z\\.@_$-]{1,15}$/))
+		{
+			alert(SEcode["lang_invalid_passwd"]);
+			return false;
+		}
+		break;
+	}
+	case 'none' :
+	case 'wpa_enterprise':
+	default:
+		break;
+	}
+
+	switch($('security_type_Aband').value){
+	case 'wep' : {
+		if('40-bit' == $('wep_key_len_Aband').value)
+		{
+			if(!$("wep_64_1_Aband").value.match(/^[0-9a-zA-Z\\.@_$-]{1,15}$/))
+			{
+				alert(SEcode["lang_invalid_passwd"]);
+				return false;
+			}
+		}
+		else if('104-bit' == $('wep_key_len_Aband').value)
+		{
+			if(!$("wep_128_1_Aband").value.match(/^[0-9a-zA-Z\\.@_$-]{1,15}$/))
+			{
+				alert(SEcode["lang_invalid_passwd"]);
+				return false;
+			}
+		}
+		
+		break;
+	}
+	case 'wpa_personal':{
+		if(!$("wpa_psk_key_Aband").value.match(/^[0-9a-zA-Z\\.@_$-]{1,15}$/))
+		{
+			alert(SEcode["lang_invalid_passwd"]);
+			return false;
+		}
+		break;
+	}
+	case 'none' :
+	case 'wpa_enterprise':
+	default:
+		break;
+	}
+	
 	if(Form.Checkbox('en_wifi'))
 	if(!checkIllegal('')){
 		return false;

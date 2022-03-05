@@ -6,6 +6,7 @@
 			<WANConnectionNumberOfEntries type="unsignedInt" Writable="0">0</WANConnectionNumberOfEntries>
 			<MAXWANConnectionNumberOfEntries type="unsignedInt" Writable="0">8</MAXWANConnectionNumberOfEntries>
 			<X_TWSZ-COM_WANConnectionIndex type="unsignedInt" Writable="0">0</X_TWSZ-COM_WANConnectionIndex>
+			<X_TWSZ-COM_WebWaninterFaceSetupAccessEnable type="string" Wirtable="1">1</X_TWSZ-COM_WebWaninterFaceSetupAccessEnable>
 			<WANCommonInterfaceConfig type="object">
 				<X_TWSZ-COM_DeviceName type="string" Writable="0">ADSL</X_TWSZ-COM_DeviceName>
 				<EnabledForInternet type="boolean">1</EnabledForInternet>

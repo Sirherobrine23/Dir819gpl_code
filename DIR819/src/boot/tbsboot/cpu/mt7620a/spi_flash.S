@@ -2446,10 +2446,10 @@ $LASFDE16:
 	.align	2
 $LEFDE16:
 	.align	0
-	.file 2 "/home/guohongliang/work/819/DIR819/build.DIR-819/boot/build/include2/asm/types.h"
-	.file 3 "/home/guohongliang/work/819/DIR819/build.DIR-819/boot/tbsboot/include/types.h"
-	.file 4 "/home/guohongliang/work/819/DIR819/build.DIR-819/boot/tbsboot/include/flash.h"
-	.file 5 "/home/guohongliang/work/819/DIR819/build.DIR-819/boot/tbsboot/include/common.h"
+	.file 2 "/home/zhangtianchuan/Gpl819/DIR819/build.DIR-819/boot/build/include2/asm/types.h"
+	.file 3 "/home/zhangtianchuan/Gpl819/DIR819/build.DIR-819/boot/tbsboot/include/types.h"
+	.file 4 "/home/zhangtianchuan/Gpl819/DIR819/build.DIR-819/boot/tbsboot/include/flash.h"
+	.file 5 "/home/zhangtianchuan/Gpl819/DIR819/build.DIR-819/boot/tbsboot/include/common.h"
 	.file 6 "spi_flash.h"
 	.text
 $Letext0:
@@ -4089,9 +4089,6 @@ $LASF17:
 	.ascii	"flash_info_t\000"
 $LASF35:
 	.ascii	"timeout\000"
-$LASF63:
-	.ascii	"/home/guohongliang/work/819/DIR819/build.DIR-819/boot/tb"
-	.ascii	"sboot/cpu/mt7620a\000"
 $LASF52:
 	.ascii	"e_addr\000"
 $LASF29:
@@ -4154,6 +4151,9 @@ $LASF3:
 	.ascii	"signed char\000"
 $LASF2:
 	.ascii	"short unsigned int\000"
+$LASF63:
+	.ascii	"/home/zhangtianchuan/Gpl819/DIR819/build.DIR-819/boot/tb"
+	.ascii	"sboot/cpu/mt7620a\000"
 $LASF33:
 	.ascii	"__func__\000"
 $LASF45:

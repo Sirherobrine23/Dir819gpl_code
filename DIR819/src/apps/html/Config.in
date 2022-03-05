@@ -17,21 +17,26 @@ menu "Languages"
 
 		config APPS_HTML_LANG_SUPPORT_en_us
 			bool 'English'
-			default y
+			default n
 			help
 				Support English Language.
 
 		config APPS_HTML_LANG_SUPPORT_zh_cn
 			bool 'Chinse'
-			default y
+			default n
 			help
 				Support Chinse Language.
+		config APPS_HTML_LANG_SUPPORT_pt
+		        bool 'Portugal'
+			default y
+			help
+				Support Portugal Language.
 
 	endmenu
 
 	choice
 		prompt "Default language"
-		default APPS_HTML_LANG_DEFAULT_zh_cn
+		default APPS_HTML_LANG_DEFAULT_pt
 		depends on APPS_HTML
 
 		config APPS_HTML_LANG_DEFAULT_en_us
@@ -45,6 +50,11 @@ menu "Languages"
 			select APPS_HTML_LANG_SUPPORT_zh_cn
 			help
 				Chinese as default language
+		config APPS_HTML_LANG_DEFAULT_pt
+		        bool 'Portugal'
+			select APPS_HTML_LANG_SUPPORT_pt
+			help
+				Portugal as default language.
 	endchoice
 
 
@@ -55,7 +65,7 @@ menu "Web Style"
 	depends on APPS_HTML
 	choice
 		prompt "All Supported Style"
-		default APPS_HTML_WEB_STYLE_Blue
+		default APPS_HTML_WEB_STYLE_DLINK_AC750_PT
 		depends on APPS_HTML
 
 		config APPS_HTML_WEB_STYLE_DLINK_AC750
@@ -72,11 +82,15 @@ menu "Web Style"
 			bool 'ACT'
 			help
 				Web  ACT  style
+		config APPS_HTML_WEB_STYLE_DLINK_AC750_PT
+			bool ' dlink_AC750_PT'
+			help
+				Web   dlink_AC750_PT  style
 	endchoice
 	
 	choice
 		prompt "Default Style"
-		default APPS_HTML_WEB_STYLE_DEFAULT_Blue
+		default APPS_HTML_WEB_STYLE_DEFAULT_DLINK_AC750_PT
 		depends on APPS_HTML
 
 		config APPS_HTML_WEB_STYLE_DEFAULT_DLINK_AC750
@@ -94,6 +108,10 @@ menu "Web Style"
 			bool 'ACT'
 			help
 				Web  ACT  style
+		config APPS_HTML_WEB_STYLE_DEFAULT_DLINK_AC750_PT
+			bool ' dlink_AC750_PT'
+			help
+				Web   dlink_AC750_PT  style
 	endchoice
 	
 	config APPS_HTML_WEB_LOGIN_WIZARD

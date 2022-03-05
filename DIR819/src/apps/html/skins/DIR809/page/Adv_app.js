@@ -1,4 +1,4 @@
-var G_PortTrigger = [];
+﻿var G_PortTrigger = [];
 var m = 0;
 
 <?objget :InternetGatewayDevice.X_TWSZ-COM_PortTrigger.TriggerList. "Enable Description OpenPortMap TriggerPortMap TriggerProtocol OpenProtocol PortTriggerTime"
@@ -252,6 +252,11 @@ function uiSubmit(){
 	var i = 0;
 	for (var i=1; i<=24; i+=1)
 	{
+		if($("name_"+i).value.match(/[\|&;\$@\+><\?\(\)]/))
+		{			
+			alert(SEcode['lang_invalid_input']);
+			return false;	
+		}	
 		if($("priport_"+i).value == "" && $("pubport_"+i).value == "" && $("name_"+i).value == "")
 		{
 			$("en_"+i).checked = false;

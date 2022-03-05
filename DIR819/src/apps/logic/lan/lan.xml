@@ -7,6 +7,8 @@
 			<X_TWSZ-COM_Name type="string">LAN1</X_TWSZ-COM_Name>
 			<X_TWSZ-COM_MacAddress type="string" Writable="0"></X_TWSZ-COM_MacAddress>
 			<X_TWSZ-COM_ProxyArp type="boolean">0</X_TWSZ-COM_ProxyArp>
+			<X_TWSZ-COM_WebLanInterfaceSetupAccessEnable type="string" Wirtable="1">1</X_TWSZ-COM_WebLanInterfaceSetupAccessEnable>
+			<X_TWSZ-COM_WebWirelessInterfaceSetupAccessEnable type="string">1</X_TWSZ-COM_WebWirelessInterfaceSetupAccessEnable >
 			<LANHostConfigManagement type="object">
 				<MACAddress type="string" Writable="0"></MACAddress>
 				<DHCPServerConfigurable type="boolean" Writable="1">1</DHCPServerConfigurable>

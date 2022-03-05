@@ -1,4 +1,4 @@
-var G_PortMapping = [];
+﻿var G_PortMapping = [];
 var m = 0;
 
 <?objget :InternetGatewayDevice.X_TWSZ-COM_PortMapping.PortMapping. "PortMappingEnabled PortMappingDescription PortMappingProtocol ExternalPort ExternalPortEndRange InternalPort InternalClient PortMappingTime X_TWSZ-COM_InBoundFilter"
@@ -273,6 +273,11 @@ function uiSubmit(){
 	var i = 0;
 	for (i=1; i<=24; i+=1)
 	{
+		if($("dsc_"+i).value.match(/[\|&;\$@\+><\?\(\)]/))
+		{			
+				alert(SEcode['lang_invalid_input']);
+				return false;	
+		}	
 		if($("pubport_"+i).value == "" && $("priport_"+i).value == "" && $("ip_"+i).value == "" && $("dsc_"+i).value == "")
 		{
 			$("en_"+i).checked = false;

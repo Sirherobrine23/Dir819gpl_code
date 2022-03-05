@@ -13,16 +13,27 @@ lang-y := #
 lang- := #
 lang-${CONFIG_APPS_HTML_LANG_SUPPORT_en_us} += en_us
 lang-${CONFIG_APPS_HTML_LANG_SUPPORT_zh_cn} += zh_cn
+lang-${CONFIG_APPS_HTML_LANG_SUPPORT_pt} += pt
+lang-default-${CONFIG_APPS_HTML_LANG_SUPPORT_en_us} = en_us
 #--- style ---#
 ifeq ($(CONFIG_APPS_HTML_WEB_STYLE_DLINK_AC750), y)
 SKIN := DIR809
+lang-default-${CONFIG_APPS_HTML_WEB_STYLE_DLINK_AC750} = en_us
 endif
 ifeq ($(CONFIG_APPS_HTML_WEB_STYLE_SITECOM), y)
 SKIN := Sitecom
+lang-default-${CONFIG_APPS_HTML_WEB_STYLE_SITECOM} = en_us
 PRODUCT_NAME = $(shell echo $(PRODUCT) | cut -d "M" -f2)
 endif
 ifeq ($(CONFIG_APPS_HTML_WEB_STYLE_ACT), y)
 SKIN := ACT
+lang-default-${CONFIG_APPS_HTML_WEB_STYLE_ACT} = en_us
+endif
+ifeq ($(CONFIG_APPS_HTML_WEB_STYLE_DLINK_AC750_PT), y)
+SKIN := DIR819_PT
+lang-default-${CONFIG_APPS_HTML_WEB_STYLE_DLINK_AC750_PT} = pt
+lang- += es
+lang- +=zh_tw
 endif
 
 
@@ -141,9 +152,9 @@ install:config.h
 	echo "">>$(FSROOT)/usr/www/html/js/global.js
 	echo "var G_Date='`export LANG=C;date +%m/%d/%Y-%H:%M:%S`';">>$(FSROOT)/usr/www/html/js/global.js
 	$(Q)mkdir -p  $(FSROOT)/usr/www/html/languagesOrg
-	cp -rf $(FSROOT)/usr/www/html/languages/en_us/* $(FSROOT)/usr/www/html/languagesOrg
+	cp -rf $(FSROOT)/usr/www/html/languages/$(lang-default-y)/* $(FSROOT)/usr/www/html/languagesOrg
 	$(Q)echo "**************crear softlink of language file****************************"	
-	./lnk.sh
+	./lnk.sh  $(SKIN)
 	
 config.h:
 	echo "/* text added by Makefile target config.h */" > config.h

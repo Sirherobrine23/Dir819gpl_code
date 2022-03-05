@@ -29,5 +29,14 @@
 				<Description type="string(256)" Writable="0"></Description>
 			</i>
 		</VendorConfigFile>
+	    <X_TWSZ-COM_ServiceManage Standard="0" type="object">
+			<TelnetEnable type="string" Wirtable="1">0</TelnetEnable>
+			<WebAccessEnable type="string" Wirtable="1">1</WebAccessEnable>
+			<WebFactoryRestoreAccessEnable type="string" Wirtable="1">1</WebFactoryRestoreAccessEnable>
+			<X_TWSZ-COM_WebFirmwareUpgradeAccess type="object">
+		        <Enable type="string" Wirtable="1">1</Enable>
+	        </X_TWSZ-COM_WebFirmwareUpgradeAccess>
+		</X_TWSZ-COM_ServiceManage>
+		
 	</DeviceInfo>
 </InternetGatewayDevice>

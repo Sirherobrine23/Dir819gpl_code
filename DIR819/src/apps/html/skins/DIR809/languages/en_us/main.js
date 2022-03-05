@@ -5,7 +5,7 @@ var data_language = {
 		DIV_HardwareVersion : "Hardware Version :",
 		login_title : "Login fail",
 		login_msg : "User Name or Password is incorrect.",
-		DIV_Copyright : 'Copyright &copy; 2016 D-Link Corporation. All rights reserved.',
+		DIV_Copyright : 'Copyright &copy; 2017 D-Link Corporation. All rights reserved.',
 		DIV_LogIn : "LogIn",
 		DIV_LogInfo : "Login to the router :",
 		DIV_UserName : 'User Name',

@@ -30,7 +30,6 @@ TBS_APP_CFG_NAME=`grep TBS_APP_CFG ${ROOTDIR}/src/include/flash_layout.h  | awk 
 DRAM_SIZE=`grep CONFIG_DRAM_SIZE ${BUILDDIR}/.config | awk -F"=" '{print $2}'`
 SUPPORT_JFFS2=`grep CONFIG_MTD_JFFS2 ${BUILDDIR}/.config -w | awk -F"=" '{print $2}'`
 
-
 if [ "${DOUBLE_BACKUP}" = "y" ];
 then
 IMG_TYPE=imgd
@@ -83,15 +82,15 @@ fi
 	REAL_EXTFS_SIZE=`expr ${EXTFS_SIZE} \* 1024`
 	/usr/sbin/mkfs.jffs2 -d ${ROMFS}/multi_lang -o ${ROMFS}/multi_lang.img -${ENDIAN_OPT} -e ${REAL_ERASE_SIZE} --pad=${REAL_EXTFS_SIZE}
     ./bin/mkimage -b ${ROMFS}/bootloader.bin -k ${ROMFS}/vmlinux.bin.lzma -r ${ROMFS}/rootfs.img \
--mac $MAC -pin $PIN -ip 192.168.1.1 -${ENDIAN} -obin ${ROMFS}/${PRODUCT}.img -oimg ${ROMFS}/${PRODUCT}.bin \
+-mac $MAC -pin $PIN -ip 192.168.1.1 -${ENDIAN} -obin ${ROMFS}/${PRODUCT}_A1_v1.02.img -oimg ${ROMFS}/${PRODUCT}_A1_v1.02.bin \
 -id ${BOARD_ID} -region ${SW_REGION} -sw ${SW_VERSION} -model ${SW_MODEL} -blk ${FLASH_ERASESIZE}  -v ${SYSTEM_VERSION} -img_type ${IMG_TYPE} -p $PRODUCT \
 -t $SYSCONFIG_TRANSFER_MODE -app_cfg ${TBS_APP_CFG_NAME} ${ROMFS}/tbs_app_cfg
 #-multi_lang  -fss ${EXTFS_SIZE} -f ${ROMFS}/multi_lang.img
 
 
 cd ${ROMFS}
-ln -sf ${PRODUCT}.bin image.bin
-ln -sf ${PRODUCT}.img image.img
+ln -sf ${PRODUCT}_A1_v1.02.bin image.bin
+ln -sf ${PRODUCT}_A1_v1.02.img image.img
 
 echo
 echo

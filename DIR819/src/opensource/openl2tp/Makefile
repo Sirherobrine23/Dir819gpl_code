@@ -4,6 +4,7 @@ include $(ROOTDIR)/BaseVar.mk
 
 SRCDIR=$(CURDIR)/openl2tp-1.6
 export PPPD_SRCDIR=$(ROOTDIR)/build/opensource/ppp-pppoe/ppp-2.4.3
+export PPPD_SRCDIR=$(ROOTDIR)/build/opensource/ppp-pppoe/ppp-2.4.3
 #EXTRA_CFLAGS=-g
 all: build
 
@@ -11,6 +12,7 @@ build:
 	mkdir -p  $(FSROOT)/sbin $(TMPDISTDIR)/sbin
 	mkdir -p  $(FSROOT)/etc $(TMPDISTDIR)/etc
 	echo "" >> $(SRCDIR)/l2tp_config_token.c
+	echo " " >> $(SRCDIR)/l2tp_config_token.c
 	make -C $(SRCDIR) TBS_filesystem=$(TMPDISTDIR) CC=$(CROSS_COMPILE)gcc
 	
 	
